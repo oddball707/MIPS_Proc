@@ -100,7 +100,7 @@ mt48lc4m16a2 SDRAM(
 reg [31:0] flash_mem_sim [0:32767];
 initial 
 begin
-	$readmemh("H:/cse148_baseline/src/hexfiles/nqueens.hex",flash_mem_sim);		// Change the path in readmemh to load a different benchmark	
+	$readmemh("C:/Users/Eli/Documents/ucsd/148/src/hexfiles/nqueens.hex",flash_mem_sim);		// Change the path in readmemh to load a different benchmark	
 end
 
 always @(*)

@@ -8686,6 +8686,7 @@ i_Reset_n => Data_Array[31][1].ENA
 i_Valid => o_Valid.OUTPUTSELECT
 i_Valid => NextState.OUTPUTSELECT
 i_Valid => NextState.OUTPUTSELECT
+i_Valid => o_isbranch.IN1
 i_Address[0] => Mux128.IN5
 i_Address[0] => Mux129.IN5
 i_Address[0] => Mux130.IN5
@@ -17676,7 +17677,40 @@ i_MEM_Data[31] => Data_Array.DATAB
 i_MEM_Data[31] => Data_Array.DATAB
 
 
+|mips_cpu|branch_predictor:BRANCH_PREDICTOR
+i_Clk => ~NO_FANOUT~
+i_IMEM_address[0] => ~NO_FANOUT~
+i_IMEM_address[1] => ~NO_FANOUT~
+i_IMEM_address[2] => ~NO_FANOUT~
+i_IMEM_address[3] => ~NO_FANOUT~
+i_IMEM_address[4] => ~NO_FANOUT~
+i_IMEM_address[5] => ~NO_FANOUT~
+i_IMEM_address[6] => ~NO_FANOUT~
+i_IMEM_address[7] => ~NO_FANOUT~
+i_IMEM_address[8] => ~NO_FANOUT~
+i_IMEM_address[9] => ~NO_FANOUT~
+i_IMEM_address[10] => ~NO_FANOUT~
+i_IMEM_address[11] => ~NO_FANOUT~
+i_IMEM_address[12] => ~NO_FANOUT~
+i_IMEM_address[13] => ~NO_FANOUT~
+i_IMEM_address[14] => ~NO_FANOUT~
+i_IMEM_address[15] => ~NO_FANOUT~
+i_IMEM_address[16] => ~NO_FANOUT~
+i_IMEM_address[17] => ~NO_FANOUT~
+i_IMEM_address[18] => ~NO_FANOUT~
+i_IMEM_address[19] => ~NO_FANOUT~
+i_IMEM_address[20] => ~NO_FANOUT~
+i_IMEM_address[21] => ~NO_FANOUT~
+i_IMEM_isbranch => ~NO_FANOUT~
+i_ALU_outcome => ~NO_FANOUT~
+i_ALU_pc => ~NO_FANOUT~
+i_ALU_isbranch => ~NO_FANOUT~
+i_ALU_prediction => Decoder0.IN0
+i_Reset_n => ~NO_FANOUT~
+
+
 |mips_cpu|pipe_if_dec:PIPE_IF_DEC
+i_Clk => o_prediction~reg0.CLK
 i_Clk => o_PC[0]~reg0.CLK
 i_Clk => o_PC[1]~reg0.CLK
 i_Clk => o_PC[2]~reg0.CLK
@@ -17731,6 +17765,7 @@ i_Clk => o_Instruction[28]~reg0.CLK
 i_Clk => o_Instruction[29]~reg0.CLK
 i_Clk => o_Instruction[30]~reg0.CLK
 i_Clk => o_Instruction[31]~reg0.CLK
+i_Reset_n => o_prediction~reg0.ACLR
 i_Reset_n => o_PC[0]~reg0.ACLR
 i_Reset_n => o_PC[1]~reg0.ACLR
 i_Reset_n => o_PC[2]~reg0.ACLR
@@ -17839,7 +17874,8 @@ i_Flush => o_PC.OUTPUTSELECT
 i_Flush => o_PC.OUTPUTSELECT
 i_Flush => o_PC.OUTPUTSELECT
 i_Flush => o_PC.OUTPUTSELECT
-i_Stall => o_PC[0]~reg0.ENA
+i_Flush => o_prediction.OUTPUTSELECT
+i_Stall => o_prediction~reg0.ENA
 i_Stall => o_Instruction[31]~reg0.ENA
 i_Stall => o_Instruction[30]~reg0.ENA
 i_Stall => o_Instruction[29]~reg0.ENA
@@ -17893,6 +17929,7 @@ i_Stall => o_PC[4]~reg0.ENA
 i_Stall => o_PC[3]~reg0.ENA
 i_Stall => o_PC[2]~reg0.ENA
 i_Stall => o_PC[1]~reg0.ENA
+i_Stall => o_PC[0]~reg0.ENA
 i_PC[0] => o_PC.DATAA
 i_PC[1] => o_PC.DATAA
 i_PC[2] => o_PC.DATAA
@@ -17947,6 +17984,7 @@ i_Instruction[28] => o_Instruction.DATAA
 i_Instruction[29] => o_Instruction.DATAA
 i_Instruction[30] => o_Instruction.DATAA
 i_Instruction[31] => o_Instruction.DATAA
+i_prediction => o_prediction.DATAA
 
 
 |mips_cpu|decoder:DECODE
@@ -18332,6 +18370,7 @@ i_Write_Data[31] => Register.DATAIN31
 
 
 |mips_cpu|pipe_dec_ex:PIPE_DEC_EX
+i_Clk => o_prediction~reg0.CLK
 i_Clk => o_Mem_Mask[0]~reg0.CLK
 i_Clk => o_Mem_Mask[1]~reg0.CLK
 i_Clk => o_Mem_Mask[2]~reg0.CLK
@@ -18493,6 +18532,7 @@ i_Clk => o_PC[18]~reg0.CLK
 i_Clk => o_PC[19]~reg0.CLK
 i_Clk => o_PC[20]~reg0.CLK
 i_Clk => o_PC[21]~reg0.CLK
+i_Reset_n => o_prediction~reg0.ACLR
 i_Reset_n => o_Mem_Mask[0]~reg0.ACLR
 i_Reset_n => o_Mem_Mask[1]~reg0.ACLR
 i_Reset_n => o_Mem_Mask[2]~reg0.ACLR
@@ -18815,7 +18855,8 @@ i_Flush => o_Mem_Write_Data.OUTPUTSELECT
 i_Flush => o_Mem_Mask.OUTPUTSELECT
 i_Flush => o_Mem_Mask.OUTPUTSELECT
 i_Flush => o_Mem_Mask.OUTPUTSELECT
-i_Stall => o_Mem_Mask[0]~reg0.ENA
+i_Flush => o_prediction.OUTPUTSELECT
+i_Stall => o_prediction~reg0.ENA
 i_Stall => o_PC[21]~reg0.ENA
 i_Stall => o_PC[20]~reg0.ENA
 i_Stall => o_PC[19]~reg0.ENA
@@ -18976,6 +19017,7 @@ i_Stall => o_Mem_Write_Data[1]~reg0.ENA
 i_Stall => o_Mem_Write_Data[0]~reg0.ENA
 i_Stall => o_Mem_Mask[2]~reg0.ENA
 i_Stall => o_Mem_Mask[1]~reg0.ENA
+i_Stall => o_Mem_Mask[0]~reg0.ENA
 i_PC[0] => o_PC.DATAA
 i_PC[1] => o_PC.DATAA
 i_PC[2] => o_PC.DATAA
@@ -19137,6 +19179,7 @@ i_Branch_Target[18] => o_Branch_Target.DATAA
 i_Branch_Target[19] => o_Branch_Target.DATAA
 i_Branch_Target[20] => o_Branch_Target.DATAA
 i_Branch_Target[21] => o_Branch_Target.DATAA
+i_prediction => o_prediction.DATAA
 
 
 |mips_cpu|alu:ALU

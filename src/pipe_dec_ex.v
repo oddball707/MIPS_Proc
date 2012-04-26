@@ -39,7 +39,9 @@ module pipe_dec_ex	#(
 						input [DATA_WIDTH-1:0] i_Operand2,
 						output reg [DATA_WIDTH-1:0] o_Operand2,
 						input [ADDRESS_WIDTH-1:0] i_Branch_Target,
-						output reg [ADDRESS_WIDTH-1:0] o_Branch_Target
+						output reg [ADDRESS_WIDTH-1:0] o_Branch_Target,
+						input i_prediction,
+						output reg o_prediction
 					);
 		
 		// Asynchronous output driver
@@ -61,6 +63,7 @@ module pipe_dec_ex	#(
 			o_Branch_Target <= 0;
 			o_Mem_Write_Data <= 0;
 			o_Mem_Mask <= 0;
+			o_prediction <= 0;
 		end
 		else
 		begin
@@ -82,6 +85,7 @@ module pipe_dec_ex	#(
 					o_Branch_Target <= 0;
 					o_Mem_Write_Data <= 0;
 					o_Mem_Mask <= 0;
+					o_prediction <= 0;
 				end
 				else
 				begin
@@ -99,6 +103,7 @@ module pipe_dec_ex	#(
 					o_Operand1 <= i_Operand1;
 					o_Operand2 <= i_Operand2;
 					o_Branch_Target <= i_Branch_Target;
+					o_prediction <= i_prediction;
 				end
 			end
 		end

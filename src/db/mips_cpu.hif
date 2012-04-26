@@ -22,42 +22,6 @@ VHSM_ON
 -- Start VHDL Libraries --
 -- End VHDL Libraries --
 # entity
-mips_cpu
-# storage
-db|mips_cpu.(0).cnf
-db|mips_cpu.(0).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-mips_cpu.v
-1c80ed841d3ec2645e28f82e102dc17a
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-|
-}
-# macro_sequence
-
-# end
-# entity
 pll
 # storage
 db|mips_cpu.(1).cnf
@@ -1769,106 +1733,6 @@ fetch_unit:IFETCH
 
 # end
 # entity
-i_cache
-# storage
-db|mips_cpu.(6).cnf
-db|mips_cpu.(6).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-i_cache.v
-79fe237fb54ce9e1550e6c79abf8e38
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# user_parameter {
-DATA_WIDTH
-32
-PARAMETER_SIGNED_DEC
-USR
-TAG_WIDTH
-14
-PARAMETER_SIGNED_DEC
-DEF
-INDEX_WIDTH
-5
-PARAMETER_SIGNED_DEC
-DEF
-BLOCK_OFFSET_WIDTH
-2
-PARAMETER_SIGNED_DEC
-DEF
-}
-# hierarchies {
-i_cache:I_CACHE
-}
-# macro_sequence
-
-# end
-# entity
-pipe_if_dec
-# storage
-db|mips_cpu.(7).cnf
-db|mips_cpu.(7).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-pipe_if_dec.v
-57aebf6fde41baf14b53aa69901a77de
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# user_parameter {
-ADDRESS_WIDTH
-22
-PARAMETER_SIGNED_DEC
-USR
-DATA_WIDTH
-32
-PARAMETER_SIGNED_DEC
-USR
-}
-# hierarchies {
-pipe_if_dec:PIPE_IF_DEC
-}
-# macro_sequence
-
-# end
-# entity
 decoder
 # storage
 db|mips_cpu.(8).cnf
@@ -1972,64 +1836,6 @@ USR
 }
 # hierarchies {
 regfile:REGFILE
-}
-# macro_sequence
-
-# end
-# entity
-pipe_dec_ex
-# storage
-db|mips_cpu.(10).cnf
-db|mips_cpu.(10).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-pipe_dec_ex.v
-11c230c5e5d51e169b0aac546a715c3
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# user_parameter {
-ADDRESS_WIDTH
-22
-PARAMETER_SIGNED_DEC
-USR
-DATA_WIDTH
-32
-PARAMETER_SIGNED_DEC
-USR
-REG_ADDR_WIDTH
-5
-PARAMETER_SIGNED_DEC
-USR
-ALU_CTLCODE_WIDTH
-8
-PARAMETER_SIGNED_DEC
-USR
-MEM_MASK_WIDTH
-3
-PARAMETER_SIGNED_DEC
-USR
-}
-# hierarchies {
-pipe_dec_ex:PIPE_DEC_EX
 }
 # macro_sequence
 
@@ -3016,6 +2822,246 @@ address_a1
 address_a0
 -1
 3
+}
+# macro_sequence
+
+# end
+# entity
+mips_cpu
+# storage
+db|mips_cpu.(0).cnf
+db|mips_cpu.(0).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+mips_cpu.v
+3d262b3cd4949f9821b7f67cc2669536
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+|
+}
+# macro_sequence
+
+# end
+# entity
+i_cache
+# storage
+db|mips_cpu.(6).cnf
+db|mips_cpu.(6).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+i_cache.v
+a1a1beeae16e670ea43d4de8ab148db
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# user_parameter {
+DATA_WIDTH
+32
+PARAMETER_SIGNED_DEC
+USR
+TAG_WIDTH
+14
+PARAMETER_SIGNED_DEC
+DEF
+INDEX_WIDTH
+5
+PARAMETER_SIGNED_DEC
+DEF
+BLOCK_OFFSET_WIDTH
+2
+PARAMETER_SIGNED_DEC
+DEF
+}
+# hierarchies {
+i_cache:I_CACHE
+}
+# macro_sequence
+
+# end
+# entity
+branch_predictor
+# storage
+db|mips_cpu.(7).cnf
+db|mips_cpu.(7).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+branch_predictor.v
+d9e2f03c78269c2dc654e9d246c4b3
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# user_parameter {
+DATA_WIDTH
+32
+PARAMETER_SIGNED_DEC
+USR
+ADDRESS_WIDTH
+22
+PARAMETER_SIGNED_DEC
+USR
+}
+# hierarchies {
+branch_predictor:BRANCH_PREDICTOR
+}
+# macro_sequence
+
+# end
+# entity
+pipe_if_dec
+# storage
+db|mips_cpu.(10).cnf
+db|mips_cpu.(10).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+pipe_if_dec.v
+ff8dcc9097598cef851eba97d823574
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# user_parameter {
+ADDRESS_WIDTH
+22
+PARAMETER_SIGNED_DEC
+USR
+DATA_WIDTH
+32
+PARAMETER_SIGNED_DEC
+USR
+}
+# hierarchies {
+pipe_if_dec:PIPE_IF_DEC
+}
+# macro_sequence
+
+# end
+# entity
+pipe_dec_ex
+# storage
+db|mips_cpu.(22).cnf
+db|mips_cpu.(22).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+pipe_dec_ex.v
+93a73cb6584c3e6dfc244dab88298e8c
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# user_parameter {
+ADDRESS_WIDTH
+22
+PARAMETER_SIGNED_DEC
+USR
+DATA_WIDTH
+32
+PARAMETER_SIGNED_DEC
+USR
+REG_ADDR_WIDTH
+5
+PARAMETER_SIGNED_DEC
+USR
+ALU_CTLCODE_WIDTH
+8
+PARAMETER_SIGNED_DEC
+USR
+MEM_MASK_WIDTH
+3
+PARAMETER_SIGNED_DEC
+USR
+}
+# hierarchies {
+pipe_dec_ex:PIPE_DEC_EX
 }
 # macro_sequence
 

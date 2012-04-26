@@ -29,7 +29,8 @@ module i_cache	#(	parameter DATA_WIDTH = 32,
 					// Outputs
 					output o_Ready,
 					output reg o_Valid,							// If the output is correct.
-					output reg [DATA_WIDTH-1:0] o_Data				// The data requested.
+					output reg o_isbranch,						// if the instruction is a branch
+					output reg [DATA_WIDTH-1:0] o_Data		// The data requested.
 				);
 				
 	// consts
@@ -65,6 +66,15 @@ module i_cache	#(	parameter DATA_WIDTH = 32,
 	integer i;
 	reg [8:0] Gen_Count;					// General counter
 	
+		//branch detection
+	wire [3:0] opcode1;
+	wire opcodeA, opcodeB, opcodeC;
+
+	assign opcode1 = o_Data[31:29];		//first 3 bits of instruction opcode (000 for branch)
+	assign opcodeA = o_Data[28];			//next 3 bits of opcode (CBA)
+	assign opcodeB = o_Data[27];
+	assign opcodeC = o_Data[26];
+	
 		// Hardwired assignments
 	assign o_Ready = (State==STATE_READY);
 	
@@ -79,6 +89,7 @@ module i_cache	#(	parameter DATA_WIDTH = 32,
 		o_Data <= {DATA_WIDTH{1'bx}};
 		o_MEM_Valid <= FALSE;
 		o_MEM_Address <= {TAG_WIDTH+INDEX_WIDTH+BLOCK_OFFSET_WIDTH{1'bx}};
+		 
 		
 		// Act asynchronously based on state
 		case(State)
@@ -103,6 +114,8 @@ module i_cache	#(	parameter DATA_WIDTH = 32,
 							3:	o_Data <= Data_Array[i_Index][(DATA_WIDTH*4)-1:(DATA_WIDTH*3)];
 							default:	o_Data <= {DATA_WIDTH{1'bx}};
 						endcase
+						
+						o_isbranch <= !opcode1 && (!opcodeB || (opcodeB && !opcodeC));	//1 if branch instruction
 					end
 					else
 					begin

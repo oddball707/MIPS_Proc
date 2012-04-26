@@ -14,7 +14,9 @@ module pipe_if_dec 	#(
 						input [ADDRESS_WIDTH-1:0] i_PC,
 						output reg [ADDRESS_WIDTH-1:0] o_PC,
 						input [DATA_WIDTH-1:0] i_Instruction,
-						output reg [DATA_WIDTH-1:0] o_Instruction
+						output reg [DATA_WIDTH-1:0] o_Instruction,
+						input i_prediction,				//prediction from branch predictor
+						output reg o_prediction 
 					);
 		
 		// Asynchronous output driver
@@ -25,6 +27,7 @@ module pipe_if_dec 	#(
 			// Initialize outputs to 0s
 			o_Instruction <= 0;
 			o_PC <= 0;
+			o_prediction <= 0;
 		end
 		else
 		begin
@@ -35,12 +38,14 @@ module pipe_if_dec 	#(
 					// Pass through all 0s
 					o_Instruction <= 0;
 					o_PC <= 0;
+					o_prediction <= 0;
 				end
 				else
 				begin
 					// Pass through signals
 					o_Instruction <= i_Instruction;
 					o_PC <= i_PC;
+					o_prediction <= i_prediction;
 				end
 			end
 		end

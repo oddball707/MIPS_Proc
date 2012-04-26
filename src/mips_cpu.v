@@ -80,11 +80,16 @@ assign SRAM_CE_N = 0;
 // IFetch Signals
 
 wire IFetch_i_Flush;			// Flush for IFetch
-wire Hazard_Stall_IF;				// Stall for IFetch
+wire Hazard_Stall_IF;		// Stall for IFetch
 wire IFetch_i_Load;			// Load signal - if high, load pc with vector
 wire [ADDRESS_WIDTH-1:0] IFetch_i_PCSrc;	// Vector to branch to
 
 wire [ADDRESS_WIDTH-1:0] IMEM_i_Address;	// Current PC
+wire IMEM_o_isbranch;							// if the instruction is a branch
+
+wire Branch_predictor_o_taken;				// branch taken prediction
+wire Branch_predictor_o_valid;				// if current inst is branch
+wire Branch_predictor_o_flush;				// signal to flush
 
 
 wire IMEM_o_Ready;
@@ -107,6 +112,7 @@ wire DEC_Noop = (DEC_i_Instruction != 32'd0);
 
 wire DEC_o_Uses_ALU;
 wire [ALU_CTLCODE_WIDTH-1:0] DEC_o_ALUCTL;			// ALU control code
+wire DEC_prediction;
 wire DEC_o_Is_Branch;									// If it's a branch
 wire [ADDRESS_WIDTH-1:0] DEC_o_Branch_Target;		// Where we will branch to
 wire DEC_o_Jump_Reg;									// If this is a special case where we jump TO a register value
@@ -144,6 +150,7 @@ assign DEC_o_PC = DEC_i_PC;
 wire [ADDRESS_WIDTH-1:0] ALU_i_PC;
 
 wire EX_i_Is_Branch;
+wire EX_prediction;
 wire EX_i_Mem_Valid;
 wire [MEM_MASK_WIDTH-1:0] EX_i_Mem_Mask;
 wire EX_i_Mem_Read_Write_n;
@@ -457,9 +464,37 @@ i_cache	#(	.DATA_WIDTH(DATA_WIDTH)
 			// Outputs
 			.o_Ready(IMEM_o_Ready),
 			.o_Valid(IMEM_o_Valid),					// If the output is correct.
+			.o_isbranch(IMEM_o_isbranch),
 			.o_Data(IMEM_o_Instruction)					// The data requested.		
 		);
 
+//	Branch Prediction
+branch_predictor #(	
+				.DATA_WIDTH(DATA_WIDTH),
+				.ADDRESS_WIDTH(ADDRESS_WIDTH)
+						)
+				BRANCH_PREDICTOR
+				(	// Inputs
+					.i_Clk(i_Clk),
+					
+					//Prediction
+					.i_IMEM_address(IMEM_i_Address),
+					.i_IMEM_isbranch(IMEM_o_isbranch),
+					
+					//ALU feedback
+					.i_ALU_outcome(ALU_o_Branch_Outcome),
+					.i_ALU_pc(ALU_i_PC),
+					.i_ALU_isbranch(ALU_o_Branch_Valid),
+					.i_ALU_prediction(EX_prediction),
+					
+					.i_Reset_n(Internal_Reset_n),			
+					
+					// Outputs
+					.o_taken(Branch_predictor_o_taken),
+					.o_valid(Branch_predictor_o_valid),
+					.o_flush(Branch_predictor_o_flush)
+				);		
+		
 //===================================================================
 //	Decode
 pipe_if_dec	#(	.ADDRESS_WIDTH(ADDRESS_WIDTH),
@@ -476,7 +511,9 @@ pipe_if_dec	#(	.ADDRESS_WIDTH(ADDRESS_WIDTH),
 				.i_PC(IMEM_i_Address),
 				.o_PC(DEC_i_PC),
 				.i_Instruction(IMEM_o_Instruction),
-				.o_Instruction(DEC_i_Instruction)
+				.o_Instruction(DEC_i_Instruction),
+				.i_prediction(Branch_predictor_o_taken),
+				.o_prediction(DEC_prediction)
 			);
 
 decoder #(	.ADDRESS_WIDTH(ADDRESS_WIDTH),
@@ -574,7 +611,9 @@ pipe_dec_ex #(	.ADDRESS_WIDTH(ADDRESS_WIDTH),
 				.i_Operand2(DEC_o_Uses_Immediate?DEC_o_Immediate:FORWARD_o_Forwarded_Data_2),		// Convention - Operand2 mapped to immediates
 				.o_Operand2(ALU_i_Operand2),
 				.i_Branch_Target(DEC_o_Jump_Reg?FORWARD_o_Forwarded_Data_1[ADDRESS_WIDTH-1:0]:DEC_o_Branch_Target),
-				.o_Branch_Target(EX_i_Branch_Target)
+				.o_Branch_Target(EX_i_Branch_Target),
+				.i_prediction(DEC_prediction),
+				.o_prediction(EX_prediction)
 			);
 
 alu	#(	.DATA_WIDTH(DATA_WIDTH),
