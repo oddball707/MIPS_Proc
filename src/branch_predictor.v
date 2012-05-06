@@ -9,9 +9,9 @@ module branch_predictor#(
 					input i_IMEM_isbranch,							//Is it a branch?
 					
 					////Inputs from ALU stage
-					input i_ALU_outcome,								//1 if taken 0 not taken
+					input i_ALU_outcome,								//1 if taken 0 not taken (from ALU computation)
 					input i_ALU_pc,									//pc from branch in ALU stage
-					input i_ALU_isbranch,
+					input i_ALU_isbranch,							//if inst in ALU stage is a branch
 					input i_ALU_prediction,							//prediction for branch in ALU
 					
 					input i_Reset_n,
@@ -21,9 +21,14 @@ module branch_predictor#(
 					output reg o_flush								//1 if i_outcome != prediction
 				);
 				
-reg [1:0] bimodal;
+reg [1:0] branch_history[128];												//hash table for branch histories
+reg [6:0] bimodal_index;											//index into this table (for bimodal 7 bits of PC)
+assign bimodal_index = i_IMEM_address[6:0];
+reg [1:0] counter <= branch_history[i_IMEM_address];
+reg [1:0] counter2 <= branch_history[i_ALU_pc];
+reg [3:0] GHR;															//index for global - shift register
 
-localparam SCHEME = 00;
+localparam SCHEME = 00;												//use this for selecting scheme
 localparam BIMODAL = 00;
 localparam GLOBAL = 01;
 localparam GSELECT = 10;
@@ -42,38 +47,42 @@ localparam GSHARE = 11;
 
 always @(*)
 begin
-		bimodal[1:0] <= 11;
+		branch_history[1:0] <= 11;
 		//branchInstruction <= !opcode1 && (!opcodeB || (opcodeB && !opcodeC));	//1 if branch instruction 
+		
 		
 		case(SCHEME)
 		
 			BIMODAL:
 			begin
-				o_taken <= bimodal[1];
+				//first predict current branch
+				o_taken <= counter[1];
 				
+				//then reconcile branch from 2 cycles ago
 				if(i_ALU_outcome != i_ALU_prediction)
 				begin
 					o_flush <= 1;
 					case(i_ALU_prediction)
 						0:
 						begin 
-							bimodal <= bimodal + 2;
+							branch_history[i_ALU_pc] <= counter2 + 2;
 						end
 						1:
 						begin
-							bimodal <= bimodal - 2;
+							branch_history[i_ALU_pc] <= counter2 - 2;
 						end
 					endcase
 				end
 				
-				case(i_ALU_prediction)
+				//and update bimodal counter to reflect current branch
+				case(counter[1])
 					0:
 					begin 
-						bimodal <= bimodal + 1;
+						branch_history[i_IMEM_address] <= counter + 1;
 					end
 					1:
 					begin
-						bimodal <= bimodal - 1;
+						branch_history[i_IMEM_address] <= counter - 1;
 					end
 				endcase
 				
@@ -81,7 +90,36 @@ begin
 			
 			GLOBAL:
 			begin
-			
+				//first predict current branch
+				o_taken <= counter[1];
+				
+				//then reconcile branch from 2 cycles ago
+				if(i_ALU_outcome != i_ALU_prediction)
+				begin
+					o_flush <= 1;
+					case(i_ALU_prediction)
+						0:
+						begin 
+							branch_history[i_ALU_pc] <= counter2 + 2;
+						end
+						1:
+						begin
+							branch_history[i_ALU_pc] <= counter2 - 2;
+						end
+					endcase
+				end
+				
+				//and update bimodal counter to reflect current branch
+				case(counter[1])
+					0:
+					begin 
+						branch_history[i_IMEM_address] <= counter + 1;
+					end
+					1:
+					begin
+						branch_history[i_IMEM_address] <= counter - 1;
+					end
+				endcase
 			end
 			
 			GSELECT:
