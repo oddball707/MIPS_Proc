@@ -10,7 +10,7 @@ module branch_predictor#(
 					
 					////Inputs from ALU stage
 					input i_ALU_outcome,								//1 if taken 0 not taken (from ALU computation)
-					input i_ALU_pc,									//pc from branch in ALU stage
+					input [ADDRESS_WIDTH-1:0] i_ALU_pc,			//pc from branch in ALU stage
 					input i_ALU_isbranch,							//if inst in ALU stage is a branch
 					input i_ALU_prediction,							//prediction for branch in ALU
 					
@@ -21,12 +21,17 @@ module branch_predictor#(
 					output reg o_flush								//1 if i_outcome != prediction
 				);
 				
-reg [1:0] branch_history[128];												//hash table for branch histories
-reg [6:0] bimodal_index;											//index into this table (for bimodal 7 bits of PC)
-assign bimodal_index = i_IMEM_address[6:0];
-reg [1:0] counter <= branch_history[i_IMEM_address];
-reg [1:0] counter2 <= branch_history[i_ALU_pc];
-reg [3:0] GHR;															//index for global - shift register
+reg [1:0] branch_history[128];												//hash table for branch histories - 7 indexing bits
+wire [1:0] bimodal_index;
+wire [1:0] bimodal_index2;
+assign bimodal_index = branch_history[i_IMEM_address[6:0]];			//index into this table (for bimodal 7 bits of PC)
+assign bimodal_index2 = branch_history[i_ALU_pc[6:0]];
+
+reg [6:0] GHR;															//index for global - shift register
+wire [1:0] GHR_index;
+reg [6:0] GHR_saved;													//holds GHR from last prediction
+reg GHR_saved_shift;													//holds bit that was shifted out, in case prediction was wrong
+assign GHR_index = branch_history[GHR];
 
 localparam SCHEME = 00;												//use this for selecting scheme
 localparam BIMODAL = 00;
@@ -34,6 +39,7 @@ localparam GLOBAL = 01;
 localparam GSELECT = 10;
 localparam GSHARE = 11;
 
+integer i;	//for loops
 //wire [3:0] opcode1;
 //wire opcodeA, opcodeB, opcodeC;
 //reg branchInstruction;							//1 if instruction is a branch
@@ -45,18 +51,23 @@ localparam GSHARE = 11;
 
 //assign valid = branchInstruction;
 
+initial begin
+	for(i=0; i<128; i = i+1) begin
+		branch_history[i] <= 11;
+	end
+	GHR = 1111111;
+end
+
 always @(*)
 begin
-		branch_history[1:0] <= 11;
 		//branchInstruction <= !opcode1 && (!opcodeB || (opcodeB && !opcodeC));	//1 if branch instruction 
 		
-		
 		case(SCHEME)
-		
+			
 			BIMODAL:
 			begin
 				//first predict current branch
-				o_taken <= counter[1];
+				o_taken <= bimodal_index[1];
 				
 				//then reconcile branch from 2 cycles ago
 				if(i_ALU_outcome != i_ALU_prediction)
@@ -65,24 +76,24 @@ begin
 					case(i_ALU_prediction)
 						0:
 						begin 
-							branch_history[i_ALU_pc] <= counter2 + 2;
+							branch_history[i_ALU_pc[6:0]] <= bimodal_index2 + 2;
 						end
 						1:
 						begin
-							branch_history[i_ALU_pc] <= counter2 - 2;
+							branch_history[i_ALU_pc[6:0]] <= bimodal_index2 - 2;
 						end
 					endcase
 				end
 				
 				//and update bimodal counter to reflect current branch
-				case(counter[1])
+				case(bimodal_index[1])
 					0:
 					begin 
-						branch_history[i_IMEM_address] <= counter + 1;
+						branch_history[i_IMEM_address[6:0]] <= bimodal_index + 1;
 					end
 					1:
 					begin
-						branch_history[i_IMEM_address] <= counter - 1;
+						branch_history[i_IMEM_address[6:0]] <= bimodal_index - 1;
 					end
 				endcase
 				
@@ -91,7 +102,10 @@ begin
 			GLOBAL:
 			begin
 				//first predict current branch
-				o_taken <= counter[1];
+				o_taken <= GHR_index[1];
+				
+				//next save GHR
+				GHR_saved <= GHR;
 				
 				//then reconcile branch from 2 cycles ago
 				if(i_ALU_outcome != i_ALU_prediction)
@@ -100,24 +114,30 @@ begin
 					case(i_ALU_prediction)
 						0:
 						begin 
-							branch_history[i_ALU_pc] <= counter2 + 2;
-						end
+							branch_history[GHR_saved] <= branch_history[GHR_saved] + 2;
+							GHR[1:0] <= {1, GHR_index[1]};								//shift in corrected old guess and current prediction
+							end
 						1:
 						begin
-							branch_history[i_ALU_pc] <= counter2 - 2;
+							branch_history[GHR_saved] <= branch_history[GHR_saved] - 2;
+							GHR[1:0] <= {1, GHR_index[1]};								//shift in corrected old guess and current prediction
 						end
 					endcase
 				end
+				else
+				begin
+					GHR <= GHR << GHR_index[1];														//shift in prediction
+				end
 				
 				//and update bimodal counter to reflect current branch
-				case(counter[1])
+				case(GHR_index[1])
 					0:
 					begin 
-						branch_history[i_IMEM_address] <= counter + 1;
+							branch_history[GHR] <= branch_history[GHR] + 1;
 					end
 					1:
 					begin
-						branch_history[i_IMEM_address] <= counter - 1;
+							branch_history[GHR] <= branch_history[GHR] - 1;
 					end
 				endcase
 			end
