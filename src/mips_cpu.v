@@ -85,12 +85,8 @@ wire IFetch_i_Load;			// Load signal - if high, load pc with vector
 wire [ADDRESS_WIDTH-1:0] IFetch_i_PCSrc;	// Vector to branch to
 
 wire [ADDRESS_WIDTH-1:0] IMEM_i_Address;	// Current PC
-wire IMEM_o_isbranch;							// if the instruction is a branch
 
 wire Branch_predictor_o_taken;				// branch taken prediction
-wire Branch_predictor_o_valid;				// if current inst is branch
-wire Branch_predictor_o_flush;				// signal to flush
-
 
 wire IMEM_o_Ready;
 wire IMEM_o_Valid;
@@ -464,14 +460,14 @@ i_cache	#(	.DATA_WIDTH(DATA_WIDTH)
 			// Outputs
 			.o_Ready(IMEM_o_Ready),
 			.o_Valid(IMEM_o_Valid),					// If the output is correct.
-			.o_isbranch(IMEM_o_isbranch),
 			.o_Data(IMEM_o_Instruction)					// The data requested.		
 		);
 
 //	Branch Prediction
 branch_predictor #(	
 				.DATA_WIDTH(DATA_WIDTH),
-				.ADDRESS_WIDTH(ADDRESS_WIDTH)
+				.ADDRESS_WIDTH(ADDRESS_WIDTH),
+				.GHR_SIZE(7)
 						)
 				BRANCH_PREDICTOR
 				(	// Inputs
@@ -479,7 +475,6 @@ branch_predictor #(
 					
 					//Prediction
 					.i_IMEM_address(IMEM_i_Address),
-					.i_IMEM_isbranch(IMEM_o_isbranch),
 					
 					//ALU feedback
 					.i_ALU_outcome(ALU_o_Branch_Outcome),
@@ -490,9 +485,7 @@ branch_predictor #(
 					.i_Reset_n(Internal_Reset_n),			
 					
 					// Outputs
-					.o_taken(Branch_predictor_o_taken),
-					.o_valid(Branch_predictor_o_valid),
-					.o_flush(Branch_predictor_o_flush)
+					.o_taken(Branch_predictor_o_taken)
 				);		
 		
 //===================================================================
