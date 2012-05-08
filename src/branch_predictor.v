@@ -32,6 +32,17 @@ reg [GHR_SIZE-1:0] GHR_saved;													//holds GHR from last prediction
 reg GHR_saved_shift;													//holds bit that was shifted out, in case prediction was wrong
 assign GHR_index = branch_history[GHR];
 
+wire [GHR_SIZE-1:0] gselect_index;
+wire [1:0] gselect_counter;
+assign gselect_index = {GHR[GHR_SIZE-2:0], i_IMEM_address[1:0]};
+assign gselect_counter = branch_history[gselect_index];
+
+wire [GHR_SIZE-1:0] gshare_index;
+wire [1:0] gshare_counter;
+assign gshare_index = GHR[GHR_SIZE-1:0] ^ i_IMEM_address[GHR_SIZE-1:0];
+assign gshare_counter = branch_history[gshare_index];
+
+
 localparam SCHEME = 1;												//use this for selecting scheme
 localparam BIMODAL = 0;
 localparam GLOBAL = 1;
@@ -51,7 +62,7 @@ integer i;	//for loops
 //assign valid = branchInstruction;
 
 initial begin
-	for(i=0; i<128; i = i+1) begin
+	for(i=0; i<GHR_SIZE; i = i+1) begin
 		branch_history[i] <= 3;
 	end
 	GHR = 3'b111;
@@ -137,12 +148,80 @@ begin
 			
 			GSELECT:
 			begin
-			
+				//next save GHR+addr for indexing
+				GHR_saved <= gselect_index;
+				
+				//then reconcile branch from 2 cycles ago
+				if(i_ALU_outcome != i_ALU_prediction)
+				begin
+					case(i_ALU_prediction)
+						0:
+						begin 
+							branch_history[GHR_saved] <= branch_history[GHR_saved] + 2;
+							GHR[1:0] <= {1'b1, GHR_index[1]};								//shift in corrected old guess and current prediction
+							end
+						1:
+						begin
+							branch_history[GHR_saved] <= branch_history[GHR_saved] - 2;
+							GHR[1:0] <= {1'b0, GHR_index[1]};								//shift in corrected old guess and current prediction
+						end
+					endcase
+				end
+				else
+				begin
+					GHR <= {GHR[GHR_SIZE-2:0], gselect_counter[1]};														//shift in prediction
+				end
+				
+				//and update bimodal counter to reflect current branch
+				case(gselect_counter[1])
+					0:
+					begin 
+							branch_history[gselect_index] <= branch_history[gselect_index] + 1;
+					end
+					1:
+					begin
+							branch_history[gselect_index] <= branch_history[gselect_index] - 1;
+					end
+				endcase			
 			end
 			
 			GSHARE:
 			begin
-			
+				//next save GHR+addr for indexing
+				GHR_saved <= gshare_index;
+				
+				//then reconcile branch from 2 cycles ago
+				if(i_ALU_outcome != i_ALU_prediction)
+				begin
+					case(i_ALU_prediction)
+						0:
+						begin 
+							branch_history[GHR_saved] <= branch_history[GHR_saved] + 2;
+							GHR[1:0] <= {1'b1, GHR_index[1]};								//shift in corrected old guess and current prediction
+							end
+						1:
+						begin
+							branch_history[GHR_saved] <= branch_history[GHR_saved] - 2;
+							GHR[1:0] <= {1'b0, GHR_index[1]};								//shift in corrected old guess and current prediction
+						end
+					endcase
+				end
+				else
+				begin
+					GHR <= {GHR[GHR_SIZE-2:0], gshare_counter[1]};														//shift in prediction
+				end
+				
+				//and update bimodal counter to reflect current branch
+				case(gshare_counter[1])
+					0:
+					begin 
+							branch_history[gshare_index] <= branch_history[gshare_index] + 1;
+					end
+					1:
+					begin
+							branch_history[gshare_index] <= branch_history[gshare_index] - 1;
+					end
+				endcase				
 			end
 			
 		endcase
@@ -166,6 +245,17 @@ case(SCHEME)
 				o_taken <= GHR_index[1];
 			end
 			
+			GSELECT:
+			begin
+				//first predict current branch
+				o_taken <= gselect_counter[1];
+			end
+			
+			GSHARE:
+			begin
+				//first predict current branch
+				o_taken <= gshare_counter[1];
+			end
 			default:
 			begin
 				o_taken <= 0;
