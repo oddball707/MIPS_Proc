@@ -57,6 +57,7 @@ localparam FALSE = 1'b0;
 localparam TRUE = 1'b1;
 localparam ADDRESS_WIDTH = 22;
 localparam DATA_WIDTH = 32;
+localparam BP_BUFFER_SIZE = 8;
 //wire Global_Reset_n;			// Global reset
 wire Global_Reset_n = KEY[0];
 
@@ -87,6 +88,9 @@ wire [ADDRESS_WIDTH-1:0] IFetch_i_PCSrc;	// Vector to branch to
 wire [ADDRESS_WIDTH-1:0] IMEM_i_Address;	// Current PC
 
 wire Branch_predictor_o_taken;				// branch taken prediction
+wire Branch_predictor_o_valid;				// is branch?
+
+wire [ADDRESS_WIDTH-1:0] BTB_o_target;		//branch target from BTB
 
 wire IMEM_o_Ready;
 wire IMEM_o_Valid;
@@ -431,8 +435,8 @@ fetch_unit #(	.ADDRESS_WIDTH(ADDRESS_WIDTH),
 					.i_Reset_n(Internal_Reset_n),
 					.i_Stall(Hazard_Stall_IF),
 					
-					.i_Load(IFetch_i_Load),
-					.i_Load_Address(IFetch_i_PCSrc),
+					.i_Load(Branch_predictor_o_valid),
+					.i_Load_Address(BTB_o_target),			//should also come from BTB with validation from branch predictor
 					
 					// Outputs
 					.o_PC(IMEM_i_Address)
@@ -467,26 +471,49 @@ i_cache	#(	.DATA_WIDTH(DATA_WIDTH)
 branch_predictor #(	
 				.DATA_WIDTH(DATA_WIDTH),
 				.ADDRESS_WIDTH(ADDRESS_WIDTH),
-				.GHR_SIZE(7)
+				.GHR_SIZE(BP_BUFFER_SIZE)
 						)
 				BRANCH_PREDICTOR
 				(	// Inputs
 					.i_Clk(i_Clk),
 					
 					//Prediction
-					.i_IMEM_address(IMEM_i_Address),
+					.i_IMEM_address(IMEM_i_Address[BP_BUFFER_SIZE+2:3]),
+					.i_IMEM_inst(IMEM_o_Instruction),
 					
 					//ALU feedback
 					.i_ALU_outcome(ALU_o_Branch_Outcome),
-					.i_ALU_pc(ALU_i_PC),
+					.i_ALU_pc(ALU_i_PC[BP_BUFFER_SIZE+2:3]),
 					.i_ALU_isbranch(ALU_o_Branch_Valid),
 					.i_ALU_prediction(EX_prediction),
 					
 					.i_Reset_n(Internal_Reset_n),			
 					
 					// Outputs
-					.o_taken(Branch_predictor_o_taken)
+					.o_taken(Branch_predictor_o_taken),
+					.o_valid(Branch_predictor_o_valid)
 				);		
+				
+branch_target_buffer#(
+					.DATA_WIDTH(DATA_WIDTH),
+					.ADDRESS_WIDTH(ADDRESS_WIDTH),
+					.BUFFER_SIZE(BP_BUFFER_SIZE)
+				)
+				BRANCH_TARGET_BUFFER
+				(
+					.i_Clk(i_Clk),
+					
+					//current stage
+					.i_pc(IMEM_i_Address[BP_BUFFER_SIZE+2:3]),
+					
+					//handle write back from EX stage
+					.i_ALU_pc(ALU_i_PC[BP_BUFFER_SIZE+2:3]),
+					.i_ALU_target(EX_i_Branch_Target),
+					
+					//output target for current stage branch
+					.o_target(BTB_o_target)
+				
+				);
 		
 //===================================================================
 //	Decode
