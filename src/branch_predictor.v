@@ -1,30 +1,33 @@
 module branch_predictor#(	
 					parameter DATA_WIDTH = 32,
 					parameter ADDRESS_WIDTH = 22,
-					parameter GHR_SIZE = 3
+					parameter GHR_SIZE = 8
 				)
 				(
 					////Inputs from current stage
 					input i_Clk,
-					input [ADDRESS_WIDTH-1:0] i_IMEM_address,	//address in memory (for hash)
+					input [GHR_SIZE-1:0] i_IMEM_address,	//address in memory (for hash)
+					
+					input [DATA_WIDTH-1:0] i_IMEM_inst,		//instruction from icache, for branch determination logic
 					
 					////Inputs from ALU stage
 					input i_ALU_outcome,								//1 if taken 0 not taken (from ALU computation)
-					input [ADDRESS_WIDTH-1:0] i_ALU_pc,			//pc from branch in ALU stage
+					input [GHR_SIZE-1:0] i_ALU_pc,			//pc from branch in ALU stage
 					input i_ALU_isbranch,							//if inst in ALU stage is a branch
 					input i_ALU_prediction,							//prediction for branch in ALU
 					
 					input i_Reset_n,
 					
-					output reg o_taken
+					output reg o_taken,								//prediction
+					output o_valid										//is it a branch?
 
 				);
 				
-reg [1:0] branch_history[0:7];												//hash table for branch histories - 7 indexing bits
+reg [1:0] branch_history[0:(2**GHR_SIZE)-1];												//hash table for branch histories - 7 indexing bits
 wire [1:0] bimodal_index;
 wire [1:0] bimodal_index2;
-assign bimodal_index = branch_history[i_IMEM_address[GHR_SIZE-1:0]];			//index into this table (for bimodal 7 bits of PC)
-assign bimodal_index2 = branch_history[i_ALU_pc[GHR_SIZE-1:0]];
+assign bimodal_index = branch_history[i_IMEM_address];			//index into this table (for bimodal 7 bits of PC)
+assign bimodal_index2 = branch_history[i_ALU_pc];
 
 reg [GHR_SIZE-1:0] GHR;															//index for global - shift register
 wire [1:0] GHR_index;
@@ -39,7 +42,7 @@ assign gselect_counter = branch_history[gselect_index];
 
 wire [GHR_SIZE-1:0] gshare_index;
 wire [1:0] gshare_counter;
-assign gshare_index = GHR[GHR_SIZE-1:0] ^ i_IMEM_address[GHR_SIZE-1:0];
+assign gshare_index = GHR[GHR_SIZE-1:0] ^ i_IMEM_address;
 assign gshare_counter = branch_history[gshare_index];
 
 
@@ -50,27 +53,27 @@ localparam GSELECT = 2;
 localparam GSHARE = 3;
 
 integer i;	//for loops
-//wire [3:0] opcode1;
-//wire opcodeA, opcodeB, opcodeC;
-//reg branchInstruction;							//1 if instruction is a branch
+wire [3:0] opcode1;
+wire opcodeA, opcodeB, opcodeC;
+reg branchInstruction;							//1 if instruction is a branch
 
-//assign opcode1 = i_IMEM_inst[31:29];		//first 3 bits of instruction opcode (000 for branch)
-//assign opcodeA = i_IMEM_inst[28];			//next 3 bits of opcode (CBA)
-//assign opcodeB = i_IMEM_inst[27];
-//assign opcodeC = i_IMEM_inst[26];
+assign opcode1 = i_IMEM_inst[31:29];		//first 3 bits of instruction opcode (000 for branch)
+assign opcodeA = i_IMEM_inst[28];			//next 3 bits of opcode (CBA)
+assign opcodeB = i_IMEM_inst[27];
+assign opcodeC = i_IMEM_inst[26];
 
-//assign valid = branchInstruction;
+assign o_valid = branchInstruction;
 
 initial begin
 	for(i=0; i<GHR_SIZE; i = i+1) begin
-		branch_history[i] <= 3;
+		branch_history[i] <= 2;
 	end
-	GHR = 3'b111;
+	GHR <= 8'b11111111;
 end
 
 always @(posedge i_Clk)
 begin
-		//branchInstruction <= !opcode1 && (!opcodeB || (opcodeB && !opcodeC));	//1 if branch instruction 
+		branchInstruction <= !opcode1 && (!opcodeB || (opcodeB && !opcodeC));	//1 if branch instruction 
 		
 		case(SCHEME)
 			
@@ -229,6 +232,7 @@ begin
 		
 end		
 
+//Drive output prediction
 always@(*)
 begin
 case(SCHEME)
