@@ -1,0 +1,119 @@
+$date
+	Sun May 06 12:18:23 2012
+$end
+$version
+	ModelSim Version 10.0c
+$end
+$timescale
+	1ps
+$end
+$scope module test_bp $end
+$var reg 1 ! clock $end
+$var reg 22 " pc [21:0] $end
+$var reg 22 # ALUpc [21:0] $end
+$var reg 1 $ validbr $end
+$var reg 1 % pred $end
+$var reg 1 & inst $end
+$var reg 1 ' br_outcome $end
+$var reg 1 ( reset $end
+$var wire 1 ) taken $end
+$var wire 1 * flush $end
+$var wire 1 + valid $end
+$scope module bp $end
+$var parameter 32 , DATA_WIDTH $end
+$var parameter 32 - ADDRESS_WIDTH $end
+$var parameter 32 . SCHEME $end
+$var parameter 32 / BIMODAL $end
+$var parameter 32 0 GLOBAL $end
+$var parameter 32 1 GSELECT $end
+$var parameter 32 2 GSHARE $end
+$var wire 1 3 i_Clk $end
+$var wire 1 4 i_IMEM_address [21] $end
+$var wire 1 5 i_IMEM_address [20] $end
+$var wire 1 6 i_IMEM_address [19] $end
+$var wire 1 7 i_IMEM_address [18] $end
+$var wire 1 8 i_IMEM_address [17] $end
+$var wire 1 9 i_IMEM_address [16] $end
+$var wire 1 : i_IMEM_address [15] $end
+$var wire 1 ; i_IMEM_address [14] $end
+$var wire 1 < i_IMEM_address [13] $end
+$var wire 1 = i_IMEM_address [12] $end
+$var wire 1 > i_IMEM_address [11] $end
+$var wire 1 ? i_IMEM_address [10] $end
+$var wire 1 @ i_IMEM_address [9] $end
+$var wire 1 A i_IMEM_address [8] $end
+$var wire 1 B i_IMEM_address [7] $end
+$var wire 1 C i_IMEM_address [6] $end
+$var wire 1 D i_IMEM_address [5] $end
+$var wire 1 E i_IMEM_address [4] $end
+$var wire 1 F i_IMEM_address [3] $end
+$var wire 1 G i_IMEM_address [2] $end
+$var wire 1 H i_IMEM_address [1] $end
+$var wire 1 I i_IMEM_address [0] $end
+$var wire 1 J i_IMEM_isbranch $end
+$var wire 1 K i_ALU_outcome $end
+$var wire 1 L i_ALU_pc $end
+$var wire 1 M i_ALU_isbranch $end
+$var wire 1 N i_ALU_prediction $end
+$var wire 1 O i_Reset_n $end
+$var reg 1 P o_taken $end
+$var reg 1 Q o_valid $end
+$var reg 1 R o_flush $end
+$var reg 2 S bimodal [1:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b100000 ,
+b10110 -
+b0 .
+b0 /
+b1 0
+b1010 1
+b1011 2
+0!
+bx "
+bx #
+x$
+x%
+x&
+x'
+1(
+xP
+xQ
+xR
+bx S
+x)
+x*
+x+
+1O
+xN
+xM
+xL
+xK
+xJ
+xI
+xH
+xG
+xF
+xE
+xD
+xC
+xB
+xA
+x@
+x?
+x>
+x=
+x<
+x;
+x:
+x9
+x8
+x7
+x6
+x5
+x4
+03
+$end
