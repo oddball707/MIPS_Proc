@@ -42,27 +42,6 @@ set_global_assignment -name TOP_LEVEL_ENTITY mips_cpu
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 11.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "19:38:24  APRIL 23, 2012"
 set_global_assignment -name LAST_QUARTUS_VERSION 11.1
-set_global_assignment -name QIP_FILE pll.qip
-set_global_assignment -name VERILOG_FILE test_mips_cpu.v
-set_global_assignment -name VERILOG_FILE sdram_controller.v
-set_global_assignment -name VERILOG_FILE regfile.v
-set_global_assignment -name VERILOG_FILE pll.v
-set_global_assignment -name VERILOG_FILE pipe_mem_wb.v
-set_global_assignment -name VERILOG_FILE pipe_if_dec.v
-set_global_assignment -name VERILOG_FILE pipe_ex_mem.v
-set_global_assignment -name VERILOG_FILE pipe_dec_ex.v
-set_global_assignment -name VERILOG_FILE mt48lc4m16a2.v
-set_global_assignment -name VERILOG_FILE mips_cpu.v
-set_global_assignment -name VERILOG_FILE memory_arbiter.v
-set_global_assignment -name VERILOG_FILE i_cache.v
-set_global_assignment -name VERILOG_FILE hazard_detection_unit.v
-set_global_assignment -name VERILOG_FILE forwarding_unit.v
-set_global_assignment -name VERILOG_FILE flashreader.v
-set_global_assignment -name VERILOG_FILE fetch_unit.v
-set_global_assignment -name VERILOG_FILE d_cache.v
-set_global_assignment -name VERILOG_FILE DisplayDecoder.v
-set_global_assignment -name VERILOG_FILE decoder.v
-set_global_assignment -name VERILOG_FILE alu.v
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
@@ -496,5 +475,30 @@ set_location_assignment PIN_V24 -to GPIO_1[32]
 set_location_assignment PIN_V23 -to GPIO_1[33]
 set_location_assignment PIN_W25 -to GPIO_1[34]
 set_location_assignment PIN_W23 -to GPIO_1[35]
+set_global_assignment -name VERILOG_FILE branch_target_buffer.v
+set_global_assignment -name QIP_FILE pll.qip
+set_global_assignment -name VERILOG_FILE test_mips_cpu.v
+set_global_assignment -name VERILOG_FILE sdram_controller.v
+set_global_assignment -name VERILOG_FILE regfile.v
+set_global_assignment -name VERILOG_FILE pll.v
+set_global_assignment -name VERILOG_FILE pipe_mem_wb.v
+set_global_assignment -name VERILOG_FILE pipe_if_dec.v
+set_global_assignment -name VERILOG_FILE pipe_ex_mem.v
+set_global_assignment -name VERILOG_FILE pipe_dec_ex.v
+set_global_assignment -name VERILOG_FILE mt48lc4m16a2.v
+set_global_assignment -name VERILOG_FILE mips_cpu.v
+set_global_assignment -name VERILOG_FILE memory_arbiter.v
+set_global_assignment -name VERILOG_FILE i_cache.v
+set_global_assignment -name VERILOG_FILE hazard_detection_unit.v
+set_global_assignment -name VERILOG_FILE forwarding_unit.v
+set_global_assignment -name VERILOG_FILE flashreader.v
+set_global_assignment -name VERILOG_FILE fetch_unit.v
+set_global_assignment -name VERILOG_FILE d_cache.v
+set_global_assignment -name VERILOG_FILE DisplayDecoder.v
+set_global_assignment -name VERILOG_FILE decoder.v
+set_global_assignment -name VERILOG_FILE alu.v
 set_global_assignment -name VERILOG_FILE branch_predictor.v
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name VERILOG_FILE icache_mux.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

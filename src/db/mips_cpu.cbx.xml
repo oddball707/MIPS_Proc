@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="mips_cpu">
-		<CBX_INST_ENTRY INSTANCE_NAME="|mips_cpu|i_cache:I_CACHE|altsyncram:Tag_Array_rtl_0" CBX_FILE_NAME="altsyncram_bnd1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|mips_cpu|branch_target_buffer:BRANCH_TARGET_BUFFER|altsyncram:bt_buffer_rtl_0" CBX_FILE_NAME="altsyncram_vqd1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|mips_cpu|i_cache:I_CACHE|altsyncram:Tag_Array_rtl_0" CBX_FILE_NAME="altsyncram_48c1.tdf"/>
 	</PROJECT>
 </LOG_ROOT>

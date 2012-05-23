@@ -19,7 +19,6 @@ entity i_cache is
         i_MEM_Data      : in     vl_logic_vector;
         o_Ready         : out    vl_logic;
         o_Valid         : out    vl_logic;
-        o_isbranch      : out    vl_logic;
         o_Data          : out    vl_logic_vector
     );
     attribute mti_svvh_generic_type : integer;

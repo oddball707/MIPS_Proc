@@ -18,8 +18,8 @@ module branch_predictor#(
 					
 					input i_Reset_n,
 					
-					output reg o_taken,								//prediction
-					output o_valid										//is it a branch?
+					output reg o_taken								//prediction
+					//output o_valid										//is it a branch?
 
 				);
 				
@@ -62,7 +62,8 @@ assign opcodeA = i_IMEM_inst[28];			//next 3 bits of opcode (CBA)
 assign opcodeB = i_IMEM_inst[27];
 assign opcodeC = i_IMEM_inst[26];
 
-assign o_valid = branchInstruction;
+
+//assign o_valid = branchInstruction;
 
 initial begin
 	for(i=0; i<GHR_SIZE; i = i+1) begin
@@ -235,35 +236,41 @@ end
 //Drive output prediction
 always@(*)
 begin
-case(SCHEME)
-			
-			BIMODAL:
-			begin
-				//first predict current branch
-				o_taken <= bimodal_index[1];
-			end
-			
-			GLOBAL:
-			begin
-				//first predict current branch
-				o_taken <= GHR_index[1];
-			end
-			
-			GSELECT:
-			begin
-				//first predict current branch
-				o_taken <= gselect_counter[1];
-			end
-			
-			GSHARE:
-			begin
-				//first predict current branch
-				o_taken <= gshare_counter[1];
-			end
-			default:
-			begin
-				o_taken <= 0;
-			end
-endcase
+	if(branchInstruction)
+	begin
+		o_taken <= 0;
+	end
+	else
+	begin
+		case(SCHEME)
+					BIMODAL:
+					begin
+						//first predict current branch
+						o_taken <= bimodal_index[1];
+					end
+					
+					GLOBAL:
+					begin
+						//first predict current branch
+						o_taken <= GHR_index[1];
+					end
+					
+					GSELECT:
+					begin
+						//first predict current branch
+						o_taken <= gselect_counter[1];
+					end
+					
+					GSHARE:
+					begin
+						//first predict current branch
+						o_taken <= gshare_counter[1];
+					end
+					default:
+					begin
+						o_taken <= 0;
+					end
+		endcase
+	end
 end
 endmodule

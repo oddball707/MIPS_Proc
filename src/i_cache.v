@@ -29,7 +29,7 @@ module i_cache	#(	parameter DATA_WIDTH = 32,
 					// Outputs
 					output o_Ready,
 					output reg o_Valid,							// If the output is correct.
-					output reg o_isbranch,						// if the instruction is a branch
+					//output reg o_isbranch,						// if the instruction is a branch
 					output reg [DATA_WIDTH-1:0] o_Data		// The data requested.
 				);
 				
@@ -115,7 +115,7 @@ module i_cache	#(	parameter DATA_WIDTH = 32,
 							default:	o_Data <= {DATA_WIDTH{1'bx}};
 						endcase
 						
-						o_isbranch <= !opcode1 && (!opcodeB || (opcodeB && !opcodeC));	//1 if branch instruction
+						//o_isbranch <= !opcode1 && (!opcodeB || (opcodeB && !opcodeC));	//1 if branch instruction
 					end
 					else
 					begin

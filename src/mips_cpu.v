@@ -85,12 +85,13 @@ wire Hazard_Stall_IF;		// Stall for IFetch
 wire IFetch_i_Load;			// Load signal - if high, load pc with vector
 wire [ADDRESS_WIDTH-1:0] IFetch_i_PCSrc;	// Vector to branch to
 
-wire [ADDRESS_WIDTH-1:0] IMEM_i_Address;	// Current PC
+wire [ADDRESS_WIDTH-1:0] IMEM_i_Address;	//actual address icache loads from
 
 wire Branch_predictor_o_taken;				// branch taken prediction
 wire Branch_predictor_o_valid;				// is branch?
 
 wire [ADDRESS_WIDTH-1:0] BTB_o_target;		//branch target from BTB
+wire [ADDRESS_WIDTH-1:0] FETCH_o_address;	// Current PC	
 
 wire IMEM_o_Ready;
 wire IMEM_o_Valid;
@@ -435,11 +436,11 @@ fetch_unit #(	.ADDRESS_WIDTH(ADDRESS_WIDTH),
 					.i_Reset_n(Internal_Reset_n),
 					.i_Stall(Hazard_Stall_IF),
 					
-					.i_Load(Branch_predictor_o_valid),
-					.i_Load_Address(BTB_o_target),			//should also come from BTB with validation from branch predictor
+					.i_Load(IFetch_i_Load),
+					.i_Load_Address(IFetch_i_Load_Address),		//should also come from BTB with validation from branch predictor
 					
 					// Outputs
-					.o_PC(IMEM_i_Address)
+					.o_PC(FETCH_o_address)
 				);
 				
 i_cache	#(	.DATA_WIDTH(DATA_WIDTH)
@@ -464,9 +465,28 @@ i_cache	#(	.DATA_WIDTH(DATA_WIDTH)
 			// Outputs
 			.o_Ready(IMEM_o_Ready),
 			.o_Valid(IMEM_o_Valid),					// If the output is correct.
+			//.o_isbranch()
 			.o_Data(IMEM_o_Instruction)					// The data requested.		
 		);
 
+// a MUX for the icache
+icache_mux #(
+				.ADDRESS_WIDTH(ADDRESS_WIDTH)
+				)
+				ICACHE_MUX
+				(//inputs
+					.i_Clk(i_Clk),
+					
+					//from fetch unit
+					.i_pc(FETCH_o_address),
+					
+					//from branch logic
+					.i_branch_pc(BTB_o_target),
+					.i_predictor_taken(Branch_predictor_o_taken),
+					
+					.o_target(IMEM_i_Address)				
+				);
+				
 //	Branch Prediction
 branch_predictor #(	
 				.DATA_WIDTH(DATA_WIDTH),
@@ -478,7 +498,7 @@ branch_predictor #(
 					.i_Clk(i_Clk),
 					
 					//Prediction
-					.i_IMEM_address(IMEM_i_Address[BP_BUFFER_SIZE+2:3]),
+					.i_IMEM_address(FETCH_o_address[BP_BUFFER_SIZE+2:3]),
 					.i_IMEM_inst(IMEM_o_Instruction),
 					
 					//ALU feedback
@@ -490,9 +510,9 @@ branch_predictor #(
 					.i_Reset_n(Internal_Reset_n),			
 					
 					// Outputs
-					.o_taken(Branch_predictor_o_taken),
-					.o_valid(Branch_predictor_o_valid)
-				);		
+					.o_taken(Branch_predictor_o_taken)
+					//.o_valid(Branch_predictor_o_valid)
+				);	
 				
 branch_target_buffer#(
 					.DATA_WIDTH(DATA_WIDTH),
@@ -504,7 +524,7 @@ branch_target_buffer#(
 					.i_Clk(i_Clk),
 					
 					//current stage
-					.i_pc(IMEM_i_Address[BP_BUFFER_SIZE+2:3]),
+					.i_pc(FETCH_o_address[BP_BUFFER_SIZE+2:3]),
 					
 					//handle write back from EX stage
 					.i_ALU_pc(ALU_i_PC[BP_BUFFER_SIZE+2:3]),
