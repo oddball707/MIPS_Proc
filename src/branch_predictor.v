@@ -38,7 +38,7 @@ assign GHR_index = branch_history[GHR];
 //-----GSELECT-----
 wire [GHR_SIZE-1:0] gselect_index;
 wire [1:0] gselect_counter;
-assign gselect_index = {GHR[GHR_SIZE-2:0], i_IMEM_address[1:0]};
+assign gselect_index = {GHR[GHR_SIZE-3:0], i_IMEM_address[1:0]};
 assign gselect_counter = branch_history[gselect_index];
 
 //-----GSHARE-----

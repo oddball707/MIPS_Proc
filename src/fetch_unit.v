@@ -6,7 +6,7 @@
 //		This module provides instructions to the rest of the pipeline.
 
 module fetch_unit	#(	
-					parameter ADDRESS_WIDTH = 32,
+					parameter ADDRESS_WIDTH = 22,
 					parameter DATA_WIDTH = 32
 				)
 				(	// Inputs
