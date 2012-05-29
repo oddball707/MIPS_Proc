@@ -15,13 +15,15 @@ module fetch_unit	#(
 					input i_Stall,
 					
 					//Control Signals
-					input i_branch_taken,				//from branch predictor
-					input [1:0] i_branch_mispredict,	//from hazard detection/EX [first bit - if mispredicted, second if taken]
-					input [1:0] i_thread_choice,		//which thread to take from
+					input [3:0] i_branch_taken,		//from branch predictor X4
+					input [7:0] i_branch_mispredict,	//from hazard detection/EX [first bit - if mispredicted, second if taken] x4
+					input [1:0] i_thread_choice,		//which thread to take from 
 					
 					//The next address possibilities,
-					input [ADDRESS_WIDTH-1:0] i_current_target,			//from Aligner
-					input [ADDRESS_WIDTH-1:0] i_mispredict_nottaken,	//from EX, old target
+					//normal execution - PC + (4- PC%4)							//local information
+					input [4*(ADDRESS_WIDTH)-1:0] i_current_target,			//from Pre-Aligner
+					input [4*(ADDRESS_WIDTH)-1:0] i_mispredict_nottaken,	//from EX, target of mispredicted branch
+					input [4*(ADDRESS_WIDTH)-1:0] i_mispredict_pc,			//from EX, pc of mispredicted branch
 					
 					// Outputs
 					output reg [ADDRESS_WIDTH-1:0] o_PC
@@ -50,98 +52,102 @@ begin
 			case(i_thread_choice)
 				0:
 				begin
-					if( i_branch_mispredict[0] )
-					begin
-						if( i_branch_mispredict[1] )
+					case({i_branch_taken[0], i_branch_mispredict[1:0]})
+						3'b00x:	//not taken, not mispredicted
 						begin
-							o_PC1 <= o_PC1 + 8;		//advance 4 (fetch 4 at a time) x2 (branch delay slot)
+							o_PC1 <= {o_PC1[ADDRESS_WIDTH-1:3]+1, 2'b00};	//PC = PC + (4-PC%4) 
 						end
-						else
+						
+						3'b10x:	//taken, not mispredicted
 						begin
-							o_PC1 <= i_mispredict_nottaken;	//goto the target of that branch (older branch)
+							o_PC1 <= i_current_target[ADDRESS_WIDTH-1:0];
 						end
-					end
-					else if( i_branch_taken )
-					begin
-						o_PC1 <= i_current_target;		//bp says take the branch, aligner gives target
-					end
-					else
-					begin
-						o_PC1 <= o_PC1 + 4;			//standard increment of pc
-					end
-					o_PC <= o_PC1;
+						
+						3'bx10:	//mispredicted as not taken
+						begin
+							o_PC1 <= i_mispredict_nottaken[ADDRESS_WIDTH-1:0];
+						end
+						
+						3'bx11:	//mispredicted as taken
+						begin
+							o_PC1 <= {i_mispredict_pc[ADDRESS_WIDTH-1:3]+1, 2'b00};	//PC = PC + (4-PC%4)
+						end
+					endcase
 				end
 				
 				1:
 				begin
-					if( i_branch_mispredict[0] )
-					begin
-						if( i_branch_mispredict[1] )
+					case({i_branch_taken[1], i_branch_mispredict[3:2]})
+						3'b00x:	//not taken, not mispredicted
 						begin
-							o_PC2 <= o_PC2 + 8;		//advance 4 (fetch 4 at a time) x2 (branch delay slot)
+							o_PC2 <= {o_PC2[ADDRESS_WIDTH-1:3]+1, 2'b00};	//PC = PC + (4-PC%4) 
 						end
-						else
+						
+						3'b10x:	//taken, not mispredicted
 						begin
-							o_PC2 <= i_mispredict_nottaken;	//goto the target of that branch (older branch)
+							o_PC2 <= i_current_target[(2*ADDRESS_WIDTH)-1:ADDRESS_WIDTH];
 						end
-					end
-					else if( i_branch_taken )
-					begin
-						o_PC2 <= i_current_target;		//bp says take the branch, aligner gives target
-					end
-					else
-					begin
-						o_PC2 <= o_PC2 + 4;			//standard increment of pc
-					end
-					o_PC <= o_PC2;
+						
+						3'bx10:	//mispredicted as not taken
+						begin
+							o_PC2 <= i_mispredict_nottaken[(2*ADDRESS_WIDTH)-1:ADDRESS_WIDTH];
+						end
+						
+						3'bx11:	//mispredicted as taken
+						begin
+							o_PC2 <= {i_mispredict_pc[(2*ADDRESS_WIDTH)-1:ADDRESS_WIDTH+3]+1, 2'b00};	//PC = PC + (4-PC%4)
+						end
+					endcase
 				end
 				
 				2:
 				begin
-					if( i_branch_mispredict[0] )
-					begin
-						if( i_branch_mispredict[1] )
+					case({i_branch_taken[2], i_branch_mispredict[5:4]})
+						3'b00x:	//not taken, not mispredicted
 						begin
-							o_PC3 <= o_PC3 + 8;		//advance 4 (fetch 4 at a time) x2 (branch delay slot)
+							o_PC3 <= {o_PC3[ADDRESS_WIDTH-1:3]+1, 2'b00};	//PC = PC + (4-PC%4) 
 						end
-						else
+						
+						3'b10x:	//taken, not mispredicted
 						begin
-							o_PC3 <= i_mispredict_nottaken;	//goto the target of that branch (older branch)
+							o_PC3 <= i_current_target[(3*ADDRESS_WIDTH)-1:2*ADDRESS_WIDTH];
 						end
-					end
-					else if( i_branch_taken )
-					begin
-						o_PC3 <= i_current_target;		//bp says take the branch, aligner gives target
-					end
-					else
-					begin
-						o_PC3 <= o_PC3 + 4;			//standard increment of pc
-					end	
-					o_PC <= o_PC3;
+						
+						3'bx10:	//mispredicted as not taken
+						begin
+							o_PC3 <= i_mispredict_nottaken[(3*ADDRESS_WIDTH)-1:2*ADDRESS_WIDTH];
+						end
+						
+						3'bx11:	//mispredicted as taken
+						begin
+							o_PC3 <= {i_mispredict_pc[(3*ADDRESS_WIDTH)-1:2*ADDRESS_WIDTH+3]+1, 2'b00};	//PC = PC + (4-PC%4)
+						end
+					endcase
 				end
 				
 				3:
 				begin
-					if( i_branch_mispredict[0] )
-					begin
-						if( i_branch_mispredict[1] )
+					case({i_branch_taken[3], i_branch_mispredict[7:6]})
+						3'b00x:	//not taken, not mispredicted
 						begin
-							o_PC4 <= o_PC4 + 8;		//advance 4 (fetch 4 at a time) x2 (branch delay slot)
+							o_PC4 <= {o_PC4[ADDRESS_WIDTH-1:3]+1, 2'b00};	//PC = PC + (4-PC%4) 
 						end
-						else
+						
+						3'b10x:	//taken, not mispredicted
 						begin
-							o_PC4 <= i_mispredict_nottaken;	//goto the target of that branch (older branch)
+							o_PC4 <= i_current_target[(4*ADDRESS_WIDTH)-1:3*ADDRESS_WIDTH];
 						end
-					end
-					else if( i_branch_taken )
-					begin
-						o_PC4 <= i_current_target;		//bp says take the branch, aligner gives target
-					end
-					else
-					begin
-						o_PC4 <= o_PC4 + 4;			//standard increment of pc
-					end	
-					o_PC <= o_PC4;
+						
+						3'bx10:	//mispredicted as not taken
+						begin
+							o_PC4 <= i_mispredict_nottaken[(4*ADDRESS_WIDTH)-1:3*ADDRESS_WIDTH];
+						end
+						
+						3'bx11:	//mispredicted as taken
+						begin
+							o_PC4 <= {i_mispredict_pc[(4*ADDRESS_WIDTH)-1:3*ADDRESS_WIDTH+3]+1, 2'b00};	//PC = PC + (4-PC%4)
+						end
+					endcase
 				end
 				
 			endcase
@@ -149,34 +155,6 @@ begin
 	end
 end
 
-//always@(*)
-//begin
-//	case(i_thread_choice)
-//		0:
-//		begin
-//			o_PC <= o_PC1;
-//		end
-//		
-//		1:
-//		begin
-//			o_PC <= o_PC2;
-//		end
-//		
-//		2:
-//		begin
-//			o_PC <= o_PC3;
-//		end
-//		
-//		3:
-//		begin
-//			o_PC <= o_PC4;		
-//		end
-//		
-//		default:
-//		begin
-//			o_PC <= o_PC + 4;
-//		end
-//	endcase
-//end
+
 
 endmodule
