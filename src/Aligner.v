@@ -17,70 +17,126 @@ module aligner	#(
 					input [INSN_WIDTH-1:0] i_isn3,
 					input [INSN_WIDTH-1:0] i_isn4,
 
-					// Outputs - back for branches
-					output reg [ADDRESS_WIDTH-1:0] o_branch_addr,
-					output reg o_isbranch,
-					output reg [ADDRESS_WIDTH-1:0] o_branch_target,
-
 					// Outputs - to Queues
 					output reg [3:0] o_valid,				//which instructions are  valid (4321)
-					output [INSN_WIDTH-1:0] o_isn1,
-					output [INSN_WIDTH-1:0] o_isn2,
-					output [INSN_WIDTH-1:0] o_isn3,
-					output [INSN_WIDTH-1:0] o_isn4
+					output reg [INSN_WIDTH-1:0] o_isn1,
+					output reg [INSN_WIDTH-1:0] o_isn2,
+					output reg [INSN_WIDTH-1:0] o_isn3,
+					output reg [INSN_WIDTH-1:0] o_isn4
 					//output reg [ISN_WIDTH*4-1:0] o_isn4to1
 				);
 
 //assign o_isn4to1 = {i_isn4, i_isn3, i_isn2, i_isn1};
-assign o_isn1 = i_isn1;
-assign o_isn2 = i_isn2;
-assign o_isn3 = i_isn3;
-assign o_isn4 = i_isn4;
+//assign o_isn1 = i_isn1;
+//assign o_isn2 = i_isn2;
+//assign o_isn3 = i_isn3;
+//assign o_isn4 = i_isn4;
 
-always @(posedge i_Clk or negedge i_Reset_n)
+always@(*)
 begin
+	case(i_PC[1:0])
+		00:
+		begin
+			o_isn1 <= i_isn1;
+			o_isn2 <= i_isn2;
+			o_isn3 <= i_isn3;
+			o_isn4 <= i_isn4;
+			
+			if(i_isn1[9])			//first instruction is branch
+			begin
+				o_valid <= 4'b0011;
+			end
 
-	//note - this doesn't account for consecutive branches - I don't think this will ever occur, given branch delay slot
+			else if(i_isn2[9])	//second instruction is branch
+			begin
+				o_valid <= 4'b0111;
+			end
 
-	if(i_isn1[9])	//first instruction is branch
-	begin
-		o_valid <= 4'b0011;
-		o_branch_addr <= i_pc;
-		o_isbranch <= 1'b1;
-		o_branch_target <= o_isn1[41:10];
-	end
+			else if(i_isn3[9])	//third instruction is branch
+			begin
+				o_valid <= 4'b1111;
+			end
 
-	else if(i_isn2[9])	//second instruction is branch
-	begin
-		o_valid <= 4'b0111;
-		o_branch_addr <= i_pc + DATA_WIDTH;
-		o_isbranch <= 1'b1;
-		o_branch_target <= o_isn2[41:10];
-	end
+			else if(i_isn4[9])	//fourth instruction is branch
+			begin
+				o_valid <= 4'b1111;
+			end
 
-	else if(i_isn3[9])	//third instruction is branch
-	begin
-		o_valid <= 4'b1111;
-		o_branch_addr <= i_pc + DATA_WIDTH*2;
-		o_isbranch <= 1'b1;
-		o_branch_target <= o_isn3[41:10];
-	end
+			else						//no branches
+			begin
+				o_valid <= 4'b1111;
+			end
+		end
+		
+		01:
+		begin
+			o_isn1 <= i_isn2;
+			o_isn2 <= i_isn3;
+			o_isn3 <= i_isn4;
+			o_isn4 <= 0;
+			
+			if(i_isn2[9])			//second instruction is branch
+			begin
+				o_valid <= 4'b1100;
+			end
 
-	else if(i_isn4[9])	//fourth instruction is branch
-	begin
-		o_valid <= 4'b1111;
-		o_branch_addr <= i_pc + DATA_WIDTH*3;
-		o_isbranch <= 1'b1;
-		o_branch_target <= o_isn4[41:10];
-	end
+			else if(i_isn3[9])	//third instruction is branch
+			begin
+				o_valid <= 4'b1110;	
+			end
 
-	else				//no branches
-	begin
-		o_valid <= 4'b1111;
-		o_branch_addr <= i_pc;				//junk data
-		o_isbranch <= 1'b0;
-		o_branch_target <= o_isn4[41:10];	//junk data
-	end
+			else if(i_isn4[9])	//fourth instruction is branch
+			begin
+				o_valid <= 4'b1110;	//notify about 1st inst delay slot
+			end
+
+			else						//no branches
+			begin
+				o_valid <= 4'b1110;
+			end
+		end
+		
+		10:
+		begin
+			o_isn1 <= i_isn3;
+			o_isn2 <= i_isn4;
+			o_isn3 <= 0;
+			o_isn4 <= 0;
+			
+			if(i_isn3[9])			//third instruction is branch
+			begin
+				o_valid <= 4'b1100;
+			end
+
+			else if(i_isn4[9])	//fourth instruction is branch
+			begin
+				o_valid <= 4'b1100;	//notify
+			end
+
+			else						//no branches
+			begin
+				o_valid <= 4'b1100;
+			end
+		end
+		
+		11:
+		begin
+			o_isn1 <= i_isn4;
+			o_isn2 <= 0;
+			o_isn3 <= 0;
+			o_isn4 <= 0;
+		end
+		
+			if(i_isn4[9])			//fourth instruction is branch
+			begin
+				o_valid <= 4'b1000;
+			end
+
+			else						//no branches
+			begin
+				o_valid <= 4'b1000;
+			end
+	endcase
 end
 
 endmodule
