@@ -18,7 +18,7 @@ module aligner	#(
 					input [INSN_WIDTH-1:0] i_isn4,
 
 					// Outputs - to Queues
-					output reg [3:0] o_valid,				//which instructions are  valid (4321)
+					output reg [3:0] o_valid,				//which instructions are  valid
 					output reg [INSN_WIDTH-1:0] o_isn1,
 					output reg [INSN_WIDTH-1:0] o_isn2,
 					output reg [INSN_WIDTH-1:0] o_isn3,
@@ -41,15 +41,15 @@ begin
 			o_isn2 <= i_isn2;
 			o_isn3 <= i_isn3;
 			o_isn4 <= i_isn4;
-			
+
 			if(i_isn1[9])			//first instruction is branch
 			begin
-				o_valid <= 4'b0011;
+				o_valid <= 4'b1100;
 			end
 
 			else if(i_isn2[9])	//second instruction is branch
 			begin
-				o_valid <= 4'b0111;
+				o_valid <= 4'b1110;
 			end
 
 			else if(i_isn3[9])	//third instruction is branch
@@ -57,7 +57,7 @@ begin
 				o_valid <= 4'b1111;
 			end
 
-			else if(i_isn4[9])	//fourth instruction is branch
+			else if(i_isn4[9])	//fourth instruction is branch - notify
 			begin
 				o_valid <= 4'b1111;
 			end
@@ -67,14 +67,14 @@ begin
 				o_valid <= 4'b1111;
 			end
 		end
-		
+
 		01:
 		begin
 			o_isn1 <= i_isn2;
 			o_isn2 <= i_isn3;
 			o_isn3 <= i_isn4;
 			o_isn4 <= 0;
-			
+
 			if(i_isn2[9])			//second instruction is branch
 			begin
 				o_valid <= 4'b1100;
@@ -82,7 +82,7 @@ begin
 
 			else if(i_isn3[9])	//third instruction is branch
 			begin
-				o_valid <= 4'b1110;	
+				o_valid <= 4'b1110;
 			end
 
 			else if(i_isn4[9])	//fourth instruction is branch
@@ -95,14 +95,14 @@ begin
 				o_valid <= 4'b1110;
 			end
 		end
-		
+
 		10:
 		begin
 			o_isn1 <= i_isn3;
 			o_isn2 <= i_isn4;
 			o_isn3 <= 0;
 			o_isn4 <= 0;
-			
+
 			if(i_isn3[9])			//third instruction is branch
 			begin
 				o_valid <= 4'b1100;
@@ -118,7 +118,7 @@ begin
 				o_valid <= 4'b1100;
 			end
 		end
-		
+
 		11:
 		begin
 			o_isn1 <= i_isn4;
@@ -126,16 +126,9 @@ begin
 			o_isn3 <= 0;
 			o_isn4 <= 0;
 		end
-		
-			if(i_isn4[9])			//fourth instruction is branch
-			begin
-				o_valid <= 4'b1000;
-			end
 
-			else						//no branches
-			begin
-				o_valid <= 4'b1000;
-			end
+		//this instruction will always be valid
+		o_valid <= 4'b1000;
 	endcase
 end
 
