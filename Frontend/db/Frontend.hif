@@ -1,0 +1,262 @@
+Quartus II 32-bit
+Version 11.1 Build 173 11/01/2011 SJ Web Edition
+14
+1330
+OFF
+OFF
+OFF
+ON
+ON
+ON
+FV_OFF
+Level2
+0
+0
+0
+0
+VRSM_ON
+VHSM_ON
+0
+-- Start Library Paths --
+-- End Library Paths --
+-- Start VHDL Libraries --
+-- End VHDL Libraries --
+# entity
+Frontend
+# storage
+db|Frontend.(0).cnf
+db|Frontend.(0).cnf
+# case_insensitive
+# source_file
+frontend.bdf
+7bcc13476e7af5f027271c9c1b644995
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+|
+}
+# macro_sequence
+
+# end
+# entity
+fetch_unit
+# storage
+db|Frontend.(1).cnf
+db|Frontend.(1).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+|users|eli|documents|ucsd|148|mips_proc|src|fetch_unit.v
+393635215080b2c14ba671c1d63ab8e2
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# user_parameter {
+ADDRESS_WIDTH
+22
+PARAMETER_SIGNED_DEC
+USR
+DATA_WIDTH
+32
+PARAMETER_SIGNED_DEC
+USR
+}
+# hierarchies {
+fetch_unit:inst
+}
+# macro_sequence
+
+# end
+# entity
+i_cache
+# storage
+db|Frontend.(2).cnf
+db|Frontend.(2).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+|users|eli|documents|ucsd|148|mips_proc|src|i_cache.v
+559f269dc4d02dfa28904eb1c3f91036
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# user_parameter {
+DATA_WIDTH
+32
+PARAMETER_SIGNED_DEC
+USR
+TAG_WIDTH
+14
+PARAMETER_SIGNED_DEC
+USR
+INDEX_WIDTH
+5
+PARAMETER_SIGNED_DEC
+USR
+BLOCK_OFFSET_WIDTH
+2
+PARAMETER_SIGNED_DEC
+USR
+}
+# hierarchies {
+i_cache:inst1
+}
+# macro_sequence
+
+# end
+# entity
+branch_predictor
+# storage
+db|Frontend.(3).cnf
+db|Frontend.(3).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+|users|eli|documents|ucsd|148|mips_proc|src|gshare.v
+44591fc5ab04f50dc7e205ed799c6a6
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# user_parameter {
+DATA_WIDTH
+32
+PARAMETER_SIGNED_DEC
+USR
+ADDRESS_WIDTH
+22
+PARAMETER_SIGNED_DEC
+USR
+GHR_SIZE
+8
+PARAMETER_SIGNED_DEC
+USR
+}
+# hierarchies {
+branch_predictor:inst3
+}
+# macro_sequence
+
+# end
+# entity
+decoder
+# storage
+db|Frontend.(4).cnf
+db|Frontend.(4).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+|users|eli|documents|ucsd|148|mips_proc|src|decoder.v
+58511beb9c8ec8a48b2884adc6d28
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# user_parameter {
+ADDRESS_WIDTH
+32
+PARAMETER_SIGNED_DEC
+USR
+DATA_WIDTH
+32
+PARAMETER_SIGNED_DEC
+USR
+REG_ADDRESS_WIDTH
+5
+PARAMETER_SIGNED_DEC
+USR
+ALUCTL_WIDTH
+8
+PARAMETER_SIGNED_DEC
+USR
+MEM_MASK_WIDTH
+3
+PARAMETER_SIGNED_DEC
+USR
+DEBUG
+0
+PARAMETER_SIGNED_DEC
+USR
+ISN_WIDTH
+99
+PARAMETER_SIGNED_DEC
+DEF
+}
+# hierarchies {
+decoder:inst5
+decoder:inst6
+}
+# macro_sequence
+
+# end
+# complete
+

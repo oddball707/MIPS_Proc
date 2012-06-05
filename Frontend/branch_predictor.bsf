@@ -1,0 +1,115 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2011 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+*/
+(header "symbol" (version "1.2"))
+(symbol
+	(rect 64 64 376 256)
+	(text "branch_predictor" (rect 5 0 86 12)(font "Arial" ))
+	(text "inst" (rect 8 176 25 188)(font "Arial" ))
+	(port
+		(pt 184 0)
+		(input)
+		(text "i_Clk" (rect 0 0 24 12)(font "Arial" ))
+		(text "i_Clk" (rect 176 25 188 49)(font "Arial" )(vertical))
+		(line (pt 184 0)(pt 184 17))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "i_IMEM_address[GHR_SIZE-1..0]" (rect 0 0 165 12)(font "Arial" ))
+		(text "i_IMEM_address[GHR_SIZE-1..0]" (rect 21 75 186 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 0 32)
+		(input)
+		(text "i_isbranch_check" (rect 0 0 84 12)(font "Arial" ))
+		(text "i_isbranch_check" (rect 21 27 105 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 216 192)
+		(input)
+		(text "i_ALU_outcome" (rect 0 0 77 12)(font "Arial" ))
+		(text "i_ALU_outcome" (rect 208 89 220 166)(font "Arial" )(vertical))
+		(line (pt 216 192)(pt 216 175))
+	)
+	(port
+		(pt 176 192)
+		(input)
+		(text "i_ALU_pc[GHR_SIZE-1..0]" (rect 0 0 132 12)(font "Arial" ))
+		(text "i_ALU_pc[GHR_SIZE-1..0]" (rect 168 34 180 166)(font "Arial" )(vertical))
+		(line (pt 176 192)(pt 176 176)(line_width 3))
+	)
+	(port
+		(pt 104 192)
+		(input)
+		(text "i_ALU_isbranch" (rect 0 0 76 12)(font "Arial" ))
+		(text "i_ALU_isbranch" (rect 96 90 108 166)(font "Arial" )(vertical))
+		(line (pt 104 192)(pt 104 175))
+	)
+	(port
+		(pt 152 192)
+		(input)
+		(text "i_ALU_prediction" (rect 0 0 82 12)(font "Arial" ))
+		(text "i_ALU_prediction" (rect 144 84 156 166)(font "Arial" )(vertical))
+		(line (pt 152 192)(pt 152 175))
+	)
+	(port
+		(pt 208 0)
+		(input)
+		(text "i_Reset_n" (rect 0 0 49 12)(font "Arial" ))
+		(text "i_Reset_n" (rect 200 25 212 74)(font "Arial" )(vertical))
+		(line (pt 208 0)(pt 208 17))
+	)
+	(port
+		(pt 160 0)
+		(input)
+		(text "i_Stall" (rect 0 0 29 12)(font "Arial" ))
+		(text "i_Stall" (rect 152 25 164 54)(font "Arial" )(vertical))
+		(line (pt 160 0)(pt 160 17))
+	)
+	(port
+		(pt 312 32)
+		(output)
+		(text "o_taken" (rect 0 0 38 12)(font "Arial" ))
+		(text "o_taken" (rect 259 27 291 39)(font "Arial" ))
+		(line (pt 312 32)(pt 296 32))
+	)
+	(parameter
+		"DATA_WIDTH"
+		"32"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"ADDRESS_WIDTH"
+		"22"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"GHR_SIZE"
+		"8"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 16 16 296 176))
+	)
+	(annotation_block (parameter)(rect 328 -40 544 16))
+)
