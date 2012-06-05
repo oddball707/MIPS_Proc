@@ -10,7 +10,8 @@ module decoder	#(
 					parameter REG_ADDRESS_WIDTH = 5,
 					parameter ALUCTL_WIDTH = 8,
 					parameter MEM_MASK_WIDTH = 3,
-					parameter DEBUG = 0
+					parameter DEBUG = 0,
+					parameter ISN_WIDTH = 99
 				)
 				(	// Inputs
 					input [ADDRESS_WIDTH-1:0] i_PC,
@@ -19,26 +20,7 @@ module decoder	#(
 					
 					// Outputs
 						// Control signals
-					output reg o_Uses_ALU,
-					output reg [ALUCTL_WIDTH-1:0] o_ALUCTL,
-					output reg o_Is_Branch,
-					output reg [ADDRESS_WIDTH-1:0] o_Branch_Target,
-					output reg o_Jump_Reg,
-					
-					output reg o_Mem_Valid,
-					output reg [MEM_MASK_WIDTH-1:0] o_Mem_Mask,
-					output reg o_Mem_Read_Write_n,
-					
-					output reg o_Uses_RS,
-					output reg [REG_ADDRESS_WIDTH-1:0] o_RS_Addr,
-					output reg o_Uses_RT,
-					output reg [REG_ADDRESS_WIDTH-1:0] o_RT_Addr,
-					
-					output reg o_Uses_Immediate,
-					output reg [DATA_WIDTH-1:0] o_Immediate,
-					
-					output reg o_Writes_Back,
-					output reg [REG_ADDRESS_WIDTH-1:0] o_Write_Addr
+					output [ISN_WIDTH-1:0] o_instruction
 				);
 				
 	// Constants
@@ -83,6 +65,29 @@ module decoder	#(
 	localparam ALUCTL_JAL = 8'd65;
 	localparam ALUCTL_JR = 8'd66;
 	localparam ALUCTL_JALR = 8'd67;
+	
+	reg o_Uses_ALU;
+	reg [ALUCTL_WIDTH-1:0] o_ALUCTL;
+   reg o_Is_Branch;
+	reg [ADDRESS_WIDTH-1:0] o_Branch_Target;
+	reg o_Jump_Reg;
+					
+	reg o_Mem_Valid;
+	reg [MEM_MASK_WIDTH-1:0] o_Mem_Mask;
+	reg o_Mem_Read_Write_n;
+					
+	reg o_Uses_RS;
+	reg [REG_ADDRESS_WIDTH-1:0] o_RS_Addr;
+	reg o_Uses_RT;
+	reg [REG_ADDRESS_WIDTH-1:0] o_RT_Addr;
+					
+	reg o_Uses_Immediate;
+	reg [DATA_WIDTH-1:0] o_Immediate;
+					
+	reg o_Writes_Back;
+	reg [REG_ADDRESS_WIDTH-1:0] o_Write_Addr;
+	
+	assign o_instruction = {o_Uses_ALU, o_ALUCTL, o_Is_Branch, o_Branch_Target, o_Jump_Reg, o_Mem_Valid, o_Mem_Mask, o_Mem_Read_Write_n, o_Uses_RS, o_RS_Addr, o_Uses_RT, o_RT_Addr, o_Uses_Immediate, o_Immediate, o_Writes_Back, o_Write_Addr};
 	
 		// Combinatorial logic - Obtain control signals
 	always @(*)

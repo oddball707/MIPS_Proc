@@ -1,31 +1,40 @@
 // Pipeline stage
-module pipe_if_dec 	#(					
+module pipe_if_dec 	#(
 						parameter ADDRESS_WIDTH = 32,
-						parameter DATA_WIDTH = 32
-					)							
-					(	
+						parameter DATA_WIDTH = 22
+					)
+					(
 						// Inputs
 						input i_Clk,
 						input i_Reset_n,	// Async reset (highest priority)
 						input i_Flush,			// Flush (lowest priority)
 						input i_Stall,		// Stall (2nd highest priority)
-						
+
 							// Pipe in/out
 						input [ADDRESS_WIDTH-1:0] i_PC,
 						output reg [ADDRESS_WIDTH-1:0] o_PC,
-						input [DATA_WIDTH-1:0] i_Instruction,
-						output reg [DATA_WIDTH-1:0] o_Instruction,
+						input [DATA_WIDTH-1:0] i_Instruction1,
+						input [DATA_WIDTH-1:0] i_Instruction2,
+						input [DATA_WIDTH-1:0] i_Instruction3,
+						input [DATA_WIDTH-1:0] i_Instruction4,
+						output reg [DATA_WIDTH-1:0] o_Instruction1,
+						output reg [DATA_WIDTH-1:0] o_Instruction2,
+						output reg [DATA_WIDTH-1:0] o_Instruction3,
+						output reg [DATA_WIDTH-1:0] o_Instruction4,
 						input i_prediction,				//prediction from branch predictor
-						output reg o_prediction 
+						output reg o_prediction
 					);
-		
+
 		// Asynchronous output driver
 	always @(posedge i_Clk or negedge i_Reset_n)
 	begin
 		if( !i_Reset_n )
 		begin
 			// Initialize outputs to 0s
-			o_Instruction <= 0;
+			o_Instruction1 <= 0;
+			o_Instruction2 <= 0;
+			o_Instruction3 <= 0;
+			o_Instruction4 <= 0;
 			o_PC <= 0;
 			o_prediction <= 0;
 		end
@@ -36,20 +45,25 @@ module pipe_if_dec 	#(
 				if( i_Flush )
 				begin
 					// Pass through all 0s
-					o_Instruction <= 0;
+					o_Instruction1 <= 0;
+					o_Instruction2 <= 0;
+					o_Instruction3 <= 0;
+					o_Instruction4 <= 0;
 					o_PC <= 0;
 					o_prediction <= 0;
 				end
 				else
 				begin
 					// Pass through signals
-					o_Instruction <= i_Instruction;
+					o_Instruction1 <= i_Instruction1;
+					o_Instruction2 <= i_Instruction2;
+					o_Instruction3 <= i_Instruction3;
+					o_Instruction4 <= i_Instruction4;
 					o_PC <= i_PC;
 					o_prediction <= i_prediction;
 				end
 			end
 		end
 	end
-	
+
 endmodule
-		

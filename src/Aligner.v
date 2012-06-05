@@ -34,7 +34,7 @@ module aligner	#(
 
 always@(*)
 begin
-	case(i_PC[1:0])
+	case(i_pc[1:0])
 		00:
 		begin
 			o_isn1 <= i_isn1;
@@ -125,10 +125,12 @@ begin
 			o_isn2 <= 0;
 			o_isn3 <= 0;
 			o_isn4 <= 0;
+
+			//this instruction will always be valid
+			o_valid <= 4'b1000;
 		end
 
-		//this instruction will always be valid
-		o_valid <= 4'b1000;
+
 	endcase
 end
 
