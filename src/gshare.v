@@ -44,12 +44,13 @@ end
 
 always @(posedge i_Clk)
 begin
-
+	if(!i_Stall && i_isbranch_check)
+	begin
 		//next save GHR XOR addr for indexing
 		GHR_saved <= gshare_index;
 
 		//then reconcile branch from 2 cycles ago
-		if((i_ALU_outcome != i_ALU_prediction) && i_isbranch_check)
+		if((i_ALU_outcome != i_ALU_prediction) && i_ALU_isbranch)
 		begin
 			case(i_ALU_prediction)
 				0:
@@ -80,7 +81,7 @@ begin
 					branch_history[gshare_index] <= branch_history[gshare_index] - 1;
 			end
 		endcase
-
+	end
 end
 
 //Drive output prediction

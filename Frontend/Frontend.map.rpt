@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Frontend
-Mon Jun 04 22:12:25 2012
+Tue Jun 05 18:53:02 2012
 Quartus II 32-bit Version 11.1 Build 173 11/01/2011 SJ Web Edition
 
 
@@ -10,12 +10,7 @@ Quartus II 32-bit Version 11.1 Build 173 11/01/2011 SJ Web Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Parameter Settings for User Entity Instance: fetch_unit:inst
-  6. Parameter Settings for User Entity Instance: i_cache:inst1
-  7. Parameter Settings for User Entity Instance: branch_predictor:inst3
-  8. Parameter Settings for User Entity Instance: decoder:inst5
-  9. Parameter Settings for User Entity Instance: decoder:inst6
- 10. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Messages
 
 
 
@@ -41,7 +36,7 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +------------------------------------+------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Mon Jun 04 22:12:25 2012        ;
+; Analysis & Synthesis Status        ; Failed - Tue Jun 05 18:53:02 2012        ;
 ; Quartus II 32-bit Version          ; 11.1 Build 173 11/01/2011 SJ Web Edition ;
 ; Revision Name                      ; Frontend                                 ;
 ; Top-level Entity Name              ; Frontend                                 ;
@@ -152,83 +147,17 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
-+--------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: fetch_unit:inst ;
-+----------------+-------+-------------------------------------+
-; Parameter Name ; Value ; Type                                ;
-+----------------+-------+-------------------------------------+
-; ADDRESS_WIDTH  ; 22    ; Signed Integer                      ;
-; DATA_WIDTH     ; 32    ; Signed Integer                      ;
-+----------------+-------+-------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: i_cache:inst1 ;
-+--------------------+-------+-------------------------------+
-; Parameter Name     ; Value ; Type                          ;
-+--------------------+-------+-------------------------------+
-; DATA_WIDTH         ; 32    ; Signed Integer                ;
-; TAG_WIDTH          ; 14    ; Signed Integer                ;
-; INDEX_WIDTH        ; 5     ; Signed Integer                ;
-; BLOCK_OFFSET_WIDTH ; 2     ; Signed Integer                ;
-+--------------------+-------+-------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+---------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: branch_predictor:inst3 ;
-+----------------+-------+--------------------------------------------+
-; Parameter Name ; Value ; Type                                       ;
-+----------------+-------+--------------------------------------------+
-; DATA_WIDTH     ; 32    ; Signed Integer                             ;
-; ADDRESS_WIDTH  ; 22    ; Signed Integer                             ;
-; GHR_SIZE       ; 8     ; Signed Integer                             ;
-+----------------+-------+--------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: decoder:inst5 ;
-+-------------------+-------+--------------------------------+
-; Parameter Name    ; Value ; Type                           ;
-+-------------------+-------+--------------------------------+
-; ADDRESS_WIDTH     ; 32    ; Signed Integer                 ;
-; DATA_WIDTH        ; 32    ; Signed Integer                 ;
-; REG_ADDRESS_WIDTH ; 5     ; Signed Integer                 ;
-; ALUCTL_WIDTH      ; 8     ; Signed Integer                 ;
-; MEM_MASK_WIDTH    ; 3     ; Signed Integer                 ;
-; DEBUG             ; 0     ; Signed Integer                 ;
-; ISN_WIDTH         ; 99    ; Signed Integer                 ;
-+-------------------+-------+--------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: decoder:inst6 ;
-+-------------------+-------+--------------------------------+
-; Parameter Name    ; Value ; Type                           ;
-+-------------------+-------+--------------------------------+
-; ADDRESS_WIDTH     ; 32    ; Signed Integer                 ;
-; DATA_WIDTH        ; 32    ; Signed Integer                 ;
-; REG_ADDRESS_WIDTH ; 5     ; Signed Integer                 ;
-; ALUCTL_WIDTH      ; 8     ; Signed Integer                 ;
-; MEM_MASK_WIDTH    ; 3     ; Signed Integer                 ;
-; DEBUG             ; 0     ; Signed Integer                 ;
-; ISN_WIDTH         ; 99    ; Signed Integer                 ;
-+-------------------+-------+--------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 11.1 Build 173 11/01/2011 SJ Web Edition
-    Info: Processing started: Mon Jun 04 22:12:21 2012
+    Info: Processing started: Tue Jun 05 18:53:00 2012
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Frontend -c Frontend
 Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 1 design units, including 1 entities, in source file adder.v
+    Info (12023): Found entity 1: adder
 Info (12021): Found 1 design units, including 1 entities, in source file /users/eli/documents/ucsd/148/mips_proc/src/decoder.v
     Info (12023): Found entity 1: decoder
 Info (12021): Found 1 design units, including 1 entities, in source file /users/eli/documents/ucsd/148/mips_proc/src/pipe_if_dec.v
@@ -252,262 +181,25 @@ Info (12021): Found 1 design units, including 1 entities, in source file /users/
 Info (12021): Found 1 design units, including 1 entities, in source file frontend.bdf
     Info (12023): Found entity 1: Frontend
 Info (12127): Elaborating entity "Frontend" for the top level hierarchy
-Info (12128): Elaborating entity "fetch_unit" for hierarchy "fetch_unit:inst"
-Warning (10059): Verilog HDL Case Statement warning at fetch_unit.v(56): case item expression never matches the case expression because it contains an 'x' or 'z' value
-Warning (10059): Verilog HDL Case Statement warning at fetch_unit.v(61): case item expression never matches the case expression because it contains an 'x' or 'z' value
-Warning (10059): Verilog HDL Case Statement warning at fetch_unit.v(66): case item expression never matches the case expression because it contains an 'x' or 'z' value
-Warning (10059): Verilog HDL Case Statement warning at fetch_unit.v(71): case item expression never matches the case expression because it contains an 'x' or 'z' value
-Warning (10059): Verilog HDL Case Statement warning at fetch_unit.v(81): case item expression never matches the case expression because it contains an 'x' or 'z' value
-Warning (10059): Verilog HDL Case Statement warning at fetch_unit.v(86): case item expression never matches the case expression because it contains an 'x' or 'z' value
-Warning (10059): Verilog HDL Case Statement warning at fetch_unit.v(91): case item expression never matches the case expression because it contains an 'x' or 'z' value
-Warning (10059): Verilog HDL Case Statement warning at fetch_unit.v(96): case item expression never matches the case expression because it contains an 'x' or 'z' value
-Warning (10059): Verilog HDL Case Statement warning at fetch_unit.v(106): case item expression never matches the case expression because it contains an 'x' or 'z' value
-Warning (10059): Verilog HDL Case Statement warning at fetch_unit.v(111): case item expression never matches the case expression because it contains an 'x' or 'z' value
-Warning (10059): Verilog HDL Case Statement warning at fetch_unit.v(116): case item expression never matches the case expression because it contains an 'x' or 'z' value
-Warning (10059): Verilog HDL Case Statement warning at fetch_unit.v(121): case item expression never matches the case expression because it contains an 'x' or 'z' value
-Warning (10059): Verilog HDL Case Statement warning at fetch_unit.v(131): case item expression never matches the case expression because it contains an 'x' or 'z' value
-Warning (10059): Verilog HDL Case Statement warning at fetch_unit.v(136): case item expression never matches the case expression because it contains an 'x' or 'z' value
-Warning (10059): Verilog HDL Case Statement warning at fetch_unit.v(141): case item expression never matches the case expression because it contains an 'x' or 'z' value
-Warning (10059): Verilog HDL Case Statement warning at fetch_unit.v(146): case item expression never matches the case expression because it contains an 'x' or 'z' value
-Warning (10240): Verilog HDL Always Construct warning at fetch_unit.v(41): inferring latch(es) for variable "o_PC", which holds its previous value in one or more paths through the always construct
-Info (10041): Inferred latch for "o_PC[0]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[1]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[2]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[3]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[4]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[5]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[6]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[7]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[8]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[9]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[10]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[11]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[12]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[13]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[14]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[15]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[16]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[17]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[18]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[19]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[20]" at fetch_unit.v(41)
-Info (10041): Inferred latch for "o_PC[21]" at fetch_unit.v(41)
-Info (12128): Elaborating entity "i_cache" for hierarchy "i_cache:inst1"
-Warning (10036): Verilog HDL or VHDL warning at i_cache.v(70): object "opcode1" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at i_cache.v(71): object "opcodeA" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at i_cache.v(71): object "opcodeB" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at i_cache.v(71): object "opcodeC" assigned a value but never read
-Info (12128): Elaborating entity "branch_predictor" for hierarchy "branch_predictor:inst3"
-Warning (10858): Verilog HDL warning at gshare.v(32): object GHR_index used but never assigned
-Warning (10855): Verilog HDL warning at gshare.v(39): initial value for variable branch_history should be constant
-Warning (10230): Verilog HDL assignment warning at gshare.v(58): truncated value with size 32 to match size of target (2)
-Warning (10230): Verilog HDL assignment warning at gshare.v(63): truncated value with size 32 to match size of target (2)
-Warning (10230): Verilog HDL assignment warning at gshare.v(77): truncated value with size 32 to match size of target (2)
-Warning (10230): Verilog HDL assignment warning at gshare.v(81): truncated value with size 32 to match size of target (2)
-Warning (10030): Net "GHR_index[1]" at gshare.v(32) has no driver or initial value, using a default initial value '0'
-Info (12128): Elaborating entity "decoder" for hierarchy "decoder:inst5"
-Error (12002): Port "o_ALUCTL[0]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_ALUCTL[1]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_ALUCTL[2]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_ALUCTL[3]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_ALUCTL[4]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_ALUCTL[5]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_ALUCTL[6]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_ALUCTL[7]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[0]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[10]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[11]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[12]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[13]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[14]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[15]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[16]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[17]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[18]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[19]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[1]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[20]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[21]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[22]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[23]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[24]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[25]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[26]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[27]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[28]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[29]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[2]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[30]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[31]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[3]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[4]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[5]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[6]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[7]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[8]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Branch_Target[9]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[0]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[10]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[11]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[12]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[13]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[14]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[15]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[16]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[17]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[18]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[19]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[1]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[20]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[21]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[22]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[23]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[24]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[25]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[26]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[27]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[28]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[29]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[2]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[30]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[31]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[3]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[4]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[5]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[6]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[7]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[8]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Immediate[9]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Is_Branch" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Jump_Reg" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Mem_Mask[0]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Mem_Mask[1]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Mem_Mask[2]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Mem_Read_Write_n" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Mem_Valid" does not exist in macrofunction "inst6"
-Error (12002): Port "o_RS_Addr[0]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_RS_Addr[1]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_RS_Addr[2]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_RS_Addr[3]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_RS_Addr[4]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_RT_Addr[0]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_RT_Addr[1]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_RT_Addr[2]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_RT_Addr[3]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_RT_Addr[4]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Uses_ALU" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Uses_Immediate" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Uses_RS" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Uses_RT" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Write_Addr[0]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Write_Addr[1]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Write_Addr[2]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Write_Addr[3]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Write_Addr[4]" does not exist in macrofunction "inst6"
-Error (12002): Port "o_Writes_Back" does not exist in macrofunction "inst6"
-Error (12002): Port "o_ALUCTL[0]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_ALUCTL[1]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_ALUCTL[2]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_ALUCTL[3]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_ALUCTL[4]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_ALUCTL[5]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_ALUCTL[6]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_ALUCTL[7]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[0]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[10]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[11]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[12]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[13]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[14]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[15]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[16]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[17]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[18]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[19]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[1]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[20]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[21]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[22]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[23]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[24]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[25]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[26]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[27]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[28]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[29]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[2]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[30]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[31]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[3]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[4]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[5]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[6]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[7]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[8]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Branch_Target[9]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[0]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[10]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[11]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[12]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[13]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[14]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[15]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[16]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[17]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[18]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[19]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[1]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[20]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[21]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[22]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[23]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[24]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[25]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[26]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[27]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[28]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[29]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[2]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[30]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[31]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[3]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[4]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[5]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[6]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[7]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[8]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Immediate[9]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Is_Branch" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Jump_Reg" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Mem_Mask[0]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Mem_Mask[1]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Mem_Mask[2]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Mem_Read_Write_n" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Mem_Valid" does not exist in macrofunction "inst5"
-Error (12002): Port "o_RS_Addr[0]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_RS_Addr[1]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_RS_Addr[2]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_RS_Addr[3]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_RS_Addr[4]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_RT_Addr[0]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_RT_Addr[1]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_RT_Addr[2]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_RT_Addr[3]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_RT_Addr[4]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Uses_ALU" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Uses_Immediate" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Uses_RS" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Uses_RT" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Write_Addr[0]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Write_Addr[1]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Write_Addr[2]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Write_Addr[3]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Write_Addr[4]" does not exist in macrofunction "inst5"
-Error (12002): Port "o_Writes_Back" does not exist in macrofunction "inst5"
-Error: Quartus II 32-bit Analysis & Synthesis was unsuccessful. 198 errors, 29 warnings
-    Error: Peak virtual memory: 348 megabytes
-    Error: Processing ended: Mon Jun 04 22:12:25 2012
-    Error: Elapsed time: 00:00:04
-    Error: Total CPU time (on all processors): 00:00:04
+Error (275029): Incorrect connector style at port "o_Data[DATA_WIDTH*4-1..0]" for symbol "inst1" of type i_cache
+Error (275029): Incorrect connector style at port "i_Instruction1[DATA_WIDTH-1..0]" for symbol "inst10" of type pipe_if_dec
+Error (275029): Incorrect connector style at port "i_Instruction2[DATA_WIDTH-1..0]" for symbol "inst10" of type pipe_if_dec
+Error (275029): Incorrect connector style at port "i_Instruction3[DATA_WIDTH-1..0]" for symbol "inst10" of type pipe_if_dec
+Error (275029): Incorrect connector style at port "i_Instruction4[DATA_WIDTH-1..0]" for symbol "inst10" of type pipe_if_dec
+Error (275029): Incorrect connector style at port "i_inst1[DATA_WIDTH-1..0]" for symbol "inst11" of type pre_aligner
+Error (275029): Incorrect connector style at port "i_inst2[DATA_WIDTH-1..0]" for symbol "inst11" of type pre_aligner
+Error (275029): Incorrect connector style at port "i_inst3[DATA_WIDTH-1..0]" for symbol "inst11" of type pre_aligner
+Error (275029): Incorrect connector style at port "i_inst4[DATA_WIDTH-1..0]" for symbol "inst11" of type pre_aligner
+Error (275031): Can't use conduits in network without blocks
+Error (275031): Can't use conduits in network without blocks
+Error (275031): Can't use conduits in network without blocks
+Error (275031): Can't use conduits in network without blocks
+Error (275031): Can't use conduits in network without blocks
+Error (12153): Can't elaborate top-level user hierarchy
+Error: Quartus II 32-bit Analysis & Synthesis was unsuccessful. 15 errors, 1 warning
+    Error: Peak virtual memory: 278 megabytes
+    Error: Processing ended: Tue Jun 05 18:53:02 2012
+    Error: Elapsed time: 00:00:02
+    Error: Total CPU time (on all processors): 00:00:01
 
 
