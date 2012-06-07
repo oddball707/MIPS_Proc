@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Frontend
-Tue Jun 05 18:53:02 2012
+Wed Jun 06 17:06:47 2012
 Quartus II 32-bit Version 11.1 Build 173 11/01/2011 SJ Web Edition
 
 
@@ -10,7 +10,20 @@ Quartus II 32-bit Version 11.1 Build 173 11/01/2011 SJ Web Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  5. State Machine - |Frontend|i_cache:inst1|State
+  6. Parameter Settings for User Entity Instance: fetch_unit:fetch_unit
+  7. Parameter Settings for User Entity Instance: branch_predictor:inst3
+  8. Parameter Settings for User Entity Instance: pre_aligner:inst11
+  9. Parameter Settings for User Entity Instance: i_cache:inst1
+ 10. Parameter Settings for User Entity Instance: jump_stack:inst12
+ 11. Parameter Settings for User Entity Instance: pipe_if_dec:inst10
+ 12. Parameter Settings for User Entity Instance: aligner:inst13
+ 13. Parameter Settings for User Entity Instance: decoder:inst14
+ 14. Parameter Settings for User Entity Instance: decoder:inst7
+ 15. Parameter Settings for User Entity Instance: decoder:inst16
+ 16. Parameter Settings for User Entity Instance: decoder:inst17
+ 17. Elapsed Time Per Partition
+ 18. Analysis & Synthesis Messages
 
 
 
@@ -36,7 +49,7 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +------------------------------------+------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Tue Jun 05 18:53:02 2012        ;
+; Analysis & Synthesis Status        ; Failed - Wed Jun 06 17:06:47 2012        ;
 ; Quartus II 32-bit Version          ; 11.1 Build 173 11/01/2011 SJ Web Edition ;
 ; Revision Name                      ; Frontend                                 ;
 ; Top-level Entity Name              ; Frontend                                 ;
@@ -147,13 +160,180 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
+Encoding Type:  One-Hot
++-----------------------------------------------+
+; State Machine - |Frontend|i_cache:inst1|State ;
++-----------------------+-----------------------+
+; Name                  ; State.STATE_MISS_READ ;
++-----------------------+-----------------------+
+; State.STATE_READY     ; 0                     ;
+; State.STATE_MISS_READ ; 1                     ;
++-----------------------+-----------------------+
+
+
++--------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fetch_unit:fetch_unit ;
++----------------+-------+-------------------------------------------+
+; Parameter Name ; Value ; Type                                      ;
++----------------+-------+-------------------------------------------+
+; ADDRESS_WIDTH  ; 22    ; Signed Integer                            ;
+; DATA_WIDTH     ; 32    ; Signed Integer                            ;
++----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: branch_predictor:inst3 ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                             ;
+; ADDRESS_WIDTH  ; 22    ; Signed Integer                             ;
+; GHR_SIZE       ; 8     ; Signed Integer                             ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: pre_aligner:inst11 ;
++----------------+-------+----------------------------------------+
+; Parameter Name ; Value ; Type                                   ;
++----------------+-------+----------------------------------------+
+; ADDRESS_WIDTH  ; 22    ; Signed Integer                         ;
+; DATA_WIDTH     ; 32    ; Signed Integer                         ;
++----------------+-------+----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: i_cache:inst1 ;
++--------------------+-------+-------------------------------+
+; Parameter Name     ; Value ; Type                          ;
++--------------------+-------+-------------------------------+
+; DATA_WIDTH         ; 32    ; Signed Integer                ;
+; ADDRESS_WIDTH      ; 22    ; Signed Integer                ;
+; TAG_WIDTH          ; 14    ; Signed Integer                ;
+; INDEX_WIDTH        ; 5     ; Signed Integer                ;
+; BLOCK_OFFSET_WIDTH ; 2     ; Signed Integer                ;
++--------------------+-------+-------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: jump_stack:inst12 ;
++----------------+-------+---------------------------------------+
+; Parameter Name ; Value ; Type                                  ;
++----------------+-------+---------------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                        ;
+; ADDRESS_WIDTH  ; 22    ; Signed Integer                        ;
+; STACK_SIZE     ; 16    ; Signed Integer                        ;
++----------------+-------+---------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: pipe_if_dec:inst10 ;
++----------------+-------+----------------------------------------+
+; Parameter Name ; Value ; Type                                   ;
++----------------+-------+----------------------------------------+
+; ADDRESS_WIDTH  ; 22    ; Signed Integer                         ;
+; DATA_WIDTH     ; 32    ; Signed Integer                         ;
++----------------+-------+----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: aligner:inst13 ;
++----------------+-------+------------------------------------+
+; Parameter Name ; Value ; Type                               ;
++----------------+-------+------------------------------------+
+; ADDRESS_WIDTH  ; 22    ; Signed Integer                     ;
+; DATA_WIDTH     ; 32    ; Signed Integer                     ;
+; INSN_WIDTH     ; 99    ; Signed Integer                     ;
++----------------+-------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: decoder:inst14 ;
++-------------------+-------+---------------------------------+
+; Parameter Name    ; Value ; Type                            ;
++-------------------+-------+---------------------------------+
+; ADDRESS_WIDTH     ; 22    ; Signed Integer                  ;
+; DATA_WIDTH        ; 32    ; Signed Integer                  ;
+; REG_ADDRESS_WIDTH ; 5     ; Signed Integer                  ;
+; ALUCTL_WIDTH      ; 8     ; Signed Integer                  ;
+; MEM_MASK_WIDTH    ; 3     ; Signed Integer                  ;
+; DEBUG             ; 0     ; Signed Integer                  ;
+; ISN_WIDTH         ; 99    ; Signed Integer                  ;
++-------------------+-------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: decoder:inst7 ;
++-------------------+-------+--------------------------------+
+; Parameter Name    ; Value ; Type                           ;
++-------------------+-------+--------------------------------+
+; ADDRESS_WIDTH     ; 22    ; Signed Integer                 ;
+; DATA_WIDTH        ; 32    ; Signed Integer                 ;
+; REG_ADDRESS_WIDTH ; 5     ; Signed Integer                 ;
+; ALUCTL_WIDTH      ; 8     ; Signed Integer                 ;
+; MEM_MASK_WIDTH    ; 3     ; Signed Integer                 ;
+; DEBUG             ; 0     ; Signed Integer                 ;
+; ISN_WIDTH         ; 99    ; Signed Integer                 ;
++-------------------+-------+--------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: decoder:inst16 ;
++-------------------+-------+---------------------------------+
+; Parameter Name    ; Value ; Type                            ;
++-------------------+-------+---------------------------------+
+; ADDRESS_WIDTH     ; 22    ; Signed Integer                  ;
+; DATA_WIDTH        ; 32    ; Signed Integer                  ;
+; REG_ADDRESS_WIDTH ; 5     ; Signed Integer                  ;
+; ALUCTL_WIDTH      ; 8     ; Signed Integer                  ;
+; MEM_MASK_WIDTH    ; 3     ; Signed Integer                  ;
+; DEBUG             ; 0     ; Signed Integer                  ;
+; ISN_WIDTH         ; 99    ; Signed Integer                  ;
++-------------------+-------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: decoder:inst17 ;
++-------------------+-------+---------------------------------+
+; Parameter Name    ; Value ; Type                            ;
++-------------------+-------+---------------------------------+
+; ADDRESS_WIDTH     ; 22    ; Signed Integer                  ;
+; DATA_WIDTH        ; 32    ; Signed Integer                  ;
+; REG_ADDRESS_WIDTH ; 5     ; Signed Integer                  ;
+; ALUCTL_WIDTH      ; 8     ; Signed Integer                  ;
+; MEM_MASK_WIDTH    ; 3     ; Signed Integer                  ;
+; DEBUG             ; 0     ; Signed Integer                  ;
+; ISN_WIDTH         ; 99    ; Signed Integer                  ;
++-------------------+-------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 11.1 Build 173 11/01/2011 SJ Web Edition
-    Info: Processing started: Tue Jun 05 18:53:00 2012
+    Info: Processing started: Wed Jun 06 17:06:43 2012
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Frontend -c Frontend
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file adder.v
@@ -181,25 +361,48 @@ Info (12021): Found 1 design units, including 1 entities, in source file /users/
 Info (12021): Found 1 design units, including 1 entities, in source file frontend.bdf
     Info (12023): Found entity 1: Frontend
 Info (12127): Elaborating entity "Frontend" for the top level hierarchy
-Error (275029): Incorrect connector style at port "o_Data[DATA_WIDTH*4-1..0]" for symbol "inst1" of type i_cache
-Error (275029): Incorrect connector style at port "i_Instruction1[DATA_WIDTH-1..0]" for symbol "inst10" of type pipe_if_dec
-Error (275029): Incorrect connector style at port "i_Instruction2[DATA_WIDTH-1..0]" for symbol "inst10" of type pipe_if_dec
-Error (275029): Incorrect connector style at port "i_Instruction3[DATA_WIDTH-1..0]" for symbol "inst10" of type pipe_if_dec
-Error (275029): Incorrect connector style at port "i_Instruction4[DATA_WIDTH-1..0]" for symbol "inst10" of type pipe_if_dec
-Error (275029): Incorrect connector style at port "i_inst1[DATA_WIDTH-1..0]" for symbol "inst11" of type pre_aligner
-Error (275029): Incorrect connector style at port "i_inst2[DATA_WIDTH-1..0]" for symbol "inst11" of type pre_aligner
-Error (275029): Incorrect connector style at port "i_inst3[DATA_WIDTH-1..0]" for symbol "inst11" of type pre_aligner
-Error (275029): Incorrect connector style at port "i_inst4[DATA_WIDTH-1..0]" for symbol "inst11" of type pre_aligner
-Error (275031): Can't use conduits in network without blocks
-Error (275031): Can't use conduits in network without blocks
-Error (275031): Can't use conduits in network without blocks
-Error (275031): Can't use conduits in network without blocks
-Error (275031): Can't use conduits in network without blocks
-Error (12153): Can't elaborate top-level user hierarchy
-Error: Quartus II 32-bit Analysis & Synthesis was unsuccessful. 15 errors, 1 warning
-    Error: Peak virtual memory: 278 megabytes
-    Error: Processing ended: Tue Jun 05 18:53:02 2012
-    Error: Elapsed time: 00:00:02
-    Error: Total CPU time (on all processors): 00:00:01
+Info (12128): Elaborating entity "fetch_unit" for hierarchy "fetch_unit:fetch_unit"
+Warning (10230): Verilog HDL assignment warning at fetch_unit.v(80): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at fetch_unit.v(105): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at fetch_unit.v(130): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at fetch_unit.v(155): truncated value with size 32 to match size of target (22)
+Info (12128): Elaborating entity "branch_predictor" for hierarchy "branch_predictor:inst3"
+Warning (10858): Verilog HDL warning at gshare.v(31): object GHR_index used but never assigned
+Warning (10855): Verilog HDL warning at gshare.v(38): initial value for variable branch_history should be constant
+Warning (10230): Verilog HDL assignment warning at gshare.v(58): truncated value with size 32 to match size of target (2)
+Warning (10230): Verilog HDL assignment warning at gshare.v(63): truncated value with size 32 to match size of target (2)
+Warning (10230): Verilog HDL assignment warning at gshare.v(77): truncated value with size 32 to match size of target (2)
+Warning (10230): Verilog HDL assignment warning at gshare.v(81): truncated value with size 32 to match size of target (2)
+Warning (10030): Net "GHR_index[1]" at gshare.v(31) has no driver or initial value, using a default initial value '0'
+Info (12128): Elaborating entity "pre_aligner" for hierarchy "pre_aligner:inst11"
+Warning (10230): Verilog HDL assignment warning at pre_aligner.v(176): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at pre_aligner.v(180): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at pre_aligner.v(213): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at pre_aligner.v(217): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at pre_aligner.v(225): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at pre_aligner.v(250): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at pre_aligner.v(254): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at pre_aligner.v(262): truncated value with size 32 to match size of target (22)
+Info (12128): Elaborating entity "i_cache" for hierarchy "i_cache:inst1"
+Info (12128): Elaborating entity "jump_stack" for hierarchy "jump_stack:inst12"
+Warning (10230): Verilog HDL assignment warning at jump_stack.v(37): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at jump_stack.v(45): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at jump_stack.v(57): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at jump_stack.v(65): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at jump_stack.v(77): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at jump_stack.v(85): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at jump_stack.v(97): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at jump_stack.v(105): truncated value with size 32 to match size of target (1)
+Info (12128): Elaborating entity "pipe_if_dec" for hierarchy "pipe_if_dec:inst10"
+Info (12128): Elaborating entity "aligner" for hierarchy "aligner:inst13"
+Warning (10199): Verilog HDL Case Statement warning at Aligner.v(99): case item expression never matches the case expression
+Warning (10199): Verilog HDL Case Statement warning at Aligner.v(122): case item expression never matches the case expression
+Info (12128): Elaborating entity "decoder" for hierarchy "decoder:inst14"
+Error (12061): Can't synthesize current design -- Top partition does not contain any logic
+Error: Quartus II 32-bit Analysis & Synthesis was unsuccessful. 1 error, 30 warnings
+    Error: Peak virtual memory: 293 megabytes
+    Error: Processing ended: Wed Jun 06 17:06:47 2012
+    Error: Elapsed time: 00:00:04
+    Error: Total CPU time (on all processors): 00:00:04
 
 

@@ -67,14 +67,14 @@ module i_cache	#(	parameter DATA_WIDTH = 32,
 	integer i;
 	reg [8:0] Gen_Count;					// General counter
 
-		//branch detection
-	wire [3:0] opcode1;
-	wire opcodeA, opcodeB, opcodeC;
-
-	assign opcode1 = o_Data[31:29];		//first 3 bits of instruction opcode (000 for branch)
-	assign opcodeA = o_Data[28];			//next 3 bits of opcode (CBA)
-	assign opcodeB = o_Data[27];
-	assign opcodeC = o_Data[26];
+//		//branch detection
+//	//wire [3:0] opcode1;
+//	wire opcodeA, opcodeB, opcodeC;
+//
+//	assign opcode1 = o_Data[31:29];		//first 3 bits of instruction opcode (000 for branch)
+//	assign opcodeA = o_Data[28];			//next 3 bits of opcode (CBA)
+//	assign opcodeB = o_Data[27];
+//	assign opcodeC = o_Data[26];
 
 		// Hardwired assignments
 	assign o_Ready = (State==STATE_READY);

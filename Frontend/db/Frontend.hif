@@ -29,7 +29,7 @@ db|Frontend.(0).cnf
 # case_insensitive
 # source_file
 frontend.bdf
-7bcc13476e7af5f027271c9c1b644995
+ca3a38abbe6e6fe8f7c1233e07396
 26
 # internal_option {
 BLOCK_DESIGN_NAMING
@@ -53,7 +53,7 @@ ON
 # case_sensitive
 # source_file
 |users|eli|documents|ucsd|148|mips_proc|src|fetch_unit.v
-393635215080b2c14ba671c1d63ab8e2
+78cbf6866aaf3c4dea19b5c48aa479
 8
 # internal_option {
 HDL_INITIAL_FANOUT_LIMIT
@@ -82,61 +82,7 @@ PARAMETER_SIGNED_DEC
 USR
 }
 # hierarchies {
-fetch_unit:inst
-}
-# macro_sequence
-
-# end
-# entity
-i_cache
-# storage
-db|Frontend.(2).cnf
-db|Frontend.(2).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-|users|eli|documents|ucsd|148|mips_proc|src|i_cache.v
-559f269dc4d02dfa28904eb1c3f91036
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# user_parameter {
-DATA_WIDTH
-32
-PARAMETER_SIGNED_DEC
-USR
-TAG_WIDTH
-14
-PARAMETER_SIGNED_DEC
-USR
-INDEX_WIDTH
-5
-PARAMETER_SIGNED_DEC
-USR
-BLOCK_OFFSET_WIDTH
-2
-PARAMETER_SIGNED_DEC
-USR
-}
-# hierarchies {
-i_cache:inst1
+fetch_unit:fetch_unit
 }
 # macro_sequence
 
@@ -144,8 +90,8 @@ i_cache:inst1
 # entity
 branch_predictor
 # storage
-db|Frontend.(3).cnf
-db|Frontend.(3).cnf
+db|Frontend.(2).cnf
+db|Frontend.(2).cnf
 # logic_option {
 AUTO_RAM_RECOGNITION
 ON
@@ -153,7 +99,7 @@ ON
 # case_sensitive
 # source_file
 |users|eli|documents|ucsd|148|mips_proc|src|gshare.v
-44591fc5ab04f50dc7e205ed799c6a6
+1f716b529a93499c2837546a81e4b950
 8
 # internal_option {
 HDL_INITIAL_FANOUT_LIMIT
@@ -192,18 +138,18 @@ branch_predictor:inst3
 
 # end
 # entity
-decoder
+pre_aligner
 # storage
-db|Frontend.(4).cnf
-db|Frontend.(4).cnf
+db|Frontend.(3).cnf
+db|Frontend.(3).cnf
 # logic_option {
 AUTO_RAM_RECOGNITION
 ON
 }
 # case_sensitive
 # source_file
-|users|eli|documents|ucsd|148|mips_proc|src|decoder.v
-58511beb9c8ec8a48b2884adc6d28
+|users|eli|documents|ucsd|148|mips_proc|src|pre_aligner.v
+463bce83c578fec2e2f24fc182331829
 8
 # internal_option {
 HDL_INITIAL_FANOUT_LIMIT
@@ -223,7 +169,99 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 }
 # user_parameter {
 ADDRESS_WIDTH
+22
+PARAMETER_SIGNED_DEC
+USR
+DATA_WIDTH
 32
+PARAMETER_SIGNED_DEC
+USR
+}
+# hierarchies {
+pre_aligner:inst11
+}
+# macro_sequence
+
+# end
+# entity
+pipe_if_dec
+# storage
+db|Frontend.(6).cnf
+db|Frontend.(6).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+|users|eli|documents|ucsd|148|mips_proc|src|pipe_if_dec.v
+3eba50dd16f1b9df8738abb8583051
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# user_parameter {
+ADDRESS_WIDTH
+22
+PARAMETER_SIGNED_DEC
+USR
+DATA_WIDTH
+32
+PARAMETER_SIGNED_DEC
+USR
+}
+# hierarchies {
+pipe_if_dec:inst10
+}
+# macro_sequence
+
+# end
+# entity
+decoder
+# storage
+db|Frontend.(8).cnf
+db|Frontend.(8).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+|users|eli|documents|ucsd|148|mips_proc|src|decoder.v
+cc1edcb1b5441184b3373b929364bf2
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# user_parameter {
+ADDRESS_WIDTH
+22
 PARAMETER_SIGNED_DEC
 USR
 DATA_WIDTH
@@ -249,11 +287,171 @@ USR
 ISN_WIDTH
 99
 PARAMETER_SIGNED_DEC
-DEF
+USR
 }
 # hierarchies {
-decoder:inst5
-decoder:inst6
+decoder:inst14
+decoder:inst7
+decoder:inst16
+decoder:inst17
+}
+# macro_sequence
+
+# end
+# entity
+i_cache
+# storage
+db|Frontend.(4).cnf
+db|Frontend.(4).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+|users|eli|documents|ucsd|148|mips_proc|src|i_cache.v
+359d2e57b017d0d91ca86fe6b91ca
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# user_parameter {
+DATA_WIDTH
+32
+PARAMETER_SIGNED_DEC
+USR
+ADDRESS_WIDTH
+22
+PARAMETER_SIGNED_DEC
+USR
+TAG_WIDTH
+14
+PARAMETER_SIGNED_DEC
+USR
+INDEX_WIDTH
+5
+PARAMETER_SIGNED_DEC
+USR
+BLOCK_OFFSET_WIDTH
+2
+PARAMETER_SIGNED_DEC
+USR
+}
+# hierarchies {
+i_cache:inst1
+}
+# macro_sequence
+
+# end
+# entity
+jump_stack
+# storage
+db|Frontend.(5).cnf
+db|Frontend.(5).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+|users|eli|documents|ucsd|148|mips_proc|src|jump_stack.v
+595a56d983564e2de73d8996b288a7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# user_parameter {
+DATA_WIDTH
+32
+PARAMETER_SIGNED_DEC
+USR
+ADDRESS_WIDTH
+22
+PARAMETER_SIGNED_DEC
+USR
+STACK_SIZE
+16
+PARAMETER_SIGNED_DEC
+USR
+}
+# hierarchies {
+jump_stack:inst12
+}
+# macro_sequence
+
+# end
+# entity
+aligner
+# storage
+db|Frontend.(7).cnf
+db|Frontend.(7).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+|users|eli|documents|ucsd|148|mips_proc|src|aligner.v
+e33b88549f4e22d7d118a72134c8d70
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# user_parameter {
+ADDRESS_WIDTH
+22
+PARAMETER_SIGNED_DEC
+USR
+DATA_WIDTH
+32
+PARAMETER_SIGNED_DEC
+USR
+INSN_WIDTH
+99
+PARAMETER_SIGNED_DEC
+USR
+}
+# hierarchies {
+aligner:inst13
 }
 # macro_sequence
 

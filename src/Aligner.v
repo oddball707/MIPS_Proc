@@ -130,7 +130,14 @@ begin
 			o_valid <= 4'b1000;
 		end
 
-
+		default:
+		begin
+			o_isn1 <= i_isn1;
+			o_isn2 <= i_isn2;
+			o_isn3 <= i_isn3;
+			o_isn4 <= i_isn4;
+			o_valid <= 4'b1111;
+		end
 	endcase
 end
 

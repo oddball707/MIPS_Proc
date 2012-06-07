@@ -6,12 +6,12 @@ module branch_predictor#(
 				(
 					////Inputs from current stage
 					input i_Clk,
-					input [GHR_SIZE-1:0] i_IMEM_address,	//address in memory (for hash)
+					input [ADDRESS_WIDTH-1:0] i_IMEM_address,	//address in memory (for hash)
 
 					////Inputs from ALU stage
 					input i_isbranch_check,					//don't want to update tables for a non-branch
 					input i_ALU_outcome,					//1 if taken 0 not taken (from ALU computation)
-					input [GHR_SIZE-1:0] i_ALU_pc,			//pc from branch in ALU stage
+					input [ADDRESS_WIDTH-1:0] i_ALU_pc,			//pc from branch in ALU stage
 					input i_ALU_isbranch,					//if inst in ALU stage is a branch
 					input i_ALU_prediction,					//prediction for branch in ALU
 

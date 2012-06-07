@@ -19,10 +19,10 @@ module jump_stack#(
 					output reg o_valid							// 1 if jr, 0 if jal or other
 				);
 
-reg [ADDRESS_WIDTH-1:0] stack0[STACK_SIZE-1:3];
-reg [ADDRESS_WIDTH-1:0] stack1[STACK_SIZE-1:3];
-reg [ADDRESS_WIDTH-1:0] stack2[STACK_SIZE-1:3];
-reg [ADDRESS_WIDTH-1:0] stack3[STACK_SIZE-1:3];
+reg [ADDRESS_WIDTH-1:0] stack0[STACK_SIZE-1:0];
+reg [ADDRESS_WIDTH-1:0] stack1[STACK_SIZE-1:0];
+reg [ADDRESS_WIDTH-1:0] stack2[STACK_SIZE-1:0];
+reg [ADDRESS_WIDTH-1:0] stack3[STACK_SIZE-1:0];
 reg stack_pointer[3:0];
 
 always@(posedge i_Clk)
@@ -59,7 +59,7 @@ begin
 			end
 			else			//push
 			begin
-				stack0[stack_pointer[1]+1] <= i_address;
+				stack1[stack_pointer[1]+1] <= i_address;
 				if(stack_pointer[1] < STACK_SIZE-1)
 				begin
 					stack_pointer[1] <= stack_pointer[1] + 1;
@@ -79,7 +79,7 @@ begin
 			end
 			else			//push
 			begin
-				stack0[stack_pointer[2]+1] <= i_address;
+				stack2[stack_pointer[2]+1] <= i_address;
 				if(stack_pointer[2] < STACK_SIZE-1)
 				begin
 					stack_pointer[2] <= stack_pointer[2] + 1;
@@ -99,7 +99,7 @@ begin
 			end
 			else			//push
 			begin
-				stack0[stack_pointer[3]+1] <= i_address;
+				stack3[stack_pointer[3]+1] <= i_address;
 				if(stack_pointer[3] < STACK_SIZE-1)
 				begin
 					stack_pointer[3] <= stack_pointer[3] + 1;

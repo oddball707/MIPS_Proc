@@ -5,7 +5,7 @@
 *	Provides decoding of instructions to control signals.
 */
 module decoder	#(
-					parameter ADDRESS_WIDTH = 32,
+					parameter ADDRESS_WIDTH = 22,
 					parameter DATA_WIDTH = 32,
 					parameter REG_ADDRESS_WIDTH = 5,
 					parameter ALUCTL_WIDTH = 8,
