@@ -1,0 +1,180 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2011 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+*/
+(header "symbol" (version "1.2"))
+(symbol
+	(rect 64 64 320 664)
+	(text "pipe_if_dec" (rect 5 0 61 12)(font "Arial" ))
+	(text "inst" (rect 8 240 25 252)(font "Arial" ))
+	(port
+		(pt 72 0)
+		(input)
+		(text "i_Clk" (rect 0 0 24 12)(font "Arial" ))
+		(text "i_Clk" (rect 64 25 76 49)(font "Arial" )(vertical))
+		(line (pt 72 0)(pt 72 17))
+	)
+	(port
+		(pt 88 0)
+		(input)
+		(text "i_Reset_n" (rect 0 0 49 12)(font "Arial" ))
+		(text "i_Reset_n" (rect 80 25 92 74)(font "Arial" )(vertical))
+		(line (pt 88 0)(pt 88 17))
+	)
+	(port
+		(pt 104 0)
+		(input)
+		(text "i_Flush" (rect 0 0 35 12)(font "Arial" ))
+		(text "i_Flush" (rect 96 25 108 60)(font "Arial" )(vertical))
+		(line (pt 104 0)(pt 104 17))
+	)
+	(port
+		(pt 128 0)
+		(input)
+		(text "i_Stall" (rect 0 0 29 12)(font "Arial" ))
+		(text "i_Stall" (rect 120 25 132 54)(font "Arial" )(vertical))
+		(line (pt 128 0)(pt 128 17))
+	)
+	(port
+		(pt 0 344)
+		(input)
+		(text "i_PC[ADDRESS_WIDTH-1..0]" (rect 0 0 148 12)(font "Arial" ))
+		(text "i_PC[ADDRESS_WIDTH-1..0]" (rect 21 339 169 351)(font "Arial" ))
+		(line (pt 0 344)(pt 16 344)(line_width 3))
+	)
+	(port
+		(pt 0 360)
+		(input)
+		(text "i_Instruction1[DATA_WIDTH-1..0]" (rect 0 0 166 12)(font "Arial" ))
+		(text "i_Instruction1[DATA_WIDTH-1..0]" (rect 21 355 187 367)(font "Arial" ))
+		(line (pt 0 360)(pt 16 360)(line_width 3))
+	)
+	(port
+		(pt 0 376)
+		(input)
+		(text "i_Instruction2[DATA_WIDTH-1..0]" (rect 0 0 166 12)(font "Arial" ))
+		(text "i_Instruction2[DATA_WIDTH-1..0]" (rect 21 371 187 383)(font "Arial" ))
+		(line (pt 0 376)(pt 16 376)(line_width 3))
+	)
+	(port
+		(pt 0 392)
+		(input)
+		(text "i_Instruction3[DATA_WIDTH-1..0]" (rect 0 0 166 12)(font "Arial" ))
+		(text "i_Instruction3[DATA_WIDTH-1..0]" (rect 21 387 187 399)(font "Arial" ))
+		(line (pt 0 392)(pt 16 392)(line_width 3))
+	)
+	(port
+		(pt 0 408)
+		(input)
+		(text "i_Instruction4[DATA_WIDTH-1..0]" (rect 0 0 166 12)(font "Arial" ))
+		(text "i_Instruction4[DATA_WIDTH-1..0]" (rect 21 403 187 415)(font "Arial" ))
+		(line (pt 0 408)(pt 16 408)(line_width 3))
+	)
+	(port
+		(pt 0 424)
+		(input)
+		(text "i_prediction" (rect 0 0 55 12)(font "Arial" ))
+		(text "i_prediction" (rect 21 419 76 431)(font "Arial" ))
+		(line (pt 0 424)(pt 16 424))
+	)
+	(port
+		(pt 0 520)
+		(input)
+		(text "i_branch_target[ADDRESS_WIDTH-1..0]" (rect 0 0 200 12)(font "Arial" ))
+		(text "i_branch_target[ADDRESS_WIDTH-1..0]" (rect 21 515 221 527)(font "Arial" ))
+		(line (pt 0 520)(pt 16 520)(line_width 3))
+	)
+	(port
+		(pt 0 208)
+		(input)
+		(text "i_thread[1..0]" (rect 0 0 64 12)(font "Arial" ))
+		(text "i_thread[1..0]" (rect 21 203 85 215)(font "Arial" ))
+		(line (pt 0 208)(pt 16 208)(line_width 3))
+	)
+	(port
+		(pt 256 112)
+		(output)
+		(text "o_PC[ADDRESS_WIDTH-1..0]" (rect -296 0 -144 12)(font "Arial" ))
+		(text "o_PC[ADDRESS_WIDTH-1..0]" (rect 107 107 259 119)(font "Arial" ))
+		(line (pt 256 112)(pt 240 112)(line_width 3))
+	)
+	(port
+		(pt 256 128)
+		(output)
+		(text "o_Instruction1[DATA_WIDTH-1..0]" (rect -296 0 -127 12)(font "Arial" ))
+		(text "o_Instruction1[DATA_WIDTH-1..0]" (rect 92 123 261 135)(font "Arial" ))
+		(line (pt 256 128)(pt 240 128)(line_width 3))
+	)
+	(port
+		(pt 256 144)
+		(output)
+		(text "o_Instruction2[DATA_WIDTH-1..0]" (rect -296 0 -127 12)(font "Arial" ))
+		(text "o_Instruction2[DATA_WIDTH-1..0]" (rect 92 139 261 151)(font "Arial" ))
+		(line (pt 256 144)(pt 240 144)(line_width 3))
+	)
+	(port
+		(pt 256 160)
+		(output)
+		(text "o_Instruction3[DATA_WIDTH-1..0]" (rect -296 0 -127 12)(font "Arial" ))
+		(text "o_Instruction3[DATA_WIDTH-1..0]" (rect 92 155 261 167)(font "Arial" ))
+		(line (pt 256 160)(pt 240 160)(line_width 3))
+	)
+	(port
+		(pt 256 176)
+		(output)
+		(text "o_Instruction4[DATA_WIDTH-1..0]" (rect -296 0 -127 12)(font "Arial" ))
+		(text "o_Instruction4[DATA_WIDTH-1..0]" (rect 92 171 261 183)(font "Arial" ))
+		(line (pt 256 176)(pt 240 176)(line_width 3))
+	)
+	(port
+		(pt 256 64)
+		(output)
+		(text "o_prediction" (rect -296 0 -237 12)(font "Arial" ))
+		(text "o_prediction" (rect 186 59 245 71)(font "Arial" ))
+		(line (pt 256 64)(pt 240 64))
+	)
+	(port
+		(pt 256 80)
+		(output)
+		(text "o_branch_target[ADDRESS_WIDTH-1..0]" (rect -296 0 -92 12)(font "Arial" ))
+		(text "o_branch_target[ADDRESS_WIDTH-1..0]" (rect 63 75 267 87)(font "Arial" ))
+		(line (pt 256 80)(pt 240 80)(line_width 3))
+	)
+	(port
+		(pt 256 96)
+		(output)
+		(text "o_thread[1..0]" (rect -296 0 -228 12)(font "Arial" ))
+		(text "o_thread[1..0]" (rect 178 91 246 103)(font "Arial" ))
+		(line (pt 256 96)(pt 240 96)(line_width 3))
+	)
+	(parameter
+		"ADDRESS_WIDTH"
+		"32"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"DATA_WIDTH"
+		"22"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 17 16 249 600))
+	)
+	(annotation_block (parameter)(rect 320 16 536 64))
+)

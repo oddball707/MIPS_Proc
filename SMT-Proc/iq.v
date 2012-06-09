@@ -1,0 +1,85 @@
+module iq();
+endmodule
+
+module thread_iq
+  #(parameter INSN_WIDTH=99)
+   (input i_Clk,
+    input i_Reset_n,
+    input i_Stall,
+    input [1:0] i_Advance,
+    input i_Write_Enable,
+    input [4*INSN_WIDTH-1:0] i_Insns,
+    input [3:0] i_Valid,
+    output o_Space,
+    output reg [4*INSN_WIDTH-1:0] o_Insns,
+    output reg [3:0] o_Valid
+	 );
+   
+   reg [4*INSN_WIDTH-1:0] front;
+   reg [4*INSN_WIDTH-1:0] back;
+   reg [3:0]              front_valid;
+   reg [3:0]              back_valid;
+   reg                    half;
+   
+   reg [3:0]              next_valid;
+   
+   wire [4*INSN_WIDTH-1:0] insns = half ? front : back;
+   wire [3:0]             valid = half ? front_valid : back_valid;
+   
+   //assign o_Insns = half ? front : back;
+   //assign o_Valid = half ? front_valid : back_valid;
+   assign o_Space = (half ? back_valid : front_valid) == 4'b0;
+
+   always @(*) begin
+      next_valid = valid;
+      
+      if (valid[0]) begin
+         o_Insns = insns;
+         o_Valid = valid;
+      end else if (valid[1]) begin
+         o_Insns = {1'b0, insns[3:1]};
+         o_Valid = {1'b0, valid[3:1]};
+      end else if (valid[2]) begin
+         o_Insns = {2'b0, insns[3:2]};
+         o_Valid = {2'b0, valid[3:2]};
+      end else begin
+         o_Insns = {3'b0, insns[3]};
+         o_Valid = {3'b0, valid[3]};
+      end
+      
+      case (i_Advance)
+        0: next_valid = {valid[2:0], 1'b0};
+        1: next_valid = {valid[1:0], 2'b0};
+        2: next_valid = {valid[0], 3'b0};
+        3: next_valid = 4'b0;
+      endcase
+   end
+   
+   always @(posedge i_Clk or negedge i_Reset_n) begin
+      if (!i_Reset_n) begin
+         front_valid <= 0;
+         back_valid <= 0;
+         half <= 0;
+      end else begin
+         if (i_Write_Enable) begin
+            /* Fill the other half */
+            if (half) begin
+               back <= i_Insns;
+               back_valid <= i_Valid;
+            end else begin
+               front <= i_Insns;
+               front_valid <= i_Valid;
+            end
+         end
+
+         /* Advance this half */
+         if (!i_Stall) begin
+            if (half) front_valid <= next_valid;
+            else back_valid <= next_valid;
+                              
+            if (next_valid == 0) half <= ~half;
+         end
+      end
+   end
+
+endmodule

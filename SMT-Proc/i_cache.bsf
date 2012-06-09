@@ -1,0 +1,139 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2011 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+*/
+(header "symbol" (version "1.2"))
+(symbol
+	(rect 64 64 576 296)
+	(text "i_cache" (rect 5 0 42 12)(font "Arial" ))
+	(text "inst" (rect 8 144 25 156)(font "Arial" ))
+	(port
+		(pt 328 0)
+		(input)
+		(text "i_Clk" (rect 0 0 24 12)(font "Arial" ))
+		(text "i_Clk" (rect 320 25 332 49)(font "Arial" )(vertical))
+		(line (pt 328 0)(pt 328 17))
+	)
+	(port
+		(pt 280 0)
+		(input)
+		(text "i_Reset_n" (rect 0 0 49 12)(font "Arial" ))
+		(text "i_Reset_n" (rect 272 25 284 74)(font "Arial" )(vertical))
+		(line (pt 280 0)(pt 280 17))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "i_Valid" (rect 0 0 31 12)(font "Arial" ))
+		(text "i_Valid" (rect 21 59 52 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "i_Address[TAG_WIDTH+INDEX_WIDTH+BLOCK_OFFSET_WIDTH..0]" (rect 0 0 346 12)(font "Arial" ))
+		(text "i_Address[TAG_WIDTH+INDEX_WIDTH+BLOCK_OFFSET_WIDTH..0]" (rect 21 75 367 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "i_MEM_Valid" (rect 0 0 61 12)(font "Arial" ))
+		(text "i_MEM_Valid" (rect 21 91 82 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96))
+	)
+	(port
+		(pt 0 112)
+		(input)
+		(text "i_MEM_Last" (rect 0 0 59 12)(font "Arial" ))
+		(text "i_MEM_Last" (rect 21 107 80 119)(font "Arial" ))
+		(line (pt 0 112)(pt 16 112))
+	)
+	(port
+		(pt 0 128)
+		(input)
+		(text "i_MEM_Data[DATA_WIDTH-1..0]" (rect 0 0 161 12)(font "Arial" ))
+		(text "i_MEM_Data[DATA_WIDTH-1..0]" (rect 21 123 182 135)(font "Arial" ))
+		(line (pt 0 128)(pt 16 128)(line_width 3))
+	)
+	(port
+		(pt 512 88)
+		(output)
+		(text "o_MEM_Valid" (rect -336 0 -272 12)(font "Arial" ))
+		(text "o_MEM_Valid" (rect 437 83 491 95)(font "Arial" ))
+		(line (pt 512 88)(pt 496 88))
+	)
+	(port
+		(pt 512 104)
+		(output)
+		(text "o_MEM_Address[TAG_WIDTH+INDEX_WIDTH+BLOCK_OFFSET_WIDTH..0]" (rect -336 0 43 12)(font "Arial" ))
+		(text "o_MEM_Address[TAG_WIDTH+INDEX_WIDTH+BLOCK_OFFSET_WIDTH..0]" (rect 170 99 491 111)(font "Arial" ))
+		(line (pt 512 104)(pt 496 104)(line_width 3))
+	)
+	(port
+		(pt 512 120)
+		(output)
+		(text "o_Ready" (rect -336 0 -292 12)(font "Arial" ))
+		(text "o_Ready" (rect 454 115 491 127)(font "Arial" ))
+		(line (pt 512 120)(pt 496 120))
+	)
+	(port
+		(pt 512 136)
+		(output)
+		(text "o_Valid" (rect -336 0 -301 12)(font "Arial" ))
+		(text "o_Valid" (rect 462 131 491 143)(font "Arial" ))
+		(line (pt 512 136)(pt 496 136))
+	)
+	(port
+		(pt 512 152)
+		(output)
+		(text "o_Data[DATA_WIDTH*4-1..0]" (rect -336 0 -190 12)(font "Arial" ))
+		(text "o_Data[DATA_WIDTH*4-1..0]" (rect 368 147 491 159)(font "Arial" ))
+		(line (pt 512 152)(pt 496 152)(line_width 3))
+	)
+	(parameter
+		"DATA_WIDTH"
+		"32"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"ADDRESS_WIDTH"
+		"22"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"TAG_WIDTH"
+		"14"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"INDEX_WIDTH"
+		"5"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"BLOCK_OFFSET_WIDTH"
+		"2"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 16 16 496 192))
+	)
+	(annotation_block (parameter)(rect 864 -72 1112 16))
+)

@@ -1,0 +1,194 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2011 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+*/
+(header "symbol" (version "1.2"))
+(symbol
+	(rect 64 64 344 720)
+	(text "pipe_dec_qr" (rect 5 0 64 12)(font "Arial" ))
+	(text "inst" (rect 8 240 25 252)(font "Arial" ))
+	(port
+		(pt 144 0)
+		(input)
+		(text "i_Clk" (rect 0 0 24 12)(font "Arial" ))
+		(text "i_Clk" (rect 136 25 148 49)(font "Arial" )(vertical))
+		(line (pt 144 0)(pt 144 17))
+	)
+	(port
+		(pt 104 0)
+		(input)
+		(text "i_Reset_n" (rect 0 0 49 12)(font "Arial" ))
+		(text "i_Reset_n" (rect 96 25 108 74)(font "Arial" )(vertical))
+		(line (pt 104 0)(pt 104 17))
+	)
+	(port
+		(pt 72 0)
+		(input)
+		(text "i_Flush" (rect 0 0 35 12)(font "Arial" ))
+		(text "i_Flush" (rect 64 25 76 60)(font "Arial" )(vertical))
+		(line (pt 72 0)(pt 72 17))
+	)
+	(port
+		(pt 48 0)
+		(input)
+		(text "i_Stall" (rect 0 0 29 12)(font "Arial" ))
+		(text "i_Stall" (rect 40 25 52 54)(font "Arial" )(vertical))
+		(line (pt 48 0)(pt 48 17))
+	)
+	(port
+		(pt 0 288)
+		(input)
+		(text "i_PC[ADDRESS_WIDTH-1..0]" (rect 0 0 148 12)(font "Arial" ))
+		(text "i_PC[ADDRESS_WIDTH-1..0]" (rect 21 283 169 295)(font "Arial" ))
+		(line (pt 0 288)(pt 16 288)(line_width 3))
+	)
+	(port
+		(pt 0 368)
+		(input)
+		(text "i_Instruction1[ISN_WIDTH-1..0]" (rect 0 0 156 12)(font "Arial" ))
+		(text "i_Instruction1[ISN_WIDTH-1..0]" (rect 21 363 177 375)(font "Arial" ))
+		(line (pt 0 368)(pt 16 368)(line_width 3))
+	)
+	(port
+		(pt 0 384)
+		(input)
+		(text "i_Instruction2[ISN_WIDTH-1..0]" (rect 0 0 156 12)(font "Arial" ))
+		(text "i_Instruction2[ISN_WIDTH-1..0]" (rect 21 379 177 391)(font "Arial" ))
+		(line (pt 0 384)(pt 16 384)(line_width 3))
+	)
+	(port
+		(pt 0 400)
+		(input)
+		(text "i_Instruction3[ISN_WIDTH-1..0]" (rect 0 0 156 12)(font "Arial" ))
+		(text "i_Instruction3[ISN_WIDTH-1..0]" (rect 21 395 177 407)(font "Arial" ))
+		(line (pt 0 400)(pt 16 400)(line_width 3))
+	)
+	(port
+		(pt 0 416)
+		(input)
+		(text "i_Instruction4[ISN_WIDTH-1..0]" (rect 0 0 156 12)(font "Arial" ))
+		(text "i_Instruction4[ISN_WIDTH-1..0]" (rect 21 411 177 423)(font "Arial" ))
+		(line (pt 0 416)(pt 16 416)(line_width 3))
+	)
+	(port
+		(pt 0 104)
+		(input)
+		(text "i_prediction" (rect 0 0 55 12)(font "Arial" ))
+		(text "i_prediction" (rect 21 99 76 111)(font "Arial" ))
+		(line (pt 0 104)(pt 16 104))
+	)
+	(port
+		(pt 0 120)
+		(input)
+		(text "i_branch_target[ADDRESS_WIDTH-1..0]" (rect 0 0 200 12)(font "Arial" ))
+		(text "i_branch_target[ADDRESS_WIDTH-1..0]" (rect 21 115 221 127)(font "Arial" ))
+		(line (pt 0 120)(pt 16 120)(line_width 3))
+	)
+	(port
+		(pt 0 136)
+		(input)
+		(text "i_thread[1..0]" (rect 0 0 64 12)(font "Arial" ))
+		(text "i_thread[1..0]" (rect 21 131 85 143)(font "Arial" ))
+		(line (pt 0 136)(pt 16 136)(line_width 3))
+	)
+	(port
+		(pt 0 312)
+		(input)
+		(text "i_valid[3..0]" (rect 0 0 57 12)(font "Arial" ))
+		(text "i_valid[3..0]" (rect 21 307 78 319)(font "Arial" ))
+		(line (pt 0 312)(pt 16 312)(line_width 3))
+	)
+	(port
+		(pt 280 192)
+		(output)
+		(text "o_PC[ADDRESS_WIDTH-1..0]" (rect -272 0 -120 12)(font "Arial" ))
+		(text "o_PC[ADDRESS_WIDTH-1..0]" (rect 128 184 280 196)(font "Arial" ))
+		(line (pt 280 192)(pt 264 192)(line_width 3))
+	)
+	(port
+		(pt 280 208)
+		(output)
+		(text "o_Instruction1[ISN_WIDTH-1..0]" (rect -272 0 -112 12)(font "Arial" ))
+		(text "o_Instruction1[ISN_WIDTH-1..0]" (rect 112 200 272 212)(font "Arial" ))
+		(line (pt 280 208)(pt 264 208)(line_width 3))
+	)
+	(port
+		(pt 280 224)
+		(output)
+		(text "o_Instruction2[ISN_WIDTH-1..0]" (rect -272 0 -112 12)(font "Arial" ))
+		(text "o_Instruction2[ISN_WIDTH-1..0]" (rect 112 216 272 228)(font "Arial" ))
+		(line (pt 280 224)(pt 264 224)(line_width 3))
+	)
+	(port
+		(pt 280 240)
+		(output)
+		(text "o_Instruction3[ISN_WIDTH-1..0]" (rect -272 0 -112 12)(font "Arial" ))
+		(text "o_Instruction3[ISN_WIDTH-1..0]" (rect 112 232 272 244)(font "Arial" ))
+		(line (pt 280 240)(pt 264 240)(line_width 3))
+	)
+	(port
+		(pt 280 256)
+		(output)
+		(text "o_Instruction4[ISN_WIDTH-1..0]" (rect -272 0 -112 12)(font "Arial" ))
+		(text "o_Instruction4[ISN_WIDTH-1..0]" (rect 112 248 272 260)(font "Arial" ))
+		(line (pt 280 256)(pt 264 256)(line_width 3))
+	)
+	(port
+		(pt 280 40)
+		(output)
+		(text "o_prediction" (rect -272 0 -213 12)(font "Arial" ))
+		(text "o_prediction" (rect 175 35 234 47)(font "Arial" ))
+		(line (pt 280 40)(pt 264 40))
+	)
+	(port
+		(pt 280 80)
+		(output)
+		(text "o_branch_target[ADDRESS_WIDTH-1..0]" (rect -272 0 -68 12)(font "Arial" ))
+		(text "o_branch_target[ADDRESS_WIDTH-1..0]" (rect 64 72 268 84)(font "Arial" ))
+		(line (pt 280 80)(pt 264 80)(line_width 3))
+	)
+	(port
+		(pt 280 296)
+		(output)
+		(text "o_thread[1..0]" (rect -272 0 -204 12)(font "Arial" ))
+		(text "o_thread[1..0]" (rect 160 291 228 303)(font "Arial" ))
+		(line (pt 280 296)(pt 264 296)(line_width 3))
+	)
+	(port
+		(pt 280 160)
+		(output)
+		(text "o_valid[3..0]" (rect -272 0 -211 12)(font "Arial" ))
+		(text "o_valid[3..0]" (rect 167 155 228 167)(font "Arial" ))
+		(line (pt 280 160)(pt 264 160)(line_width 3))
+	)
+	(parameter
+		"ADDRESS_WIDTH"
+		"32"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"ISN_WIDTH"
+		"99"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 16 16 256 624))
+	)
+	(annotation_block (parameter)(rect 344 16 560 64))
+)
