@@ -10,6 +10,7 @@ module demux 	#(
 						input i_Stall,		// Stall (2nd highest priority)
 						
 						input [ADDRESS_WIDTH-1:0] i_thread,
+						input [3:0] i_valid,	//for instructions
 						
 						input [ISN_WIDTH-1:0] i_Instruction1,
 						input [ISN_WIDTH-1:0] i_Instruction2,
@@ -19,7 +20,12 @@ module demux 	#(
 						output reg [4*ISN_WIDTH-1:0] o_thread1,
 						output reg [4*ISN_WIDTH-1:0] o_thread2,
 						output reg [4*ISN_WIDTH-1:0] o_thread3,
-						output reg [4*ISN_WIDTH-1:0] o_thread4
+						output reg [4*ISN_WIDTH-1:0] o_thread4,
+						
+						output reg [3:0] o_valid1,
+						output reg [3:0] o_valid2,
+						output reg [3:0] o_valid3,
+						output reg [3:0] o_valid4
 						
 					);
 
@@ -33,6 +39,11 @@ module demux 	#(
 			o_thread2 <= 0;
 			o_thread3 <= 0;
 			o_thread4 <= 0;
+			
+			o_valid1 <= 0;
+			o_valid2 <= 0;
+			o_valid3 <= 0;
+			o_valid4 <= 0;
 		end
 		else
 		begin
@@ -44,6 +55,11 @@ module demux 	#(
 					o_thread2 <= 0;
 					o_thread3 <= 0;
 					o_thread4 <= 0;
+					
+					o_valid1 <= 0;
+					o_valid2 <= 0;
+					o_valid3 <= 0;
+					o_valid4 <= 0;
 				end
 				else
 				begin
@@ -54,6 +70,11 @@ module demux 	#(
 							o_thread2 <= 0;
 							o_thread3 <= 0;
 							o_thread4 <= 0;
+							
+							o_valid1 <= i_valid;
+							o_valid2 <= 0;
+							o_valid3 <= 0;
+							o_valid4 <= 0;
 						end
 						
 						01:
@@ -62,6 +83,11 @@ module demux 	#(
 							o_thread2 <= {i_Instruction1, i_Instruction2, i_Instruction3, i_Instruction4};
 							o_thread3 <= 0;
 							o_thread4 <= 0;
+							
+							o_valid1 <= 0;
+							o_valid2 <= i_valid;
+							o_valid3 <= 0;
+							o_valid4 <= 0;
 						end
 						
 						10:
@@ -70,6 +96,11 @@ module demux 	#(
 							o_thread2 <= 0;
 							o_thread3 <= {i_Instruction1, i_Instruction2, i_Instruction3, i_Instruction4};
 							o_thread4 <= 0;
+							
+							o_valid1 <= 0;
+							o_valid2 <= 0;
+							o_valid3 <= i_valid;
+							o_valid4 <= 0;
 						end
 						
 						11:
@@ -78,6 +109,11 @@ module demux 	#(
 							o_thread2 <= 0;
 							o_thread3 <= 0;
 							o_thread4 <= {i_Instruction1, i_Instruction2, i_Instruction3, i_Instruction4};
+							
+							o_valid1 <= 0;
+							o_valid2 <= 0;
+							o_valid3 <= 0;
+							o_valid4 <= i_valid;;
 						end
 					endcase
 				end

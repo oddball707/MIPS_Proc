@@ -18,45 +18,45 @@ programming logic devices manufactured by Altera and sold by
 Altera or its authorized distributors.  Please refer to the 
 applicable agreement for further details.
 */
-(header "symbol" (version "1.1"))
+(header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 496 112)
-	(text "schedule" (rect 5 0 61 12)(font "Arial" ))
-	(text "inst" (rect 8 80 36 92)(font "Arial" ))
+	(rect 64 64 376 160)
+	(text "schedule" (rect 5 0 48 12)(font "Arial" ))
+	(text "inst" (rect 8 80 25 92)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
-		(text "i_Insns[16*IN_INSN_WIDTH-1..0]" (rect 0 0 212 12)(font "Arial" ))
-		(text "i_Insns[16*IN_INSN_WIDTH-1..0]" (rect 21 27 233 39)(font "Arial" ))
+		(text "i_Insns[16*IN_INSN_WIDTH-1..0]" (rect 0 0 168 12)(font "Arial" ))
+		(text "i_Insns[16*IN_INSN_WIDTH-1..0]" (rect 21 27 189 39)(font "Arial" ))
 		(line (pt 0 32)(pt 16 32)(line_width 3))
 	)
 	(port
 		(pt 0 48)
 		(input)
-		(text "i_Valid[15..0]" (rect 0 0 99 12)(font "Arial" ))
-		(text "i_Valid[15..0]" (rect 21 43 120 55)(font "Arial" ))
+		(text "i_Valid[15..0]" (rect 0 0 63 12)(font "Arial" ))
+		(text "i_Valid[15..0]" (rect 21 43 84 55)(font "Arial" ))
 		(line (pt 0 48)(pt 16 48)(line_width 3))
 	)
 	(port
-		(pt 480 32)
+		(pt 312 64)
 		(output)
-		(text "o_Insns[4*OUT_INSN_WIDTH-1..0]" (rect 0 0 212 12)(font "Arial" ))
-		(text "o_Insns[4*OUT_INSN_WIDTH-1..0]" (rect 247 27 459 39)(font "Arial" ))
-		(line (pt 480 32)(pt 464 32)(line_width 3))
+		(text "o_Insns[4*OUT_INSN_WIDTH-1..0]" (rect -168 0 9 12)(font "Arial" ))
+		(text "o_Insns[4*OUT_INSN_WIDTH-1..0]" (rect 142 59 291 71)(font "Arial" ))
+		(line (pt 312 64)(pt 296 64)(line_width 3))
 	)
 	(port
-		(pt 480 48)
+		(pt 312 24)
 		(output)
-		(text "o_Stall[3..0]" (rect 0 0 92 12)(font "Arial" ))
-		(text "o_Stall[3..0]" (rect 367 43 459 55)(font "Arial" ))
-		(line (pt 480 48)(pt 464 48)(line_width 3))
+		(text "o_Stall[3..0]" (rect -168 0 -109 12)(font "Arial" ))
+		(text "o_Stall[3..0]" (rect 242 19 291 31)(font "Arial" ))
+		(line (pt 312 24)(pt 296 24)(line_width 3))
 	)
 	(port
-		(pt 480 64)
+		(pt 312 40)
 		(output)
-		(text "o_Advance[7..0]" (rect 0 0 106 12)(font "Arial" ))
-		(text "o_Advance[7..0]" (rect 353 59 459 71)(font "Arial" ))
-		(line (pt 480 64)(pt 464 64)(line_width 3))
+		(text "o_Advance[7..0]" (rect -168 0 -87 12)(font "Arial" ))
+		(text "o_Advance[7..0]" (rect 223 35 291 47)(font "Arial" ))
+		(line (pt 312 40)(pt 296 40)(line_width 3))
 	)
 	(parameter
 		"IN_INSN_WIDTH"
@@ -74,7 +74,7 @@ applicable agreement for further details.
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 464 80)(line_width 1))
+		(rectangle (rect 16 16 296 80))
 	)
-	(annotation_block (parameter)(rect 496 -64 596 16))
+	(annotation_block (parameter)(rect 496 -40 712 16))
 )
