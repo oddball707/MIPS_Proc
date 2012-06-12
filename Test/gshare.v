@@ -36,7 +36,7 @@ assign gshare_counter = branch_history[gshare_index];		//holds bit that was shif
 integer i;	//for loops
 
 initial begin
-	for(i=0; i<GHR_SIZE; i = i+1) begin
+	for(i=0; i<2**GHR_SIZE; i = i+1) begin
 		branch_history[i] <= 2;
 	end
 	GHR <= 8'b11111111;
