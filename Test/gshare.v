@@ -52,7 +52,7 @@ begin
 	end
 	else
 	begin
-		if(!i_Stall && i_isbranch_check)
+		if(!i_Stall)
 		begin
 			//next save GHR XOR addr for indexing
 			GHR_saved <= gshare_index;
@@ -64,31 +64,36 @@ begin
 					0:
 					begin
 						branch_history[GHR_saved] <= branch_history[GHR_saved] + 2;		//+2 to compensate for incorrect -1
-						GHR[1:0] <= {1'b1, GHR_index[1]};								//shift in corrected old guess and current prediction
+						GHR[1:0] <= {1'b1, gshare_counter[1]};								//shift in corrected old guess and current prediction
 						end
 					1:
 					begin
 						branch_history[GHR_saved] <= branch_history[GHR_saved] - 2;		//-2 to compensate for incorrect +1
-						GHR[1:0] <= {1'b0, GHR_index[1]};								//shift in corrected old guess and current prediction
+						GHR[1:0] <= {1'b0, gshare_counter[1]};								//shift in corrected old guess and current prediction
 					end
 				endcase
 			end
-			else
-			begin
-				GHR <= {GHR[GHR_SIZE-2:0], gshare_counter[1]};							//shift in prediction
-			end
 
-			//and update bimodal counter to reflect current branch
-			case(gshare_counter[1])
-				0:
+			if(i_isbranch_check)
+			begin
+
+				if(!i_ALU_isbranch)
 				begin
-						branch_history[gshare_index] <= branch_history[gshare_index] + 1;
+					GHR <= {GHR[GHR_SIZE-2:0], gshare_counter[1]};							//shift in prediction
 				end
-				1:
-				begin
-						branch_history[gshare_index] <= branch_history[gshare_index] - 1;
-				end
-			endcase
+
+				//update bimodal counter to reflect current branch
+				case(gshare_counter[1])
+					0:
+					begin
+							branch_history[gshare_index] <= branch_history[gshare_index] + 1;
+					end
+					1:
+					begin
+							branch_history[gshare_index] <= branch_history[gshare_index] - 1;
+					end
+				endcase
+			end
 		end
 	end
 end
@@ -98,7 +103,7 @@ always@(*)
 begin
 
 		//first predict current branch
-		o_taken <= gshare_counter[1];
+		o_taken = gshare_counter[1];
 
 end
 endmodule

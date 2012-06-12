@@ -15,569 +15,569 @@ L0 1
 Z8 OV;L;10.0c;49
 r1
 31
-Z9 o-work work -O0
-Z10 !s108 1339476915.988000
-Z11 !s107 C:/Users/Eli/Documents/ucsd/148/Test/Aligner.v|
-Z12 !s90 -reportprogress|300|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/Aligner.v|
+Z9 !s90 -reportprogress|300|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/Aligner.v|
+Z10 o-work work -O0
+Z11 !s108 1339527850.921000
+Z12 !s107 C:/Users/Eli/Documents/ucsd/148/Test/Aligner.v|
 !s85 0
 !s101 -O0
 valu
-Z13 I^U@SYC`OS=L8jk9Tj=9X61
-Z14 V6e^]aS8@[T`FZ8BdejFT=3
+Z13 !s100 `?FoN?CSWJFLcSECKB`Bz0
+Z14 I^U@SYC`OS=L8jk9Tj=9X61
+Z15 V6e^]aS8@[T`FZ8BdejFT=3
 R4
 R5
-Z15 8C:/Users/Eli/Documents/ucsd/148/Test/alu.v
-Z16 FC:/Users/Eli/Documents/ucsd/148/Test/alu.v
+Z16 8C:/Users/Eli/Documents/ucsd/148/Test/alu.v
+Z17 FC:/Users/Eli/Documents/ucsd/148/Test/alu.v
 L0 8
 R8
 r1
 31
-R9
-Z17 !s100 `?FoN?CSWJFLcSECKB`Bz0
-Z18 !s108 1339476916.162000
-Z19 !s107 C:/Users/Eli/Documents/ucsd/148/Test/alu.v|
-Z20 !s90 -reportprogress|300|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/alu.v|
+Z18 !s90 -reportprogress|300|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/alu.v|
+R10
+Z19 !s108 1339527851.170000
+Z20 !s107 C:/Users/Eli/Documents/ucsd/148/Test/alu.v|
 !s85 0
 !s101 -O0
 vbranch_predictor
-Z21 !s100 LL@XZi<0nKH6e?cZ3Lmjc1
-Z22 IcDC9eFi6GWIXU@bFbQo1b0
-Z23 V95oSICn_hRcPgJTbD8:cU0
+!s100 hTJ`c3Fa>angm_d@gRSTD3
+I@B7dR[hW_n788;0:SWbPd3
+Z21 V95oSICn_hRcPgJTbD8:cU0
 R4
-Z24 w1339484076
-Z25 8C:/Users/Eli/Documents/ucsd/148/Test/gshare.v
-Z26 FC:/Users/Eli/Documents/ucsd/148/Test/gshare.v
+w1339534584
+Z22 8C:/Users/Eli/Documents/ucsd/148/Test/gshare.v
+Z23 FC:/Users/Eli/Documents/ucsd/148/Test/gshare.v
 L0 1
 R8
 r1
 !s85 0
 31
-!s108 1339484099.959000
+!s108 1339534591.846000
 !s107 C:/Users/Eli/Documents/ucsd/148/Test/gshare.v|
-Z27 !s90 -reportprogress|300|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/gshare.v|
+Z24 !s90 -reportprogress|300|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/gshare.v|
 !s101 -O0
-R9
+R10
 vd_cache
-Z28 !s100 BcYdJVB7O3<Nz2_WeeD5l2
-Z29 Ime1z[J3<kcMJK;[=2^`TW3
-Z30 VQ@Mf@Y^b:5C80TldfNL1O2
+Z25 !s100 BcYdJVB7O3<Nz2_WeeD5l2
+Z26 Ime1z[J3<kcMJK;[=2^`TW3
+Z27 VQ@Mf@Y^b:5C80TldfNL1O2
 R4
 R5
-Z31 8C:/Users/Eli/Documents/ucsd/148/Test/d_cache.v
-Z32 FC:/Users/Eli/Documents/ucsd/148/Test/d_cache.v
+Z28 8C:/Users/Eli/Documents/ucsd/148/Test/d_cache.v
+Z29 FC:/Users/Eli/Documents/ucsd/148/Test/d_cache.v
 L0 9
 R8
 r1
 31
-R9
-Z33 !s108 1339476916.533000
-Z34 !s107 C:/Users/Eli/Documents/ucsd/148/Test/d_cache.v|
-Z35 !s90 -reportprogress|300|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/d_cache.v|
+Z30 !s90 -reportprogress|300|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/d_cache.v|
+R10
+Z31 !s108 1339527851.623000
+Z32 !s107 C:/Users/Eli/Documents/ucsd/148/Test/d_cache.v|
 !s85 0
 !s101 -O0
 vdecoder
-Z36 IRYXJ6mjd3BX;m5K`F6g561
-Z37 V1<HH3d]h6<o_o9Cc]nRhl0
+Z33 !s100 ke[faDi6Ch:z1eZK`RoF10
+Z34 IRYXJ6mjd3BX;m5K`F6g561
+Z35 V1<HH3d]h6<o_o9Cc]nRhl0
 R4
 R5
-Z38 8C:/Users/Eli/Documents/ucsd/148/Test/decoder.v
-Z39 FC:/Users/Eli/Documents/ucsd/148/Test/decoder.v
+Z36 8C:/Users/Eli/Documents/ucsd/148/Test/decoder.v
+Z37 FC:/Users/Eli/Documents/ucsd/148/Test/decoder.v
 L0 7
 R8
 r1
 31
-R9
-Z40 !s100 ke[faDi6Ch:z1eZK`RoF10
-Z41 !s108 1339476916.703000
-Z42 !s107 C:/Users/Eli/Documents/ucsd/148/Test/decoder.v|
-Z43 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/decoder.v|
+Z38 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/decoder.v|
+R10
+Z39 !s108 1339527851.819000
+Z40 !s107 C:/Users/Eli/Documents/ucsd/148/Test/decoder.v|
 !s85 0
 !s101 -O0
 vdemux
-Z44 !s100 YIZg[ah4^TRDdGQLeHeGd3
-Z45 IYEc:26WZFX6g?I@1kC^Fi1
-Z46 VjdHlOb<3DHI05L=]AKJWi0
+Z41 !s100 YIZg[ah4^TRDdGQLeHeGd3
+Z42 IYEc:26WZFX6g?I@1kC^Fi1
+Z43 VjdHlOb<3DHI05L=]AKJWi0
 R4
 R5
-Z47 8C:/Users/Eli/Documents/ucsd/148/Test/demux.v
-Z48 FC:/Users/Eli/Documents/ucsd/148/Test/demux.v
+Z44 8C:/Users/Eli/Documents/ucsd/148/Test/demux.v
+Z45 FC:/Users/Eli/Documents/ucsd/148/Test/demux.v
 L0 1
 R8
 r1
 31
-R9
-Z49 !s108 1339476916.862000
-Z50 !s107 C:/Users/Eli/Documents/ucsd/148/Test/demux.v|
-Z51 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/demux.v|
+Z46 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/demux.v|
+R10
+Z47 !s108 1339527852.098000
+Z48 !s107 C:/Users/Eli/Documents/ucsd/148/Test/demux.v|
 !s85 0
 !s101 -O0
 vfetch_unit
-Z52 I[5PZ<1^@O=_^VD06NgGfJ3
-Z53 VPk0;DCK3_Z[Sm=U>Rf]900
+Z49 !s100 Ci]hJ[DO<iIMbHXLLUcAR2
+Z50 I[5PZ<1^@O=_^VD06NgGfJ3
+Z51 VPk0;DCK3_Z[Sm=U>Rf]900
 R4
-Z54 w1339477323
-Z55 8C:/Users/Eli/Documents/ucsd/148/Test/fetch_unit.v
-Z56 FC:/Users/Eli/Documents/ucsd/148/Test/fetch_unit.v
+Z52 w1339477323
+Z53 8C:/Users/Eli/Documents/ucsd/148/Test/fetch_unit.v
+Z54 FC:/Users/Eli/Documents/ucsd/148/Test/fetch_unit.v
 L0 8
 R8
 r1
 31
-Z57 !s90 -reportprogress|300|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/fetch_unit.v|
-R9
-Z58 !s100 Ci]hJ[DO<iIMbHXLLUcAR2
-Z59 !s108 1339480107.347000
-Z60 !s107 C:/Users/Eli/Documents/ucsd/148/Test/fetch_unit.v|
+R10
+Z55 !s108 1339527852.862000
+Z56 !s107 C:/Users/Eli/Documents/ucsd/148/Test/fetch_unit.v|
+Z57 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/fetch_unit.v|
 !s85 0
 !s101 -O0
 vflashreader
-Z61 !s100 l^AnbZOz=iH^0lg6O4X2z1
-Z62 IDjkCTJ>QnGdY[oY>8X6Cd3
-Z63 VGm@o_W>2C;O=4WP6:_5B41
+Z58 !s100 l^AnbZOz=iH^0lg6O4X2z1
+Z59 IDjkCTJ>QnGdY[oY>8X6Cd3
+Z60 VGm@o_W>2C;O=4WP6:_5B41
 R4
 R5
-Z64 8C:/Users/Eli/Documents/ucsd/148/Test/flashreader.v
-Z65 FC:/Users/Eli/Documents/ucsd/148/Test/flashreader.v
+Z61 8C:/Users/Eli/Documents/ucsd/148/Test/flashreader.v
+Z62 FC:/Users/Eli/Documents/ucsd/148/Test/flashreader.v
 L0 10
 R8
 r1
 31
-R9
-Z66 !s108 1339476917.621000
-Z67 !s107 C:/Users/Eli/Documents/ucsd/148/Test/flashreader.v|
-Z68 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/flashreader.v|
+Z63 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/flashreader.v|
+R10
+Z64 !s108 1339527853.039000
+Z65 !s107 C:/Users/Eli/Documents/ucsd/148/Test/flashreader.v|
 !s85 0
 !s101 -O0
 vforwarding_unit
-Z69 !s100 lch4h`CWI:OZI0Y@;bVKa3
-Z70 IB4M8N9734W69^_K2C<jH<0
-Z71 VmTl@C^fl@[Hif]VD`B`DK3
+Z66 !s100 lch4h`CWI:OZI0Y@;bVKa3
+Z67 IB4M8N9734W69^_K2C<jH<0
+Z68 VmTl@C^fl@[Hif]VD`B`DK3
 R4
 R5
-Z72 8C:/Users/Eli/Documents/ucsd/148/Test/forwarding_unit.v
-Z73 FC:/Users/Eli/Documents/ucsd/148/Test/forwarding_unit.v
+Z69 8C:/Users/Eli/Documents/ucsd/148/Test/forwarding_unit.v
+Z70 FC:/Users/Eli/Documents/ucsd/148/Test/forwarding_unit.v
 L0 10
 R8
 r1
 31
-R9
-Z74 !s108 1339476917.797000
-Z75 !s107 C:/Users/Eli/Documents/ucsd/148/Test/forwarding_unit.v|
-Z76 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/forwarding_unit.v|
+Z71 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/forwarding_unit.v|
+R10
+Z72 !s108 1339527853.293000
+Z73 !s107 C:/Users/Eli/Documents/ucsd/148/Test/forwarding_unit.v|
 !s85 0
 !s101 -O0
 vhazard_detection_unit
-Z77 !s100 <Dg<O;[1R]RCTH45GMP;E0
-Z78 IDAWjQ1U_o2:GM`6M7Okm12
-Z79 VK8BS=3YT5TFNbVg;]C>mM2
+Z74 !s100 <Dg<O;[1R]RCTH45GMP;E0
+Z75 IDAWjQ1U_o2:GM`6M7Okm12
+Z76 VK8BS=3YT5TFNbVg;]C>mM2
 R4
 R5
-Z80 8C:/Users/Eli/Documents/ucsd/148/Test/hazard_detection_unit.v
-Z81 FC:/Users/Eli/Documents/ucsd/148/Test/hazard_detection_unit.v
+Z77 8C:/Users/Eli/Documents/ucsd/148/Test/hazard_detection_unit.v
+Z78 FC:/Users/Eli/Documents/ucsd/148/Test/hazard_detection_unit.v
 L0 8
 R8
 r1
 31
-R9
-Z82 !s108 1339476918.273000
-Z83 !s107 C:/Users/Eli/Documents/ucsd/148/Test/hazard_detection_unit.v|
-Z84 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/hazard_detection_unit.v|
+Z79 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/hazard_detection_unit.v|
+R10
+Z80 !s108 1339527853.774000
+Z81 !s107 C:/Users/Eli/Documents/ucsd/148/Test/hazard_detection_unit.v|
 !s85 0
 !s101 -O0
 vi_cache
-Z85 IHo>_h21bPd>;83I;W9PTk1
-Z86 VQCVzABT3Klk`6]ni<_IPI0
+Z82 !s100 mIMKiJVA`3hzKzMVof4oX1
+Z83 IHo>_h21bPd>;83I;W9PTk1
+Z84 VQCVzABT3Klk`6]ni<_IPI0
 R4
-Z87 w1339479898
-Z88 8C:/Users/Eli/Documents/ucsd/148/Test/i_cache.v
-Z89 FC:/Users/Eli/Documents/ucsd/148/Test/i_cache.v
+Z85 w1339479898
+Z86 8C:/Users/Eli/Documents/ucsd/148/Test/i_cache.v
+Z87 FC:/Users/Eli/Documents/ucsd/148/Test/i_cache.v
 L0 8
 R8
 r1
 31
-Z90 !s90 -reportprogress|300|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/i_cache.v|
-R9
-Z91 !s100 mIMKiJVA`3hzKzMVof4oX1
-Z92 !s108 1339479912.879000
-Z93 !s107 C:/Users/Eli/Documents/ucsd/148/Test/i_cache.v|
+R10
+Z88 !s108 1339527853.957000
+Z89 !s107 C:/Users/Eli/Documents/ucsd/148/Test/i_cache.v|
+Z90 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/i_cache.v|
 !s85 0
 !s101 -O0
 vinsn_mixer
-Z94 !s100 Z0cfYzW<>Wo`2MN3V[j[41
-Z95 I:aF6g3NG`[P`A==F_K[D72
-Z96 VCf>E[>?T;ngQhR_A2OmdP1
+Z91 !s100 Z0cfYzW<>Wo`2MN3V[j[41
+Z92 I:aF6g3NG`[P`A==F_K[D72
+Z93 VCf>E[>?T;ngQhR_A2OmdP1
 R4
 R5
-Z97 8C:/Users/Eli/Documents/ucsd/148/Test/insn_mixer.v
-Z98 FC:/Users/Eli/Documents/ucsd/148/Test/insn_mixer.v
+Z94 8C:/Users/Eli/Documents/ucsd/148/Test/insn_mixer.v
+Z95 FC:/Users/Eli/Documents/ucsd/148/Test/insn_mixer.v
 L0 1
 R8
 r1
 31
-R9
-Z99 !s108 1339476918.554000
-Z100 !s107 C:/Users/Eli/Documents/ucsd/148/Test/insn_mixer.v|
-Z101 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/insn_mixer.v|
+Z96 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/insn_mixer.v|
+R10
+Z97 !s108 1339527854.312000
+Z98 !s107 C:/Users/Eli/Documents/ucsd/148/Test/insn_mixer.v|
 !s85 0
 !s101 -O0
 viq
-Z102 !s100 Uh?4k^0U3Z@DHRBlSkmIW0
-Z103 IOaXTg_@W5jR9=[4BHDQ?31
-Z104 VJ>Hibf]zBm8<czDSSIRVH2
+Z99 !s100 Uh?4k^0U3Z@DHRBlSkmIW0
+Z100 IOaXTg_@W5jR9=[4BHDQ?31
+Z101 VJ>Hibf]zBm8<czDSSIRVH2
 R4
 R5
-Z105 8C:/Users/Eli/Documents/ucsd/148/Test/iq.v
-Z106 FC:/Users/Eli/Documents/ucsd/148/Test/iq.v
+Z102 8C:/Users/Eli/Documents/ucsd/148/Test/iq.v
+Z103 FC:/Users/Eli/Documents/ucsd/148/Test/iq.v
 L0 1
 R8
 r1
 31
-Z107 !s108 1339476918.712000
-Z108 !s107 C:/Users/Eli/Documents/ucsd/148/Test/iq.v|
-Z109 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/iq.v|
-R9
+Z104 !s108 1339527854.659000
+Z105 !s107 C:/Users/Eli/Documents/ucsd/148/Test/iq.v|
+Z106 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/iq.v|
+R10
 !s85 0
 !s101 -O0
 vjump_stack
-Z110 !s100 Rf1RB:iTZ=3ND19V0F:AQ2
-Z111 IhElH2l6Mo@Oz[M?>MTUcc3
-Z112 VTXR39>J48NS52k3hVfL9e1
+Z107 !s100 Rf1RB:iTZ=3ND19V0F:AQ2
+Z108 IhElH2l6Mo@Oz[M?>MTUcc3
+Z109 VTXR39>J48NS52k3hVfL9e1
 R4
 R5
-Z113 8C:/Users/Eli/Documents/ucsd/148/Test/jump_stack.v
-Z114 FC:/Users/Eli/Documents/ucsd/148/Test/jump_stack.v
+Z110 8C:/Users/Eli/Documents/ucsd/148/Test/jump_stack.v
+Z111 FC:/Users/Eli/Documents/ucsd/148/Test/jump_stack.v
 L0 1
 R8
 r1
 31
-R9
-Z115 !s108 1339476919.030000
-Z116 !s107 C:/Users/Eli/Documents/ucsd/148/Test/jump_stack.v|
-Z117 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/jump_stack.v|
+Z112 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/jump_stack.v|
+R10
+Z113 !s108 1339527855.000000
+Z114 !s107 C:/Users/Eli/Documents/ucsd/148/Test/jump_stack.v|
 !s85 0
 !s101 -O0
 vmemory_arbiter
-Z118 !s100 en69JCjNkFg^<ddBm?[KB2
-Z119 IZ3JX@X>^z6ZlEfGP^Hg`;2
-Z120 VCVO]BWke4?8YA9CM<=j_S0
+Z115 !s100 en69JCjNkFg^<ddBm?[KB2
+Z116 IZ3JX@X>^z6ZlEfGP^Hg`;2
+Z117 VCVO]BWke4?8YA9CM<=j_S0
 R4
 R5
-Z121 8C:/Users/Eli/Documents/ucsd/148/Test/memory_arbiter.v
-Z122 FC:/Users/Eli/Documents/ucsd/148/Test/memory_arbiter.v
+Z118 8C:/Users/Eli/Documents/ucsd/148/Test/memory_arbiter.v
+Z119 FC:/Users/Eli/Documents/ucsd/148/Test/memory_arbiter.v
 L0 14
 R8
 r1
 31
-R9
-Z123 !s108 1339476919.471000
-Z124 !s107 C:/Users/Eli/Documents/ucsd/148/Test/memory_arbiter.v|
-Z125 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/memory_arbiter.v|
+Z120 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/memory_arbiter.v|
+R10
+Z121 !s108 1339527855.216000
+Z122 !s107 C:/Users/Eli/Documents/ucsd/148/Test/memory_arbiter.v|
 !s85 0
 !s101 -O0
 vmips_cpu
-Z126 ILPP;SeY0DMYi5Sez0]o^33
-Z127 Vh5S>G^a9BVeYIkH2g2<5R2
+Z123 !s100 XG6FZNWcPm@kO1RNibDa_2
+Z124 ILPP;SeY0DMYi5Sez0]o^33
+Z125 Vh5S>G^a9BVeYIkH2g2<5R2
 R4
-Z128 w1339482944
-Z129 8C:/Users/Eli/Documents/ucsd/148/Test/mips_cpu.v
-Z130 FC:/Users/Eli/Documents/ucsd/148/Test/mips_cpu.v
+Z126 w1339482944
+Z127 8C:/Users/Eli/Documents/ucsd/148/Test/mips_cpu.v
+Z128 FC:/Users/Eli/Documents/ucsd/148/Test/mips_cpu.v
 L0 9
 R8
 r1
 31
-Z131 !s90 -reportprogress|300|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/mips_cpu.v|
-R9
-Z132 !s100 XG6FZNWcPm@kO1RNibDa_2
-Z133 !s108 1339483149.679000
-Z134 !s107 C:/Users/Eli/Documents/ucsd/148/Test/mips_cpu.v|
+R10
+Z129 !s108 1339527855.492000
+Z130 !s107 C:/Users/Eli/Documents/ucsd/148/Test/mips_cpu.v|
+Z131 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/mips_cpu.v|
 !s85 0
 !s101 -O0
 vmt48lc4m16a2
-Z135 !s100 ba<nK:>7g0W4R0mU;W;Fz2
-Z136 IPXQa^SJReRT;Q:>N:B;5_0
-Z137 V=V`B8YQm4XRSSz3AZ3DcN0
+Z132 !s100 ba<nK:>7g0W4R0mU;W;Fz2
+Z133 IPXQa^SJReRT;Q:>N:B;5_0
+Z134 V=V`B8YQm4XRSSz3AZ3DcN0
 R4
 R5
-Z138 8C:/Users/Eli/Documents/ucsd/148/Test/mt48lc4m16a2.v
-Z139 FC:/Users/Eli/Documents/ucsd/148/Test/mt48lc4m16a2.v
+Z135 8C:/Users/Eli/Documents/ucsd/148/Test/mt48lc4m16a2.v
+Z136 FC:/Users/Eli/Documents/ucsd/148/Test/mt48lc4m16a2.v
 L0 42
 R8
 r1
 31
-R9
-Z140 !s108 1339476919.991000
-Z141 !s107 C:/Users/Eli/Documents/ucsd/148/Test/mt48lc4m16a2.v|
-Z142 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/mt48lc4m16a2.v|
+Z137 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/mt48lc4m16a2.v|
+R10
+Z138 !s108 1339527855.906000
+Z139 !s107 C:/Users/Eli/Documents/ucsd/148/Test/mt48lc4m16a2.v|
 !s85 0
 !s101 -O0
 vpipe_dec_ex
-Z143 !s100 inL0bRen[NTok35ma]8WD0
-Z144 I0]W5<?]zGF9nK=0<Jkfjd0
-Z145 V3J4UZ2L5zlBYf@=M<]]Tc0
+Z140 !s100 inL0bRen[NTok35ma]8WD0
+Z141 I0]W5<?]zGF9nK=0<Jkfjd0
+Z142 V3J4UZ2L5zlBYf@=M<]]Tc0
 R4
 R5
-Z146 8C:/Users/Eli/Documents/ucsd/148/Test/pipe_dec_ex.v
-Z147 FC:/Users/Eli/Documents/ucsd/148/Test/pipe_dec_ex.v
+Z143 8C:/Users/Eli/Documents/ucsd/148/Test/pipe_dec_ex.v
+Z144 FC:/Users/Eli/Documents/ucsd/148/Test/pipe_dec_ex.v
 L0 2
 R8
 r1
 31
-R9
-Z148 !s108 1339476920.312000
-Z149 !s107 C:/Users/Eli/Documents/ucsd/148/Test/pipe_dec_ex.v|
-Z150 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/pipe_dec_ex.v|
+Z145 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/pipe_dec_ex.v|
+R10
+Z146 !s108 1339527856.708000
+Z147 !s107 C:/Users/Eli/Documents/ucsd/148/Test/pipe_dec_ex.v|
 !s85 0
 !s101 -O0
 vpipe_dec_qr
-Z151 !s100 H_Q]]nc?la=K1PjKjZ`U]3
-Z152 IXYF9^d>HJWlc[:BK^F0Z@2
-Z153 Vm0obXDZPLLm[mM4Ij?ZID0
+Z148 !s100 H_Q]]nc?la=K1PjKjZ`U]3
+Z149 IXYF9^d>HJWlc[:BK^F0Z@2
+Z150 Vm0obXDZPLLm[mM4Ij?ZID0
 R4
 R5
-Z154 8C:/Users/Eli/Documents/ucsd/148/Test/pipe_dec_qr.v
-Z155 FC:/Users/Eli/Documents/ucsd/148/Test/pipe_dec_qr.v
+Z151 8C:/Users/Eli/Documents/ucsd/148/Test/pipe_dec_qr.v
+Z152 FC:/Users/Eli/Documents/ucsd/148/Test/pipe_dec_qr.v
 L0 2
 R8
 r1
 31
-R9
-Z156 !s108 1339476920.511000
-Z157 !s107 C:/Users/Eli/Documents/ucsd/148/Test/pipe_dec_qr.v|
-Z158 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/pipe_dec_qr.v|
+Z153 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/pipe_dec_qr.v|
+R10
+Z154 !s108 1339527856.958000
+Z155 !s107 C:/Users/Eli/Documents/ucsd/148/Test/pipe_dec_qr.v|
 !s85 0
 !s101 -O0
 vpipe_ex_mem
-Z159 !s100 <DVO52l1SQj1heJ3^34;I0
-Z160 I@]E?kGGT9B1`=LSoXIF9m2
-Z161 Vn8mHBR??i<5;W31WZBdY_2
+Z156 !s100 <DVO52l1SQj1heJ3^34;I0
+Z157 I@]E?kGGT9B1`=LSoXIF9m2
+Z158 Vn8mHBR??i<5;W31WZBdY_2
 R4
 R5
-Z162 8C:/Users/Eli/Documents/ucsd/148/Test/pipe_ex_mem.v
-Z163 FC:/Users/Eli/Documents/ucsd/148/Test/pipe_ex_mem.v
+Z159 8C:/Users/Eli/Documents/ucsd/148/Test/pipe_ex_mem.v
+Z160 FC:/Users/Eli/Documents/ucsd/148/Test/pipe_ex_mem.v
 L0 2
 R8
 r1
 31
-R9
-Z164 !s108 1339476920.729000
-Z165 !s107 C:/Users/Eli/Documents/ucsd/148/Test/pipe_ex_mem.v|
-Z166 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/pipe_ex_mem.v|
+Z161 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/pipe_ex_mem.v|
+R10
+Z162 !s108 1339527857.090000
+Z163 !s107 C:/Users/Eli/Documents/ucsd/148/Test/pipe_ex_mem.v|
 !s85 0
 !s101 -O0
 vpipe_if_dec
-Z167 !s100 =CX=^hDGgcgRjF7Ycd2a82
-Z168 IXR6EC=oo:m;XGd[h_m2m13
-Z169 V[@WH_MNW>`HQi2Mda@86o1
+Z164 !s100 =CX=^hDGgcgRjF7Ycd2a82
+Z165 IXR6EC=oo:m;XGd[h_m2m13
+Z166 V[@WH_MNW>`HQi2Mda@86o1
 R4
 R5
-Z170 8C:/Users/Eli/Documents/ucsd/148/Test/pipe_if_dec.v
-Z171 FC:/Users/Eli/Documents/ucsd/148/Test/pipe_if_dec.v
+Z167 8C:/Users/Eli/Documents/ucsd/148/Test/pipe_if_dec.v
+Z168 FC:/Users/Eli/Documents/ucsd/148/Test/pipe_if_dec.v
 L0 2
 R8
 r1
 31
-R9
-Z172 !s108 1339476920.930000
-Z173 !s107 C:/Users/Eli/Documents/ucsd/148/Test/pipe_if_dec.v|
-Z174 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/pipe_if_dec.v|
+Z169 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/pipe_if_dec.v|
+R10
+Z170 !s108 1339527857.241000
+Z171 !s107 C:/Users/Eli/Documents/ucsd/148/Test/pipe_if_dec.v|
 !s85 0
 !s101 -O0
 vpipe_mem_wb
-Z175 !s100 C0?XK9Cof8in=@U>VnaRJ2
-Z176 I6b59mzURfUj7Lj:AbR^U;0
-Z177 VPbaiNL4MR@G35>>977:260
+Z172 !s100 C0?XK9Cof8in=@U>VnaRJ2
+Z173 I6b59mzURfUj7Lj:AbR^U;0
+Z174 VPbaiNL4MR@G35>>977:260
 R4
 R5
-Z178 8C:/Users/Eli/Documents/ucsd/148/Test/pipe_mem_wb.v
-Z179 FC:/Users/Eli/Documents/ucsd/148/Test/pipe_mem_wb.v
+Z175 8C:/Users/Eli/Documents/ucsd/148/Test/pipe_mem_wb.v
+Z176 FC:/Users/Eli/Documents/ucsd/148/Test/pipe_mem_wb.v
 L0 2
 R8
 r1
 31
-R9
-Z180 !s108 1339476921.422000
-Z181 !s107 C:/Users/Eli/Documents/ucsd/148/Test/pipe_mem_wb.v|
-Z182 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/pipe_mem_wb.v|
+Z177 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/pipe_mem_wb.v|
+R10
+Z178 !s108 1339527857.436000
+Z179 !s107 C:/Users/Eli/Documents/ucsd/148/Test/pipe_mem_wb.v|
 !s85 0
 !s101 -O0
 vpll
-Z183 ICk5`2ALfM<`B5gX=a_Ikn3
-Z184 V_XSVm9JT6dEoXJ=[=cVXa3
+Z180 !s100 BOW;0Vf?YKJ2LGLBc:`zY0
+Z181 ICk5`2ALfM<`B5gX=a_Ikn3
+Z182 V_XSVm9JT6dEoXJ=[=cVXa3
 R4
 R5
-Z185 8C:/Users/Eli/Documents/ucsd/148/Test/pll.v
-Z186 FC:/Users/Eli/Documents/ucsd/148/Test/pll.v
+Z183 8C:/Users/Eli/Documents/ucsd/148/Test/pll.v
+Z184 FC:/Users/Eli/Documents/ucsd/148/Test/pll.v
 L0 39
 R8
 r1
 31
-R9
-Z187 !s100 BOW;0Vf?YKJ2LGLBc:`zY0
-Z188 !s108 1339476921.612000
-Z189 !s107 C:/Users/Eli/Documents/ucsd/148/Test/pll.v|
-Z190 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/pll.v|
+Z185 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/pll.v|
+R10
+Z186 !s108 1339527857.674000
+Z187 !s107 C:/Users/Eli/Documents/ucsd/148/Test/pll.v|
 !s85 0
 !s101 -O0
 vpre_aligner
-Z191 Ib^b_f:hK]`[bab86>iEHQ1
-Z192 VdLR6klh96XeASD5Af;IkL1
+Z188 IMWX@nWV^g=<lmV=f`P]?L0
+Z189 VdLR6klh96XeASD5Af;IkL1
 R4
-Z193 w1339481622
-Z194 8C:/Users/Eli/Documents/ucsd/148/Test/pre_aligner.v
-Z195 FC:/Users/Eli/Documents/ucsd/148/Test/pre_aligner.v
+Z190 w1339533169
+Z191 8C:/Users/Eli/Documents/ucsd/148/Test/pre_aligner.v
+Z192 FC:/Users/Eli/Documents/ucsd/148/Test/pre_aligner.v
 L0 1
 R8
 r1
 31
-R9
-Z196 !s100 zh:edhW_[<85cSZ9f?FY33
-Z197 !s108 1339481639.352000
-Z198 !s107 C:/Users/Eli/Documents/ucsd/148/Test/pre_aligner.v|
-Z199 !s90 -reportprogress|300|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/pre_aligner.v|
+R10
+Z193 !s100 Wi>Y?K;ODQ<V71TC7WbU73
 !s85 0
+Z194 !s108 1339533172.705000
+Z195 !s107 C:/Users/Eli/Documents/ucsd/148/Test/pre_aligner.v|
+Z196 !s90 -reportprogress|300|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/pre_aligner.v|
 !s101 -O0
 vregfile
-Z200 IJC513fJnYcE^J`4hXQE:72
-Z201 VemafF_B_I9l>oXZkARPPX1
+Z197 IJC513fJnYcE^J`4hXQE:72
+Z198 VemafF_B_I9l>oXZkARPPX1
 R4
 R5
-Z202 8C:/Users/Eli/Documents/ucsd/148/Test/regfile.v
-Z203 FC:/Users/Eli/Documents/ucsd/148/Test/regfile.v
+Z199 8C:/Users/Eli/Documents/ucsd/148/Test/regfile.v
+Z200 FC:/Users/Eli/Documents/ucsd/148/Test/regfile.v
 L0 9
 R8
 r1
 31
-R9
-Z204 !s100 L[?z?C5adbEjL05BU>1CM0
-Z205 !s108 1339476922.031000
-Z206 !s107 C:/Users/Eli/Documents/ucsd/148/Test/regfile.v|
-Z207 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/regfile.v|
+R10
+Z201 !s100 L[?z?C5adbEjL05BU>1CM0
+Z202 !s108 1339527857.990000
+Z203 !s107 C:/Users/Eli/Documents/ucsd/148/Test/regfile.v|
+Z204 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/regfile.v|
 !s85 0
 !s101 -O0
 vschedule
-Z208 !s100 VY[P8iTgXIWYMl<]RR`^;0
-Z209 IJTBka>B6OBbbM3;1fodd]3
-Z210 V^65@@hnO^7<OK`@c8c5F83
+Z205 !s100 VY[P8iTgXIWYMl<]RR`^;0
+Z206 IJTBka>B6OBbbM3;1fodd]3
+Z207 V^65@@hnO^7<OK`@c8c5F83
 R4
 R5
-Z211 8C:/Users/Eli/Documents/ucsd/148/Test/sched.v
-Z212 FC:/Users/Eli/Documents/ucsd/148/Test/sched.v
+Z208 8C:/Users/Eli/Documents/ucsd/148/Test/sched.v
+Z209 FC:/Users/Eli/Documents/ucsd/148/Test/sched.v
 L0 1
 R8
 r1
 31
-Z213 !s108 1339476922.324000
-Z214 !s107 C:/Users/Eli/Documents/ucsd/148/Test/sched.v|
-Z215 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/sched.v|
-R9
+Z210 !s108 1339527858.099000
+Z211 !s107 C:/Users/Eli/Documents/ucsd/148/Test/sched.v|
+Z212 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/sched.v|
+R10
 !s85 0
 !s101 -O0
 vschedule_thread
-Z216 !s100 iRe^EDRicMPimJ25:`Bh?3
-Z217 IjkeL4iT^gXPU2RaKnoX>D3
-Z218 VT;Y>58YWMcJ>KHPNDNYok1
+Z213 !s100 iRe^EDRicMPimJ25:`Bh?3
+Z214 IjkeL4iT^gXPU2RaKnoX>D3
+Z215 VT;Y>58YWMcJ>KHPNDNYok1
 R4
 R5
-R211
-R212
-Z219 L0 141
+R208
+R209
+Z216 L0 141
 R8
 r1
 31
-R213
-R214
-R215
-R9
+R210
+R211
+R212
+R10
 !s85 0
 !s101 -O0
 vsdram_controller
-Z220 !s100 fY4nB8g=3eOXMA:J3SV6;2
-Z221 IF[;[gWaDbd11O3FGGU0B32
-Z222 Vz1;I9LFM@XK9IZJ:VmF<o0
+Z217 !s100 fY4nB8g=3eOXMA:J3SV6;2
+Z218 IF[;[gWaDbd11O3FGGU0B32
+Z219 Vz1;I9LFM@XK9IZJ:VmF<o0
 R4
 R5
-Z223 8C:/Users/Eli/Documents/ucsd/148/Test/sdram_controller.v
-Z224 FC:/Users/Eli/Documents/ucsd/148/Test/sdram_controller.v
+Z220 8C:/Users/Eli/Documents/ucsd/148/Test/sdram_controller.v
+Z221 FC:/Users/Eli/Documents/ucsd/148/Test/sdram_controller.v
 L0 9
 R8
 r1
 31
-R9
-Z225 !s108 1339476922.571000
-Z226 !s107 C:/Users/Eli/Documents/ucsd/148/Test/sdram_controller.v|
-Z227 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/sdram_controller.v|
+Z222 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/sdram_controller.v|
+R10
+Z223 !s108 1339527858.694000
+Z224 !s107 C:/Users/Eli/Documents/ucsd/148/Test/sdram_controller.v|
 !s85 0
 !s101 -O0
 vSevenSegmentDisplayDecoder
-Z228 !s100 gdPj:YM@QM;5Igm^Hb>KX2
-Z229 I1H;_dX2igE0dVT@We?en`3
-Z230 V:<E;oTTRG7nMnZ[fQlA7g1
+Z225 !s100 gdPj:YM@QM;5Igm^Hb>KX2
+Z226 I1H;_dX2igE0dVT@We?en`3
+Z227 V:<E;oTTRG7nMnZ[fQlA7g1
 R4
 R5
-Z231 8C:/Users/Eli/Documents/ucsd/148/Test/DisplayDecoder.v
-Z232 FC:/Users/Eli/Documents/ucsd/148/Test/DisplayDecoder.v
+Z228 8C:/Users/Eli/Documents/ucsd/148/Test/DisplayDecoder.v
+Z229 FC:/Users/Eli/Documents/ucsd/148/Test/DisplayDecoder.v
 L0 1
 R8
 r1
 31
-Z233 !s108 1339476917.081000
-Z234 !s107 C:/Users/Eli/Documents/ucsd/148/Test/DisplayDecoder.v|
-Z235 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/DisplayDecoder.v|
-R9
-Z236 n@seven@segment@display@decoder
+Z230 !s108 1339527852.534000
+Z231 !s107 C:/Users/Eli/Documents/ucsd/148/Test/DisplayDecoder.v|
+Z232 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/DisplayDecoder.v|
+R10
+Z233 n@seven@segment@display@decoder
 !s85 0
 !s101 -O0
 vSevenSegmentPFD
-Z237 !s100 zTm_Bc@B4@3e80C[3OS_93
-Z238 IDefIz>EX:eldJAYCBd3f]1
-Z239 V3g3NYij0L:lJHmD;cJ3492
+Z234 !s100 zTm_Bc@B4@3e80C[3OS_93
+Z235 IDefIz>EX:eldJAYCBd3f]1
+Z236 V3g3NYij0L:lJHmD;cJ3492
 R4
 R5
-R231
-R232
+R228
+R229
 L0 29
 R8
 r1
 31
-R233
-R234
-R235
-R9
-Z240 n@seven@segment@p@f@d
+R230
+R231
+R232
+R10
+Z237 n@seven@segment@p@f@d
 !s85 0
 !s101 -O0
 vtest_mips_cpu
-Z241 IAbM>SLZjBcal[N6W]e[8h3
-Z242 V4a?jVaab2dd8J]1XAA9OT1
+Z238 !s100 dJ8c6ZZg7DTW7zU;OmlgT2
+Z239 IAbM>SLZjBcal[N6W]e[8h3
+Z240 V4a?jVaab2dd8J]1XAA9OT1
 R4
-Z243 w1339476853
-Z244 8C:/Users/Eli/Documents/ucsd/148/Test/test_mips_cpu.v
-Z245 FC:/Users/Eli/Documents/ucsd/148/Test/test_mips_cpu.v
+Z241 w1339476853
+Z242 8C:/Users/Eli/Documents/ucsd/148/Test/test_mips_cpu.v
+Z243 FC:/Users/Eli/Documents/ucsd/148/Test/test_mips_cpu.v
 L0 11
 R8
 r1
 31
-R9
-Z246 !s100 dJ8c6ZZg7DTW7zU;OmlgT2
-Z247 !s108 1339476922.771000
-Z248 !s107 C:/Users/Eli/Documents/ucsd/148/Test/test_mips_cpu.v|
-Z249 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/test_mips_cpu.v|
+Z244 !s90 -reportprogress|30|-work|work|C:/Users/Eli/Documents/ucsd/148/Test/test_mips_cpu.v|
+R10
+Z245 !s108 1339527858.957000
+Z246 !s107 C:/Users/Eli/Documents/ucsd/148/Test/test_mips_cpu.v|
 !s85 0
 !s101 -O0
 vthread_iq
-Z250 !s100 6NH2^Q6Lc3?Pd3_ji;e5=3
-Z251 IajzZQTm0IUUmFRJKU2kPU1
-Z252 V]49DA73=CJ`lI6Q5;Z?3Y0
+Z247 !s100 6NH2^Q6Lc3?Pd3_ji;e5=3
+Z248 IajzZQTm0IUUmFRJKU2kPU1
+Z249 V]49DA73=CJ`lI6Q5;Z?3Y0
 R4
 R5
-R105
-R106
+R102
+R103
 L0 4
 R8
 r1
 31
-R107
-R108
-R109
-R9
+R104
+R105
+R106
+R10
 !s85 0
 !s101 -O0

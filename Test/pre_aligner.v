@@ -160,7 +160,7 @@ begin
 		if(o_branchInstruction[0])
 		begin
 			o_isbranch = 1;
-			o_Branch_Target = i_pc + 22'd1 + {{(ADDRESS_WIDTH-16){i_inst1[15]}},i_inst1[15:0]};
+			o_Branch_Target = i_pc + 22'd1 + {{(ADDRESS_WIDTH-16){o_isn1[15]}},o_isn1[15:0]};
 			o_jr_inst = 0;
 			o_jal_inst = 0;
 			o_j_inst = 0;
@@ -200,7 +200,7 @@ begin
 		if(o_branchInstruction[1])
 		begin
 			o_isbranch = 1;
-			o_Branch_Target = (i_pc+1) + 22'd1 + {{(ADDRESS_WIDTH-16){i_inst2[15]}},i_inst2[15:0]};
+			o_Branch_Target = (i_pc+1) + 22'd1 + {{(ADDRESS_WIDTH-16){o_isn2[15]}},o_isn2[15:0]};
 			o_jr_inst = 0;
 			o_jal_inst = 0;
 			o_j_inst = 0;
@@ -239,7 +239,7 @@ begin
 		if(o_branchInstruction[2])
 		begin
 			o_isbranch = 1;
-			o_Branch_Target = (i_pc+2) + 22'd1 + {{(ADDRESS_WIDTH-16){i_inst3[15]}},i_inst3[15:0]};
+			o_Branch_Target = (i_pc+2) + 22'd1 + {{(ADDRESS_WIDTH-16){o_isn3[15]}},o_isn3[15:0]};
 			o_jr_inst = 0;
 			o_jal_inst = 0;
 			o_j_inst = 0;
@@ -278,7 +278,7 @@ begin
 		if(o_branchInstruction[3])
 		begin
 			o_isbranch = 1;
-			o_Branch_Target = (i_pc+3) + 22'd1 + {{(ADDRESS_WIDTH-16){i_inst4[15]}},i_inst4[15:0]};
+			o_Branch_Target = (i_pc+3) + 22'd1 + {{(ADDRESS_WIDTH-16){o_isn4[15]}},o_isn4[15:0]};
 			o_jr_inst = 0;
 			o_jal_inst = 0;
 			o_j_inst = 0;
