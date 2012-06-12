@@ -1,0 +1,119 @@
+/home/tullsen/classes/148.09/sp10/mips-testing/tools/local/bin/mips-elf-objdump -d mips.elf.hw
+
+mips.elf.hw:     file format elf32-bigmips
+
+Disassembly of section .text:
+
+00000000 <_ftext>:
+   0:	24000000 	li	zero,0
+   4:	24010000 	li	at,0
+   8:	24020000 	li	v0,0
+   c:	24030000 	li	v1,0
+  10:	24040000 	li	a0,0
+  14:	24050000 	li	a1,0
+  18:	24060000 	li	a2,0
+  1c:	24070000 	li	a3,0
+  20:	24080000 	li	t0,0
+  24:	24090000 	li	t1,0
+  28:	240a0000 	li	t2,0
+  2c:	240b0000 	li	t3,0
+  30:	240c0000 	li	t4,0
+  34:	240d0000 	li	t5,0
+  38:	240e0000 	li	t6,0
+  3c:	240f0000 	li	t7,0
+  40:	24100000 	li	s0,0
+  44:	24110000 	li	s1,0
+  48:	24120000 	li	s2,0
+  4c:	24130000 	li	s3,0
+  50:	24140000 	li	s4,0
+  54:	24150000 	li	s5,0
+  58:	24160000 	li	s6,0
+  5c:	24170000 	li	s7,0
+  60:	24180000 	li	t8,0
+  64:	24190000 	li	t9,0
+  68:	241a0000 	li	k0,0
+  6c:	241b0000 	li	k1,0
+  70:	241c0000 	li	gp,0
+  74:	241d0000 	li	sp,0
+  78:	241e0000 	li	s8,0
+  7c:	241f0000 	li	ra,0
+  80:	241d4000 	li	sp,16384
+  84:	0c000029 	jal	a4 <begin>
+  88:	0380e021 	move	gp,gp
+  8c:	409cb800 	mtc0	gp,$23
+  90:	00000000 	nop
+  94:	409cc800 	mtc0	gp,$25
+  98:	08000026 	j	98 <_ftext+0x98>
+  9c:	00000000 	nop
+  a0:	00000000 	nop
+
+000000a4 <begin>:
+  a4:	27bdcf20 	addiu	sp,sp,-12512
+  a8:	03a01021 	move	v0,sp
+  ac:	27a330e0 	addiu	v1,sp,12512
+  b0:	ac400000 	sw	zero,0(v0)
+  b4:	24420004 	addiu	v0,v0,4
+  b8:	1443fffd 	bne	v0,v1,b0 <begin+0xc>
+  bc:	24080006 	li	t0,6
+  c0:	24090003 	li	t1,3
+  c4:	01093821 	addu	a3,t0,t1
+  c8:	00e03021 	move	a2,a3
+  cc:	00081182 	srl	v0,t0,0x6
+  d0:	24420001 	addiu	v0,v0,1
+  d4:	00021080 	sll	v0,v0,0x2
+  d8:	00e93821 	addu	a3,a3,t1
+  dc:	005d5021 	addu	t2,v0,sp
+  e0:	3c020003 	lui	v0,0x3
+  e4:	34420d41 	ori	v0,v0,0xd41
+  e8:	00e92023 	subu	a0,a3,t1
+  ec:	00082842 	srl	a1,t0,0x1
+  f0:	0082202b 	sltu	a0,a0,v0
+  f4:	24030001 	li	v1,1
+  f8:	31020001 	andi	v0,t0,0x1
+  fc:	00a31804 	sllv	v1,v1,a1
+ 100:	00c04021 	move	t0,a2
+ 104:	10400005 	beqz	v0,11c <begin+0x78>
+ 108:	00c93021 	addu	a2,a2,t1
+ 10c:	8d420000 	lw	v0,0(t2)
+ 110:	00000000 	nop
+ 114:	00621025 	or	v0,v1,v0
+ 118:	ad420000 	sw	v0,0(t2)
+ 11c:	1480ffeb 	bnez	a0,cc <begin+0x28>
+ 120:	00000000 	nop
+ 124:	25290002 	addiu	t1,t1,2
+ 128:	3c020003 	lui	v0,0x3
+ 12c:	00092840 	sll	a1,t1,0x1
+ 130:	34420d40 	ori	v0,v0,0xd40
+ 134:	2d2301c2 	sltiu	v1,t1,450
+ 138:	10600005 	beqz	v1,150 <begin+0xac>
+ 13c:	0045102b 	sltu	v0,v0,a1
+ 140:	1440fff8 	bnez	v0,124 <begin+0x80>
+ 144:	00000000 	nop
+ 148:	08000031 	j	c4 <begin+0x20>
+ 14c:	00a04021 	move	t0,a1
+ 150:	3c020003 	lui	v0,0x3
+ 154:	34480d41 	ori	t0,v0,0xd41
+ 158:	24060001 	li	a2,1
+ 15c:	24050003 	li	a1,3
+ 160:	24070001 	li	a3,1
+ 164:	00051182 	srl	v0,a1,0x6
+ 168:	00021080 	sll	v0,v0,0x2
+ 16c:	005d1021 	addu	v0,v0,sp
+ 170:	00051842 	srl	v1,a1,0x1
+ 174:	8c440004 	lw	a0,4(v0)
+ 178:	00671804 	sllv	v1,a3,v1
+ 17c:	00641824 	and	v1,v1,a0
+ 180:	14600002 	bnez	v1,18c <begin+0xe8>
+ 184:	24a50002 	addiu	a1,a1,2
+ 188:	24c60001 	addiu	a2,a2,1
+ 18c:	14a8fff6 	bne	a1,t0,168 <begin+0xc4>
+ 190:	00051182 	srl	v0,a1,0x6
+ 194:	24024640 	li	v0,17984
+ 198:	10c20004 	beq	a2,v0,1ac <begin+0x108>
+ 19c:	24020001 	li	v0,1
+ 1a0:	4082c000 	mtc0	v0,$24
+ 1a4:	03e00008 	jr	ra
+ 1a8:	27bd30e0 	addiu	sp,sp,12512
+ 1ac:	4082c800 	mtc0	v0,$25
+ 1b0:	03e00008 	jr	ra
+ 1b4:	27bd30e0 	addiu	sp,sp,12512

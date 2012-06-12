@@ -1,0 +1,1818 @@
+Analysis & Synthesis report for mips_cpu
+Sun Jun 10 19:46:12 2012
+Quartus II Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. Analysis & Synthesis IP Cores Summary
+ 10. State Machine - |mips_cpu|flashreader:flashloader2|State
+ 11. State Machine - |mips_cpu|memory_arbiter:ARBITER|State
+ 12. State Machine - |mips_cpu|d_cache:D_CACHE|State
+ 13. State Machine - |mips_cpu|i_cache:I_CACHE|State
+ 14. Registers Removed During Synthesis
+ 15. Removed Registers Triggering Further Register Optimizations
+ 16. General Register Statistics
+ 17. Inverted Register Statistics
+ 18. Registers Added for RAM Pass-Through Logic
+ 19. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 20. Source assignments for i_cache:I_CACHE|altsyncram:Tag_Array_rtl_0|altsyncram_bnd1:auto_generated
+ 21. Parameter Settings for User Entity Instance: pll:my_pll|altpll:altpll_component
+ 22. Parameter Settings for User Entity Instance: fetch_unit:IFETCH
+ 23. Parameter Settings for User Entity Instance: i_cache:I_CACHE
+ 24. Parameter Settings for User Entity Instance: pre_aligner:PRE_ALIGNER
+ 25. Parameter Settings for User Entity Instance: jump_stack:JUMP_STACK
+ 26. Parameter Settings for User Entity Instance: pipe_if_dec:PIPE_IF_DEC
+ 27. Parameter Settings for User Entity Instance: decoder:DECODE
+ 28. Parameter Settings for User Entity Instance: regfile:REGFILE
+ 29. Parameter Settings for User Entity Instance: pipe_dec_ex:PIPE_DEC_EX
+ 30. Parameter Settings for User Entity Instance: alu:ALU
+ 31. Parameter Settings for User Entity Instance: pipe_ex_mem:PIPE_EX_MEM
+ 32. Parameter Settings for User Entity Instance: d_cache:D_CACHE
+ 33. Parameter Settings for User Entity Instance: pipe_mem_wb:PIPE_MEM_WB
+ 34. Parameter Settings for User Entity Instance: memory_arbiter:ARBITER
+ 35. Parameter Settings for User Entity Instance: sdram_controller:memory_controller
+ 36. Parameter Settings for User Entity Instance: forwarding_unit:FORWARDING_UNIT
+ 37. Parameter Settings for User Entity Instance: hazard_detection_unit:HAZARD_DETECTION_UNIT
+ 38. Parameter Settings for User Entity Instance: flashreader:flashloader2
+ 39. Parameter Settings for Inferred Entity Instance: i_cache:I_CACHE|altsyncram:Tag_Array_rtl_0
+ 40. altpll Parameter Settings by Entity Instance
+ 41. altsyncram Parameter Settings by Entity Instance
+ 42. Port Connectivity Checks: "flashreader:flashloader2"
+ 43. Port Connectivity Checks: "d_cache:D_CACHE"
+ 44. Port Connectivity Checks: "alu:ALU"
+ 45. Port Connectivity Checks: "pipe_dec_ex:PIPE_DEC_EX"
+ 46. Port Connectivity Checks: "jump_stack:JUMP_STACK"
+ 47. Port Connectivity Checks: "pre_aligner:PRE_ALIGNER"
+ 48. Port Connectivity Checks: "i_cache:I_CACHE"
+ 49. Elapsed Time Per Partition
+ 50. Analysis & Synthesis Messages
+ 51. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2011 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                        ;
++------------------------------------+------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Sun Jun 10 19:46:11 2012          ;
+; Quartus II Version                 ; 11.0 Build 208 07/03/2011 SP 1 SJ Full Version ;
+; Revision Name                      ; mips_cpu                                       ;
+; Top-level Entity Name              ; mips_cpu                                       ;
+; Family                             ; Cyclone II                                     ;
+; Total logic elements               ; 17,603                                         ;
+;     Total combinational functions  ; 10,672                                         ;
+;     Dedicated logic registers      ; 7,718                                          ;
+; Total registers                    ; 7718                                           ;
+; Total pins                         ; 216                                            ;
+; Total virtual pins                 ; 0                                              ;
+; Total memory bits                  ; 448                                            ;
+; Embedded Multiplier 9-bit elements ; 0                                              ;
+; Total PLLs                         ; 1                                              ;
++------------------------------------+------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP2C35F672C6       ;                    ;
+; Top-level entity name                                                      ; mips_cpu           ; mips_cpu           ;
+; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     1 processor            ; 100.0%      ;
+;     2-4 processors         ;   0.0%      ;
++----------------------------+-------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                              ;
++----------------------------------+-----------------+------------------------------+-----------------------------------------------------------------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                    ;
++----------------------------------+-----------------+------------------------------+-----------------------------------------------------------------+
+; pre_aligner.v                    ; yes             ; User Verilog HDL File        ; H:/148/Test/pre_aligner.v                                       ;
+; jump_stack.v                     ; yes             ; User Verilog HDL File        ; H:/148/Test/jump_stack.v                                        ;
+; memory_arbiter.v                 ; yes             ; User Verilog HDL File        ; H:/148/Test/memory_arbiter.v                                    ;
+; i_cache.v                        ; yes             ; User Verilog HDL File        ; H:/148/Test/i_cache.v                                           ;
+; hazard_detection_unit.v          ; yes             ; User Verilog HDL File        ; H:/148/Test/hazard_detection_unit.v                             ;
+; forwarding_unit.v                ; yes             ; User Verilog HDL File        ; H:/148/Test/forwarding_unit.v                                   ;
+; flashreader.v                    ; yes             ; User Verilog HDL File        ; H:/148/Test/flashreader.v                                       ;
+; fetch_unit.v                     ; yes             ; User Verilog HDL File        ; H:/148/Test/fetch_unit.v                                        ;
+; DisplayDecoder.v                 ; yes             ; User Verilog HDL File        ; H:/148/Test/DisplayDecoder.v                                    ;
+; decoder.v                        ; yes             ; User Verilog HDL File        ; H:/148/Test/decoder.v                                           ;
+; d_cache.v                        ; yes             ; User Verilog HDL File        ; H:/148/Test/d_cache.v                                           ;
+; alu.v                            ; yes             ; User Verilog HDL File        ; H:/148/Test/alu.v                                               ;
+; sdram_controller.v               ; yes             ; User Verilog HDL File        ; H:/148/Test/sdram_controller.v                                  ;
+; regfile.v                        ; yes             ; User Verilog HDL File        ; H:/148/Test/regfile.v                                           ;
+; pll.v                            ; yes             ; User Wizard-Generated File   ; H:/148/Test/pll.v                                               ;
+; pipe_mem_wb.v                    ; yes             ; User Verilog HDL File        ; H:/148/Test/pipe_mem_wb.v                                       ;
+; pipe_if_dec.v                    ; yes             ; User Verilog HDL File        ; H:/148/Test/pipe_if_dec.v                                       ;
+; pipe_ex_mem.v                    ; yes             ; User Verilog HDL File        ; H:/148/Test/pipe_ex_mem.v                                       ;
+; pipe_dec_ex.v                    ; yes             ; User Verilog HDL File        ; H:/148/Test/pipe_dec_ex.v                                       ;
+; mips_cpu.v                       ; yes             ; User Verilog HDL File        ; H:/148/Test/mips_cpu.v                                          ;
+; altpll.tdf                       ; yes             ; Megafunction                 ; c:/altera/quartus/libraries/megafunctions/altpll.tdf            ;
+; aglobal110.inc                   ; yes             ; Megafunction                 ; c:/altera/quartus/libraries/megafunctions/aglobal110.inc        ;
+; stratix_pll.inc                  ; yes             ; Megafunction                 ; c:/altera/quartus/libraries/megafunctions/stratix_pll.inc       ;
+; stratixii_pll.inc                ; yes             ; Megafunction                 ; c:/altera/quartus/libraries/megafunctions/stratixii_pll.inc     ;
+; cycloneii_pll.inc                ; yes             ; Megafunction                 ; c:/altera/quartus/libraries/megafunctions/cycloneii_pll.inc     ;
+; altsyncram.tdf                   ; yes             ; Megafunction                 ; c:/altera/quartus/libraries/megafunctions/altsyncram.tdf        ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                 ; c:/altera/quartus/libraries/megafunctions/stratix_ram_block.inc ;
+; lpm_mux.inc                      ; yes             ; Megafunction                 ; c:/altera/quartus/libraries/megafunctions/lpm_mux.inc           ;
+; lpm_decode.inc                   ; yes             ; Megafunction                 ; c:/altera/quartus/libraries/megafunctions/lpm_decode.inc        ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                 ; c:/altera/quartus/libraries/megafunctions/a_rdenreg.inc         ;
+; altrom.inc                       ; yes             ; Megafunction                 ; c:/altera/quartus/libraries/megafunctions/altrom.inc            ;
+; altram.inc                       ; yes             ; Megafunction                 ; c:/altera/quartus/libraries/megafunctions/altram.inc            ;
+; altdpram.inc                     ; yes             ; Megafunction                 ; c:/altera/quartus/libraries/megafunctions/altdpram.inc          ;
+; db/altsyncram_bnd1.tdf           ; yes             ; Auto-Generated Megafunction  ; H:/148/Test/db/altsyncram_bnd1.tdf                              ;
++----------------------------------+-----------------+------------------------------+-----------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                            ;
++---------------------------------------------+------------------------------------------+
+; Resource                                    ; Usage                                    ;
++---------------------------------------------+------------------------------------------+
+; Estimated Total logic elements              ; 17,603                                   ;
+;                                             ;                                          ;
+; Total combinational functions               ; 10672                                    ;
+; Logic element usage by number of LUT inputs ;                                          ;
+;     -- 4 input functions                    ; 9149                                     ;
+;     -- 3 input functions                    ; 1073                                     ;
+;     -- <=2 input functions                  ; 450                                      ;
+;                                             ;                                          ;
+; Logic elements by mode                      ;                                          ;
+;     -- normal mode                          ; 10345                                    ;
+;     -- arithmetic mode                      ; 327                                      ;
+;                                             ;                                          ;
+; Total registers                             ; 7718                                     ;
+;     -- Dedicated logic registers            ; 7718                                     ;
+;     -- I/O registers                        ; 0                                        ;
+;                                             ;                                          ;
+; I/O pins                                    ; 216                                      ;
+; Total memory bits                           ; 448                                      ;
+; Total PLLs                                  ; 1                                        ;
+;     -- PLLs                                 ; 1                                        ;
+;                                             ;                                          ;
+; Maximum fan-out node                        ; pll:my_pll|altpll:altpll_component|_clk0 ;
+; Maximum fan-out                             ; 7738                                     ;
+; Total fan-out                               ; 64803                                    ;
+; Average fan-out                             ; 3.48                                     ;
++---------------------------------------------+------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                               ;
++--------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                       ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                 ; Library Name ;
++--------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------+--------------+
+; |mips_cpu                                        ; 10672 (2239)      ; 7718 (96)    ; 448         ; 0            ; 0       ; 0         ; 216  ; 0            ; |mips_cpu                                                                           ;              ;
+;    |SevenSegmentDisplayDecoder:SSD0|             ; 7 (7)             ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|SevenSegmentDisplayDecoder:SSD0                                           ;              ;
+;    |SevenSegmentDisplayDecoder:SSD1|             ; 7 (7)             ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|SevenSegmentDisplayDecoder:SSD1                                           ;              ;
+;    |SevenSegmentDisplayDecoder:SSD2|             ; 7 (7)             ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|SevenSegmentDisplayDecoder:SSD2                                           ;              ;
+;    |SevenSegmentDisplayDecoder:SSD3|             ; 7 (7)             ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|SevenSegmentDisplayDecoder:SSD3                                           ;              ;
+;    |SevenSegmentDisplayDecoder:SSD4|             ; 7 (7)             ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|SevenSegmentDisplayDecoder:SSD4                                           ;              ;
+;    |SevenSegmentDisplayDecoder:SSD5|             ; 7 (7)             ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|SevenSegmentDisplayDecoder:SSD5                                           ;              ;
+;    |SevenSegmentDisplayDecoder:SSD6|             ; 7 (7)             ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|SevenSegmentDisplayDecoder:SSD6                                           ;              ;
+;    |SevenSegmentDisplayDecoder:SSD7|             ; 7 (7)             ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|SevenSegmentDisplayDecoder:SSD7                                           ;              ;
+;    |SevenSegmentPFD:PFD2|                        ; 2 (2)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|SevenSegmentPFD:PFD2                                                      ;              ;
+;    |alu:ALU|                                     ; 1340 (1340)       ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|alu:ALU                                                                   ;              ;
+;    |d_cache:D_CACHE|                             ; 3610 (3610)       ; 4727 (4727)  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|d_cache:D_CACHE                                                           ;              ;
+;    |decoder:DECODE|                              ; 188 (188)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|decoder:DECODE                                                            ;              ;
+;    |fetch_unit:IFETCH|                           ; 49 (49)           ; 17 (17)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|fetch_unit:IFETCH                                                         ;              ;
+;    |flashreader:flashloader2|                    ; 159 (159)         ; 223 (223)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|flashreader:flashloader2                                                  ;              ;
+;    |forwarding_unit:FORWARDING_UNIT|             ; 137 (137)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|forwarding_unit:FORWARDING_UNIT                                           ;              ;
+;    |hazard_detection_unit:HAZARD_DETECTION_UNIT| ; 17 (17)           ; 24 (24)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|hazard_detection_unit:HAZARD_DETECTION_UNIT                               ;              ;
+;    |i_cache:I_CACHE|                             ; 169 (169)         ; 1127 (1127)  ; 448         ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|i_cache:I_CACHE                                                           ;              ;
+;       |altsyncram:Tag_Array_rtl_0|               ; 0 (0)             ; 0 (0)        ; 448         ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|i_cache:I_CACHE|altsyncram:Tag_Array_rtl_0                                ;              ;
+;          |altsyncram_bnd1:auto_generated|        ; 0 (0)             ; 0 (0)        ; 448         ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|i_cache:I_CACHE|altsyncram:Tag_Array_rtl_0|altsyncram_bnd1:auto_generated ;              ;
+;    |memory_arbiter:ARBITER|                      ; 19 (19)           ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|memory_arbiter:ARBITER                                                    ;              ;
+;    |pipe_dec_ex:PIPE_DEC_EX|                     ; 347 (347)         ; 134 (134)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|pipe_dec_ex:PIPE_DEC_EX                                                   ;              ;
+;    |pipe_ex_mem:PIPE_EX_MEM|                     ; 0 (0)             ; 72 (72)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|pipe_ex_mem:PIPE_EX_MEM                                                   ;              ;
+;    |pipe_if_dec:PIPE_IF_DEC|                     ; 694 (694)         ; 54 (54)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|pipe_if_dec:PIPE_IF_DEC                                                   ;              ;
+;    |pipe_mem_wb:PIPE_MEM_WB|                     ; 38 (38)           ; 38 (38)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|pipe_mem_wb:PIPE_MEM_WB                                                   ;              ;
+;    |pll:my_pll|                                  ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|pll:my_pll                                                                ;              ;
+;       |altpll:altpll_component|                  ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|pll:my_pll|altpll:altpll_component                                        ;              ;
+;    |regfile:REGFILE|                             ; 1394 (1394)       ; 1024 (1024)  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|regfile:REGFILE                                                           ;              ;
+;    |sdram_controller:memory_controller|          ; 214 (214)         ; 118 (118)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |mips_cpu|sdram_controller:memory_controller                                        ;              ;
++--------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                         ;
++--------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; Name                                                                                 ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF  ;
++--------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; i_cache:I_CACHE|altsyncram:Tag_Array_rtl_0|altsyncram_bnd1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 32           ; 14           ; 32           ; 14           ; 448  ; None ;
++--------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+
+
++----------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                    ;
++--------+--------------+---------+--------------+--------------+----------------------+-------------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance      ; IP Include File   ;
++--------+--------------+---------+--------------+--------------+----------------------+-------------------+
+; Altera ; ALTPLL       ; N/A     ; N/A          ; N/A          ; |mips_cpu|pll:my_pll ; H:/148/Test/pll.v ;
++--------+--------------+---------+--------------+--------------+----------------------+-------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------+
+; State Machine - |mips_cpu|flashreader:flashloader2|State                                           ;
++---------------------+---------------+---------------------+-------------------+--------------------+
+; Name                ; State.FS_DONE ; State.FS_DMEM_WRITE ; State.FS_DMEM_REQ ; State.FS_LOAD_LINE ;
++---------------------+---------------+---------------------+-------------------+--------------------+
+; State.FS_LOAD_LINE  ; 0             ; 0                   ; 0                 ; 0                  ;
+; State.FS_DMEM_REQ   ; 0             ; 0                   ; 1                 ; 1                  ;
+; State.FS_DMEM_WRITE ; 0             ; 1                   ; 0                 ; 1                  ;
+; State.FS_DONE       ; 1             ; 0                   ; 0                 ; 1                  ;
++---------------------+---------------+---------------------+-------------------+--------------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |mips_cpu|memory_arbiter:ARBITER|State                                                                                  ;
++-----------------------------+----------------------------+----------------------------+-----------------------------+-------------------+
+; Name                        ; State.STATE_SERVICING_DMEM ; State.STATE_SERVICING_IMEM ; State.STATE_SERVICING_FLASH ; State.STATE_READY ;
++-----------------------------+----------------------------+----------------------------+-----------------------------+-------------------+
+; State.STATE_READY           ; 0                          ; 0                          ; 0                           ; 0                 ;
+; State.STATE_SERVICING_FLASH ; 0                          ; 0                          ; 1                           ; 1                 ;
+; State.STATE_SERVICING_IMEM  ; 0                          ; 1                          ; 0                           ; 1                 ;
+; State.STATE_SERVICING_DMEM  ; 1                          ; 0                          ; 0                           ; 1                 ;
++-----------------------------+----------------------------+----------------------------+-----------------------------+-------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------+
+; State Machine - |mips_cpu|d_cache:D_CACHE|State                                        ;
++----------------------+----------------------+-------------------+----------------------+
+; Name                 ; State.STATE_POPULATE ; State.STATE_READY ; State.STATE_WRITEOUT ;
++----------------------+----------------------+-------------------+----------------------+
+; State.STATE_READY    ; 0                    ; 0                 ; 0                    ;
+; State.STATE_POPULATE ; 1                    ; 1                 ; 0                    ;
+; State.STATE_WRITEOUT ; 0                    ; 1                 ; 1                    ;
++----------------------+----------------------+-------------------+----------------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------+
+; State Machine - |mips_cpu|i_cache:I_CACHE|State ;
++-----------------------+-------------------------+
+; Name                  ; State.STATE_MISS_READ   ;
++-----------------------+-------------------------+
+; State.STATE_READY     ; 0                       ;
+; State.STATE_MISS_READ ; 1                       ;
++-----------------------+-------------------------+
+
+
++---------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                      ;
++-----------------------------------------------+---------------------------------------------------------+
+; Register name                                 ; Reason for Removal                                      ;
++-----------------------------------------------+---------------------------------------------------------+
+; sdram_controller:memory_controller|o_Cke      ; Stuck at VCC due to stuck port data_in                  ;
+; sdram_controller:memory_controller|o_Cs_n     ; Stuck at GND due to stuck port data_in                  ;
+; pipe_dec_ex:PIPE_DEC_EX|o_ALUCTL[7]           ; Stuck at GND due to stuck port data_in                  ;
+; SevenSegmentPFD:PFD2|ssOut[4]                 ; Merged with SevenSegmentPFD:PFD2|ssOut[6]               ;
+; SevenSegmentPFD:PFD2|ssOut[0]                 ; Merged with SevenSegmentPFD:PFD2|ssOut[5]               ;
+; SevenSegmentPFD:PFD2|ssOut[2]                 ; Merged with SevenSegmentPFD:PFD2|ssOut[3]               ;
+; sdram_controller:memory_controller|o_Dqm[1]   ; Merged with sdram_controller:memory_controller|o_Dqm[0] ;
+; d_cache:D_CACHE|o_MEM_Address[1,2]            ; Merged with d_cache:D_CACHE|o_MEM_Address[0]            ;
+; flashreader:flashloader2|o_FL_Addr[0]         ; Merged with flashreader:flashloader2|FlashReadCount[0]  ;
+; flashreader:flashloader2|o_FL_Addr[1]         ; Merged with flashreader:flashloader2|FlashReadCount[1]  ;
+; d_cache:D_CACHE|o_MEM_Address[0]              ; Stuck at GND due to stuck port data_in                  ;
+; sdram_controller:memory_controller|ColAddr[0] ; Stuck at GND due to stuck port data_in                  ;
+; fetch_unit:IFETCH|o_PC[2]                     ; Merged with i_cache:I_CACHE|Tag_Array_rtl_0_bypass[2]   ;
+; fetch_unit:IFETCH|o_PC[3]                     ; Merged with i_cache:I_CACHE|Tag_Array_rtl_0_bypass[4]   ;
+; fetch_unit:IFETCH|o_PC[4]                     ; Merged with i_cache:I_CACHE|Tag_Array_rtl_0_bypass[6]   ;
+; fetch_unit:IFETCH|o_PC[5]                     ; Merged with i_cache:I_CACHE|Tag_Array_rtl_0_bypass[8]   ;
+; fetch_unit:IFETCH|o_PC[6]                     ; Merged with i_cache:I_CACHE|Tag_Array_rtl_0_bypass[10]  ;
+; flashreader:flashloader2|State~8              ; Lost fanout                                             ;
+; flashreader:flashloader2|State~9              ; Lost fanout                                             ;
+; memory_arbiter:ARBITER|State~4                ; Lost fanout                                             ;
+; memory_arbiter:ARBITER|State~5                ; Lost fanout                                             ;
+; memory_arbiter:ARBITER|State~6                ; Lost fanout                                             ;
+; memory_arbiter:ARBITER|State~7                ; Lost fanout                                             ;
+; d_cache:D_CACHE|State~7                       ; Lost fanout                                             ;
+; d_cache:D_CACHE|State~8                       ; Lost fanout                                             ;
+; d_cache:D_CACHE|State~9                       ; Lost fanout                                             ;
+; d_cache:D_CACHE|State~10                      ; Lost fanout                                             ;
+; i_cache:I_CACHE|State~5                       ; Lost fanout                                             ;
+; i_cache:I_CACHE|State~6                       ; Lost fanout                                             ;
+; i_cache:I_CACHE|State~7                       ; Lost fanout                                             ;
+; i_cache:I_CACHE|State~8                       ; Lost fanout                                             ;
+; i_cache:I_CACHE|State~9                       ; Lost fanout                                             ;
+; flashreader:flashloader2|FlashReadCount[2]    ; Merged with flashreader:flashloader2|o_FL_Addr[2]       ;
+; flashreader:flashloader2|FlashReadCount[3]    ; Merged with flashreader:flashloader2|o_FL_Addr[3]       ;
+; Total Number of Removed Registers = 35        ;                                                         ;
++-----------------------------------------------+---------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                  ;
++----------------------------------+---------------------------+-----------------------------------------------+
+; Register name                    ; Reason for Removal        ; Registers Removed due to This Register        ;
++----------------------------------+---------------------------+-----------------------------------------------+
+; d_cache:D_CACHE|o_MEM_Address[0] ; Stuck at GND              ; sdram_controller:memory_controller|ColAddr[0] ;
+;                                  ; due to stuck port data_in ;                                               ;
++----------------------------------+---------------------------+-----------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 7718  ;
+; Number of registers using Synchronous Clear  ; 85    ;
+; Number of registers using Synchronous Load   ; 123   ;
+; Number of registers using Asynchronous Clear ; 541   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 7503  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------------+
+; Inverted Register Statistics                              ;
++-------------------------------------------------+---------+
+; Inverted Register                               ; Fan out ;
++-------------------------------------------------+---------+
+; sdram_controller:memory_controller|o_Cas_n      ; 4       ;
+; sdram_controller:memory_controller|o_Dqm[0]     ; 3       ;
+; sdram_controller:memory_controller|o_Ras_n      ; 2       ;
+; sdram_controller:memory_controller|o_We_n       ; 1       ;
+; sdram_controller:memory_controller|Gen_Count[3] ; 2       ;
+; sdram_controller:memory_controller|Gen_Count[0] ; 5       ;
+; flashreader:flashloader2|FlashWaitCount[3]      ; 4       ;
+; flashreader:flashloader2|FlashWaitCount[1]      ; 5       ;
+; Total number of inverted registers = 8          ;         ;
++-------------------------------------------------+---------+
+
+
++------------------------------------------------------------------------------+
+; Registers Added for RAM Pass-Through Logic                                   ;
++--------------------------------------------+---------------------------------+
+; Register Name                              ; RAM Name                        ;
++--------------------------------------------+---------------------------------+
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[0]  ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[1]  ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[2]  ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[3]  ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[4]  ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[5]  ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[6]  ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[7]  ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[8]  ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[9]  ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[10] ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[11] ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[12] ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[13] ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[14] ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[15] ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[16] ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[17] ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[18] ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[19] ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[20] ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[21] ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[22] ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[23] ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
+; i_cache:I_CACHE|Tag_Array_rtl_0_bypass[24] ; i_cache:I_CACHE|Tag_Array_rtl_0 ;
++--------------------------------------------+---------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+----------------------------------------------------------------------+----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered                                                           ; Example Multiplexer Output ;
++--------------------+-----------+---------------+----------------------+------------------------+----------------------------------------------------------------------+----------------------------+
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; |mips_cpu|HEX_Buf[4][1]                                              ;                            ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; |mips_cpu|HEX_Buf[7][3]                                              ;                            ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; |mips_cpu|i_cache:I_CACHE|Gen_Count[4]                               ;                            ;
+; 4:1                ; 54 bits   ; 108 LEs       ; 0 LEs                ; 108 LEs                ; |mips_cpu|d_cache:D_CACHE|r_i_Write_Data[0]                          ;                            ;
+; 3:1                ; 17 bits   ; 34 LEs        ; 34 LEs               ; 0 LEs                  ; |mips_cpu|fetch_unit:IFETCH|o_PC[19]                                 ;                            ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; |mips_cpu|sdram_controller:memory_controller|Refresh_Counter[4]      ;                            ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; |mips_cpu|sdram_controller:memory_controller|ColAddr[1]              ;                            ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; |mips_cpu|sdram_controller:memory_controller|ColAddr[5]              ;                            ;
+; 16:1               ; 2 bits    ; 20 LEs        ; 2 LEs                ; 18 LEs                 ; |mips_cpu|sdram_controller:memory_controller|Gen_Count[2]            ;                            ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 0 LEs                ; 4 LEs                  ; |mips_cpu|flashreader:flashloader2|DRAMWriteCount[0]                 ;                            ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; |mips_cpu|HEX_Buf[0][2]                                              ;                            ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; |mips_cpu|pipe_dec_ex:PIPE_DEC_EX|o_Operand2[25]                     ;                            ;
+; 6:1                ; 10 bits   ; 40 LEs        ; 30 LEs               ; 10 LEs                 ; |mips_cpu|pipe_dec_ex:PIPE_DEC_EX|o_Operand1[28]                     ;                            ;
+; 6:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; |mips_cpu|flashreader:flashloader2|o_SDRAM_Data[26]                  ;                            ;
+; 18:1               ; 2 bits    ; 24 LEs        ; 4 LEs                ; 20 LEs                 ; |mips_cpu|sdram_controller:memory_controller|o_Ba[1]                 ;                            ;
+; 65:1               ; 2 bits    ; 86 LEs        ; 20 LEs               ; 66 LEs                 ; |mips_cpu|pipe_dec_ex:PIPE_DEC_EX|o_Writes_Back                      ;                            ;
+; 65:1               ; 2 bits    ; 86 LEs        ; 14 LEs               ; 72 LEs                 ; |mips_cpu|pipe_dec_ex:PIPE_DEC_EX|o_ALUCTL[4]                        ;                            ;
+; 34:1               ; 32 bits   ; 704 LEs       ; 704 LEs              ; 0 LEs                  ; |mips_cpu|pipe_if_dec:PIPE_IF_DEC|o_Instruction[7]                   ;                            ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; |mips_cpu|d_cache:D_CACHE|o_MEM_Address[0]                           ;                            ;
+; 8:1                ; 5 bits    ; 25 LEs        ; 5 LEs                ; 20 LEs                 ; |mips_cpu|d_cache:D_CACHE|o_MEM_Address[5]                           ;                            ;
+; 8:1                ; 14 bits   ; 70 LEs        ; 28 LEs               ; 42 LEs                 ; |mips_cpu|d_cache:D_CACHE|o_MEM_Address[18]                          ;                            ;
+; 12:1               ; 5 bits    ; 40 LEs        ; 10 LEs               ; 30 LEs                 ; |mips_cpu|pipe_dec_ex:PIPE_DEC_EX|o_Branch_Target[19]                ;                            ;
+; 19:1               ; 14 bits   ; 168 LEs       ; 56 LEs               ; 112 LEs                ; |mips_cpu|sdram_controller:memory_controller|Wait_Counter[5]         ;                            ;
+; 19:1               ; 3 bits    ; 36 LEs        ; 15 LEs               ; 21 LEs                 ; |mips_cpu|sdram_controller:memory_controller|NextState[0]            ;                            ;
+; 9:1                ; 9 bits    ; 54 LEs        ; 18 LEs               ; 36 LEs                 ; |mips_cpu|d_cache:D_CACHE|Gen_Count[8]                               ;                            ;
+; 9:1                ; 11 bits   ; 66 LEs        ; 22 LEs               ; 44 LEs                 ; |mips_cpu|pipe_dec_ex:PIPE_DEC_EX|o_Branch_Target[9]                 ;                            ;
+; 9:1                ; 5 bits    ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; |mips_cpu|pipe_dec_ex:PIPE_DEC_EX|o_Branch_Target[0]                 ;                            ;
+; 20:1               ; 4 bits    ; 52 LEs        ; 12 LEs               ; 40 LEs                 ; |mips_cpu|sdram_controller:memory_controller|o_Addr[8]               ;                            ;
+; 20:1               ; 8 bits    ; 104 LEs       ; 32 LEs               ; 72 LEs                 ; |mips_cpu|sdram_controller:memory_controller|o_Addr[4]               ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[31][115]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[31][87]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[31][55]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[31][21]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[30][112]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[30][66]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[30][45]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[30][2]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[29][99]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[29][95]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[29][38]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[29][19]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[28][103]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[28][77]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[28][47]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[28][7]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[27][101]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[27][75]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[27][35]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[27][13]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[26][103]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[26][89]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[26][45]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[26][0]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[25][101]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[25][75]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[25][53]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[25][18]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[24][102]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[24][71]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[24][48]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[24][21]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[23][106]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[23][76]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[23][59]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[23][1]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[22][112]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[22][64]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[22][45]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[22][4]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[21][106]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[21][93]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[21][51]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[21][5]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[20][96]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[20][65]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[20][40]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[20][24]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[19][114]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[19][68]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[19][43]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[19][12]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[18][109]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[18][70]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[18][62]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[18][17]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[17][109]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[17][87]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[17][53]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[17][17]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[16][109]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[16][72]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[16][42]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[16][5]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[15][96]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[15][82]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[15][60]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[15][5]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[14][107]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[14][80]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[14][62]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[14][25]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[13][109]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[13][67]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[13][36]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[13][23]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[12][101]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[12][67]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[12][54]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[12][8]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[11][101]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[11][72]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[11][40]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[11][27]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[10][120]                        ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[10][75]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[10][58]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[10][1]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[9][102]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[9][88]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[9][53]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[9][2]                           ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[8][125]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[8][90]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[8][46]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[8][0]                           ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[7][109]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[7][73]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[7][41]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[7][22]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[6][120]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[6][75]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[6][57]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[6][1]                           ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[5][122]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[5][93]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[5][34]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[5][27]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[4][113]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[4][93]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[4][36]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[4][1]                           ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[3][113]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[3][82]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[3][32]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[3][1]                           ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[2][120]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[2][82]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[2][44]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[2][23]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[1][99]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[1][72]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[1][46]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[1][17]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[0][126]                         ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[0][95]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[0][61]                          ;                            ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 32 LEs               ; 192 LEs                ; |mips_cpu|d_cache:D_CACHE|Data_Array[0][15]                          ;                            ;
+; 15:1               ; 7 bits    ; 70 LEs        ; 35 LEs               ; 35 LEs                 ; |mips_cpu|pipe_dec_ex:PIPE_DEC_EX|o_Operand2[16]                     ;                            ;
+; 74:1               ; 5 bits    ; 245 LEs       ; 45 LEs               ; 200 LEs                ; |mips_cpu|pipe_dec_ex:PIPE_DEC_EX|o_Write_Addr[1]                    ;                            ;
+; 17:1               ; 10 bits   ; 110 LEs       ; 40 LEs               ; 70 LEs                 ; |mips_cpu|pipe_dec_ex:PIPE_DEC_EX|o_Operand2[13]                     ;                            ;
+; 79:1               ; 5 bits    ; 260 LEs       ; 25 LEs               ; 235 LEs                ; |mips_cpu|pipe_dec_ex:PIPE_DEC_EX|o_Operand2[0]                      ;                            ;
+; 610:1              ; 32 bits   ; 12992 LEs     ; 2048 LEs             ; 10944 LEs              ; |mips_cpu|d_cache:D_CACHE|o_MEM_Data[11]                             ;                            ;
+; 16:1               ; 2 bits    ; 20 LEs        ; 8 LEs                ; 12 LEs                 ; |mips_cpu|sdram_controller:memory_controller|DQ_Drive                ;                            ;
+; 16:1               ; 2 bits    ; 20 LEs        ; 2 LEs                ; 18 LEs                 ; |mips_cpu|sdram_controller:memory_controller|Gen_Count[3]            ;                            ;
+; 8:1                ; 16 bits   ; 80 LEs        ; 48 LEs               ; 32 LEs                 ; |mips_cpu|sdram_controller:memory_controller|DQ[12]                  ;                            ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; |mips_cpu|alu:ALU|Selector21                                         ;                            ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; |mips_cpu|decoder:DECODE|Mux5                                        ;                            ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; |mips_cpu|i_cache:I_CACHE|Tag_Array                                  ;                            ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; |mips_cpu|fetch_unit:IFETCH|o_PC                                     ;                            ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; |mips_cpu|memory_arbiter:ARBITER|Selector12                          ;                            ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 32 LEs               ; 64 LEs                 ; |mips_cpu|d_cache:D_CACHE|Populate_Data[5]                           ;                            ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; |mips_cpu|forwarding_unit:FORWARDING_UNIT|o_DEC_RT_Override_Data[1]  ;                            ;
+; 5:1                ; 22 bits   ; 66 LEs        ; 44 LEs               ; 22 LEs                 ; |mips_cpu|forwarding_unit:FORWARDING_UNIT|o_DEC_RS_Override_Data[19] ;                            ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; |mips_cpu|memory_arbiter:ARBITER|Selector119                         ;                            ;
+; 32:1               ; 47 bits   ; 987 LEs       ; 987 LEs              ; 0 LEs                  ; |mips_cpu|d_cache:D_CACHE|Mux43                                      ;                            ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; |mips_cpu|flashreader:flashloader2|Selector1                         ;                            ;
+; 64:1               ; 2 bits    ; 84 LEs        ; 28 LEs               ; 56 LEs                 ; |mips_cpu|decoder:DECODE|Selector23                                  ;                            ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; |mips_cpu|flashreader:flashloader2|Selector0                         ;                            ;
+; 10:1               ; 5 bits    ; 30 LEs        ; 20 LEs               ; 10 LEs                 ; |mips_cpu|decoder:DECODE|Selector27                                  ;                            ;
+; 10:1               ; 2 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; |mips_cpu|d_cache:D_CACHE|Selector110                                ;                            ;
+; 127:1              ; 4 bits    ; 336 LEs       ; 8 LEs                ; 328 LEs                ; |mips_cpu|decoder:DECODE|Selector20                                  ;                            ;
+; 99:1               ; 32 bits   ; 2112 LEs      ; 2112 LEs             ; 0 LEs                  ; |mips_cpu|DMEM_o_Write_Data[31]                                      ;                            ;
+; 42:1               ; 7 bits    ; 196 LEs       ; 98 LEs               ; 98 LEs                 ; |mips_cpu|alu:ALU|o_Result[8]                                        ;                            ;
+; 46:1               ; 6 bits    ; 180 LEs       ; 96 LEs               ; 84 LEs                 ; |mips_cpu|alu:ALU|o_Result[23]                                       ;                            ;
+; 44:1               ; 4 bits    ; 116 LEs       ; 60 LEs               ; 56 LEs                 ; |mips_cpu|alu:ALU|o_Result[7]                                        ;                            ;
+; 48:1               ; 4 bits    ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; |mips_cpu|alu:ALU|o_Result[27]                                       ;                            ;
+; 50:1               ; 2 bits    ; 66 LEs        ; 36 LEs               ; 30 LEs                 ; |mips_cpu|alu:ALU|o_Result[29]                                       ;                            ;
++--------------------+-----------+---------------+----------------------+------------------------+----------------------------------------------------------------------+----------------------------+
+
+
++--------------------------------------------------------------------------------------------------+
+; Source assignments for i_cache:I_CACHE|altsyncram:Tag_Array_rtl_0|altsyncram_bnd1:auto_generated ;
++---------------------------------+--------------------+------+------------------------------------+
+; Assignment                      ; Value              ; From ; To                                 ;
++---------------------------------+--------------------+------+------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                  ;
++---------------------------------+--------------------+------+------------------------------------+
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: pll:my_pll|altpll:altpll_component ;
++-------------------------------+-----------------------+-------------------------+
+; Parameter Name                ; Value                 ; Type                    ;
++-------------------------------+-----------------------+-------------------------+
+; OPERATION_MODE                ; NORMAL                ; Untyped                 ;
+; PLL_TYPE                      ; AUTO                  ; Untyped                 ;
+; LPM_HINT                      ; CBX_MODULE_PREFIX=pll ; Untyped                 ;
+; QUALIFY_CONF_DONE             ; OFF                   ; Untyped                 ;
+; COMPENSATE_CLOCK              ; CLK0                  ; Untyped                 ;
+; SCAN_CHAIN                    ; LONG                  ; Untyped                 ;
+; PRIMARY_CLOCK                 ; INCLK0                ; Untyped                 ;
+; INCLK0_INPUT_FREQUENCY        ; 20000                 ; Signed Integer          ;
+; INCLK1_INPUT_FREQUENCY        ; 0                     ; Untyped                 ;
+; GATE_LOCK_SIGNAL              ; NO                    ; Untyped                 ;
+; GATE_LOCK_COUNTER             ; 0                     ; Untyped                 ;
+; LOCK_HIGH                     ; 1                     ; Untyped                 ;
+; LOCK_LOW                      ; 1                     ; Untyped                 ;
+; VALID_LOCK_MULTIPLIER         ; 1                     ; Signed Integer          ;
+; INVALID_LOCK_MULTIPLIER       ; 5                     ; Signed Integer          ;
+; SWITCH_OVER_ON_LOSSCLK        ; OFF                   ; Untyped                 ;
+; SWITCH_OVER_ON_GATED_LOCK     ; OFF                   ; Untyped                 ;
+; ENABLE_SWITCH_OVER_COUNTER    ; OFF                   ; Untyped                 ;
+; SKIP_VCO                      ; OFF                   ; Untyped                 ;
+; SWITCH_OVER_COUNTER           ; 0                     ; Untyped                 ;
+; SWITCH_OVER_TYPE              ; AUTO                  ; Untyped                 ;
+; FEEDBACK_SOURCE               ; EXTCLK0               ; Untyped                 ;
+; BANDWIDTH                     ; 0                     ; Untyped                 ;
+; BANDWIDTH_TYPE                ; AUTO                  ; Untyped                 ;
+; SPREAD_FREQUENCY              ; 0                     ; Untyped                 ;
+; DOWN_SPREAD                   ; 0                     ; Untyped                 ;
+; SELF_RESET_ON_GATED_LOSS_LOCK ; OFF                   ; Untyped                 ;
+; SELF_RESET_ON_LOSS_LOCK       ; OFF                   ; Untyped                 ;
+; CLK9_MULTIPLY_BY              ; 0                     ; Untyped                 ;
+; CLK8_MULTIPLY_BY              ; 0                     ; Untyped                 ;
+; CLK7_MULTIPLY_BY              ; 0                     ; Untyped                 ;
+; CLK6_MULTIPLY_BY              ; 0                     ; Untyped                 ;
+; CLK5_MULTIPLY_BY              ; 1                     ; Untyped                 ;
+; CLK4_MULTIPLY_BY              ; 1                     ; Untyped                 ;
+; CLK3_MULTIPLY_BY              ; 1                     ; Untyped                 ;
+; CLK2_MULTIPLY_BY              ; 1                     ; Untyped                 ;
+; CLK1_MULTIPLY_BY              ; 1                     ; Untyped                 ;
+; CLK0_MULTIPLY_BY              ; 13                    ; Signed Integer          ;
+; CLK9_DIVIDE_BY                ; 0                     ; Untyped                 ;
+; CLK8_DIVIDE_BY                ; 0                     ; Untyped                 ;
+; CLK7_DIVIDE_BY                ; 0                     ; Untyped                 ;
+; CLK6_DIVIDE_BY                ; 0                     ; Untyped                 ;
+; CLK5_DIVIDE_BY                ; 1                     ; Untyped                 ;
+; CLK4_DIVIDE_BY                ; 1                     ; Untyped                 ;
+; CLK3_DIVIDE_BY                ; 1                     ; Untyped                 ;
+; CLK2_DIVIDE_BY                ; 1                     ; Untyped                 ;
+; CLK1_DIVIDE_BY                ; 1                     ; Untyped                 ;
+; CLK0_DIVIDE_BY                ; 10                    ; Signed Integer          ;
+; CLK9_PHASE_SHIFT              ; 0                     ; Untyped                 ;
+; CLK8_PHASE_SHIFT              ; 0                     ; Untyped                 ;
+; CLK7_PHASE_SHIFT              ; 0                     ; Untyped                 ;
+; CLK6_PHASE_SHIFT              ; 0                     ; Untyped                 ;
+; CLK5_PHASE_SHIFT              ; 0                     ; Untyped                 ;
+; CLK4_PHASE_SHIFT              ; 0                     ; Untyped                 ;
+; CLK3_PHASE_SHIFT              ; 0                     ; Untyped                 ;
+; CLK2_PHASE_SHIFT              ; 0                     ; Untyped                 ;
+; CLK1_PHASE_SHIFT              ; 0                     ; Untyped                 ;
+; CLK0_PHASE_SHIFT              ; 0                     ; Untyped                 ;
+; CLK5_TIME_DELAY               ; 0                     ; Untyped                 ;
+; CLK4_TIME_DELAY               ; 0                     ; Untyped                 ;
+; CLK3_TIME_DELAY               ; 0                     ; Untyped                 ;
+; CLK2_TIME_DELAY               ; 0                     ; Untyped                 ;
+; CLK1_TIME_DELAY               ; 0                     ; Untyped                 ;
+; CLK0_TIME_DELAY               ; 0                     ; Untyped                 ;
+; CLK9_DUTY_CYCLE               ; 50                    ; Untyped                 ;
+; CLK8_DUTY_CYCLE               ; 50                    ; Untyped                 ;
+; CLK7_DUTY_CYCLE               ; 50                    ; Untyped                 ;
+; CLK6_DUTY_CYCLE               ; 50                    ; Untyped                 ;
+; CLK5_DUTY_CYCLE               ; 50                    ; Untyped                 ;
+; CLK4_DUTY_CYCLE               ; 50                    ; Untyped                 ;
+; CLK3_DUTY_CYCLE               ; 50                    ; Untyped                 ;
+; CLK2_DUTY_CYCLE               ; 50                    ; Untyped                 ;
+; CLK1_DUTY_CYCLE               ; 50                    ; Untyped                 ;
+; CLK0_DUTY_CYCLE               ; 50                    ; Signed Integer          ;
+; CLK9_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                 ;
+; CLK8_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                 ;
+; CLK7_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                 ;
+; CLK6_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                 ;
+; CLK5_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                 ;
+; CLK4_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                 ;
+; CLK3_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                 ;
+; CLK2_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                 ;
+; CLK1_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                 ;
+; CLK0_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                 ;
+; CLK9_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                 ;
+; CLK8_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                 ;
+; CLK7_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                 ;
+; CLK6_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                 ;
+; CLK5_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                 ;
+; CLK4_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                 ;
+; CLK3_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                 ;
+; CLK2_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                 ;
+; CLK1_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                 ;
+; CLK0_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                 ;
+; LOCK_WINDOW_UI                ;  0.05                 ; Untyped                 ;
+; LOCK_WINDOW_UI_BITS           ; UNUSED                ; Untyped                 ;
+; VCO_RANGE_DETECTOR_LOW_BITS   ; UNUSED                ; Untyped                 ;
+; VCO_RANGE_DETECTOR_HIGH_BITS  ; UNUSED                ; Untyped                 ;
+; DPA_MULTIPLY_BY               ; 0                     ; Untyped                 ;
+; DPA_DIVIDE_BY                 ; 1                     ; Untyped                 ;
+; DPA_DIVIDER                   ; 0                     ; Untyped                 ;
+; EXTCLK3_MULTIPLY_BY           ; 1                     ; Untyped                 ;
+; EXTCLK2_MULTIPLY_BY           ; 1                     ; Untyped                 ;
+; EXTCLK1_MULTIPLY_BY           ; 1                     ; Untyped                 ;
+; EXTCLK0_MULTIPLY_BY           ; 1                     ; Untyped                 ;
+; EXTCLK3_DIVIDE_BY             ; 1                     ; Untyped                 ;
+; EXTCLK2_DIVIDE_BY             ; 1                     ; Untyped                 ;
+; EXTCLK1_DIVIDE_BY             ; 1                     ; Untyped                 ;
+; EXTCLK0_DIVIDE_BY             ; 1                     ; Untyped                 ;
+; EXTCLK3_PHASE_SHIFT           ; 0                     ; Untyped                 ;
+; EXTCLK2_PHASE_SHIFT           ; 0                     ; Untyped                 ;
+; EXTCLK1_PHASE_SHIFT           ; 0                     ; Untyped                 ;
+; EXTCLK0_PHASE_SHIFT           ; 0                     ; Untyped                 ;
+; EXTCLK3_TIME_DELAY            ; 0                     ; Untyped                 ;
+; EXTCLK2_TIME_DELAY            ; 0                     ; Untyped                 ;
+; EXTCLK1_TIME_DELAY            ; 0                     ; Untyped                 ;
+; EXTCLK0_TIME_DELAY            ; 0                     ; Untyped                 ;
+; EXTCLK3_DUTY_CYCLE            ; 50                    ; Untyped                 ;
+; EXTCLK2_DUTY_CYCLE            ; 50                    ; Untyped                 ;
+; EXTCLK1_DUTY_CYCLE            ; 50                    ; Untyped                 ;
+; EXTCLK0_DUTY_CYCLE            ; 50                    ; Untyped                 ;
+; VCO_MULTIPLY_BY               ; 0                     ; Untyped                 ;
+; VCO_DIVIDE_BY                 ; 0                     ; Untyped                 ;
+; SCLKOUT0_PHASE_SHIFT          ; 0                     ; Untyped                 ;
+; SCLKOUT1_PHASE_SHIFT          ; 0                     ; Untyped                 ;
+; VCO_MIN                       ; 0                     ; Untyped                 ;
+; VCO_MAX                       ; 0                     ; Untyped                 ;
+; VCO_CENTER                    ; 0                     ; Untyped                 ;
+; PFD_MIN                       ; 0                     ; Untyped                 ;
+; PFD_MAX                       ; 0                     ; Untyped                 ;
+; M_INITIAL                     ; 0                     ; Untyped                 ;
+; M                             ; 0                     ; Untyped                 ;
+; N                             ; 1                     ; Untyped                 ;
+; M2                            ; 1                     ; Untyped                 ;
+; N2                            ; 1                     ; Untyped                 ;
+; SS                            ; 1                     ; Untyped                 ;
+; C0_HIGH                       ; 0                     ; Untyped                 ;
+; C1_HIGH                       ; 0                     ; Untyped                 ;
+; C2_HIGH                       ; 0                     ; Untyped                 ;
+; C3_HIGH                       ; 0                     ; Untyped                 ;
+; C4_HIGH                       ; 0                     ; Untyped                 ;
+; C5_HIGH                       ; 0                     ; Untyped                 ;
+; C6_HIGH                       ; 0                     ; Untyped                 ;
+; C7_HIGH                       ; 0                     ; Untyped                 ;
+; C8_HIGH                       ; 0                     ; Untyped                 ;
+; C9_HIGH                       ; 0                     ; Untyped                 ;
+; C0_LOW                        ; 0                     ; Untyped                 ;
+; C1_LOW                        ; 0                     ; Untyped                 ;
+; C2_LOW                        ; 0                     ; Untyped                 ;
+; C3_LOW                        ; 0                     ; Untyped                 ;
+; C4_LOW                        ; 0                     ; Untyped                 ;
+; C5_LOW                        ; 0                     ; Untyped                 ;
+; C6_LOW                        ; 0                     ; Untyped                 ;
+; C7_LOW                        ; 0                     ; Untyped                 ;
+; C8_LOW                        ; 0                     ; Untyped                 ;
+; C9_LOW                        ; 0                     ; Untyped                 ;
+; C0_INITIAL                    ; 0                     ; Untyped                 ;
+; C1_INITIAL                    ; 0                     ; Untyped                 ;
+; C2_INITIAL                    ; 0                     ; Untyped                 ;
+; C3_INITIAL                    ; 0                     ; Untyped                 ;
+; C4_INITIAL                    ; 0                     ; Untyped                 ;
+; C5_INITIAL                    ; 0                     ; Untyped                 ;
+; C6_INITIAL                    ; 0                     ; Untyped                 ;
+; C7_INITIAL                    ; 0                     ; Untyped                 ;
+; C8_INITIAL                    ; 0                     ; Untyped                 ;
+; C9_INITIAL                    ; 0                     ; Untyped                 ;
+; C0_MODE                       ; BYPASS                ; Untyped                 ;
+; C1_MODE                       ; BYPASS                ; Untyped                 ;
+; C2_MODE                       ; BYPASS                ; Untyped                 ;
+; C3_MODE                       ; BYPASS                ; Untyped                 ;
+; C4_MODE                       ; BYPASS                ; Untyped                 ;
+; C5_MODE                       ; BYPASS                ; Untyped                 ;
+; C6_MODE                       ; BYPASS                ; Untyped                 ;
+; C7_MODE                       ; BYPASS                ; Untyped                 ;
+; C8_MODE                       ; BYPASS                ; Untyped                 ;
+; C9_MODE                       ; BYPASS                ; Untyped                 ;
+; C0_PH                         ; 0                     ; Untyped                 ;
+; C1_PH                         ; 0                     ; Untyped                 ;
+; C2_PH                         ; 0                     ; Untyped                 ;
+; C3_PH                         ; 0                     ; Untyped                 ;
+; C4_PH                         ; 0                     ; Untyped                 ;
+; C5_PH                         ; 0                     ; Untyped                 ;
+; C6_PH                         ; 0                     ; Untyped                 ;
+; C7_PH                         ; 0                     ; Untyped                 ;
+; C8_PH                         ; 0                     ; Untyped                 ;
+; C9_PH                         ; 0                     ; Untyped                 ;
+; L0_HIGH                       ; 1                     ; Untyped                 ;
+; L1_HIGH                       ; 1                     ; Untyped                 ;
+; G0_HIGH                       ; 1                     ; Untyped                 ;
+; G1_HIGH                       ; 1                     ; Untyped                 ;
+; G2_HIGH                       ; 1                     ; Untyped                 ;
+; G3_HIGH                       ; 1                     ; Untyped                 ;
+; E0_HIGH                       ; 1                     ; Untyped                 ;
+; E1_HIGH                       ; 1                     ; Untyped                 ;
+; E2_HIGH                       ; 1                     ; Untyped                 ;
+; E3_HIGH                       ; 1                     ; Untyped                 ;
+; L0_LOW                        ; 1                     ; Untyped                 ;
+; L1_LOW                        ; 1                     ; Untyped                 ;
+; G0_LOW                        ; 1                     ; Untyped                 ;
+; G1_LOW                        ; 1                     ; Untyped                 ;
+; G2_LOW                        ; 1                     ; Untyped                 ;
+; G3_LOW                        ; 1                     ; Untyped                 ;
+; E0_LOW                        ; 1                     ; Untyped                 ;
+; E1_LOW                        ; 1                     ; Untyped                 ;
+; E2_LOW                        ; 1                     ; Untyped                 ;
+; E3_LOW                        ; 1                     ; Untyped                 ;
+; L0_INITIAL                    ; 1                     ; Untyped                 ;
+; L1_INITIAL                    ; 1                     ; Untyped                 ;
+; G0_INITIAL                    ; 1                     ; Untyped                 ;
+; G1_INITIAL                    ; 1                     ; Untyped                 ;
+; G2_INITIAL                    ; 1                     ; Untyped                 ;
+; G3_INITIAL                    ; 1                     ; Untyped                 ;
+; E0_INITIAL                    ; 1                     ; Untyped                 ;
+; E1_INITIAL                    ; 1                     ; Untyped                 ;
+; E2_INITIAL                    ; 1                     ; Untyped                 ;
+; E3_INITIAL                    ; 1                     ; Untyped                 ;
+; L0_MODE                       ; BYPASS                ; Untyped                 ;
+; L1_MODE                       ; BYPASS                ; Untyped                 ;
+; G0_MODE                       ; BYPASS                ; Untyped                 ;
+; G1_MODE                       ; BYPASS                ; Untyped                 ;
+; G2_MODE                       ; BYPASS                ; Untyped                 ;
+; G3_MODE                       ; BYPASS                ; Untyped                 ;
+; E0_MODE                       ; BYPASS                ; Untyped                 ;
+; E1_MODE                       ; BYPASS                ; Untyped                 ;
+; E2_MODE                       ; BYPASS                ; Untyped                 ;
+; E3_MODE                       ; BYPASS                ; Untyped                 ;
+; L0_PH                         ; 0                     ; Untyped                 ;
+; L1_PH                         ; 0                     ; Untyped                 ;
+; G0_PH                         ; 0                     ; Untyped                 ;
+; G1_PH                         ; 0                     ; Untyped                 ;
+; G2_PH                         ; 0                     ; Untyped                 ;
+; G3_PH                         ; 0                     ; Untyped                 ;
+; E0_PH                         ; 0                     ; Untyped                 ;
+; E1_PH                         ; 0                     ; Untyped                 ;
+; E2_PH                         ; 0                     ; Untyped                 ;
+; E3_PH                         ; 0                     ; Untyped                 ;
+; M_PH                          ; 0                     ; Untyped                 ;
+; C1_USE_CASC_IN                ; OFF                   ; Untyped                 ;
+; C2_USE_CASC_IN                ; OFF                   ; Untyped                 ;
+; C3_USE_CASC_IN                ; OFF                   ; Untyped                 ;
+; C4_USE_CASC_IN                ; OFF                   ; Untyped                 ;
+; C5_USE_CASC_IN                ; OFF                   ; Untyped                 ;
+; C6_USE_CASC_IN                ; OFF                   ; Untyped                 ;
+; C7_USE_CASC_IN                ; OFF                   ; Untyped                 ;
+; C8_USE_CASC_IN                ; OFF                   ; Untyped                 ;
+; C9_USE_CASC_IN                ; OFF                   ; Untyped                 ;
+; CLK0_COUNTER                  ; G0                    ; Untyped                 ;
+; CLK1_COUNTER                  ; G0                    ; Untyped                 ;
+; CLK2_COUNTER                  ; G0                    ; Untyped                 ;
+; CLK3_COUNTER                  ; G0                    ; Untyped                 ;
+; CLK4_COUNTER                  ; G0                    ; Untyped                 ;
+; CLK5_COUNTER                  ; G0                    ; Untyped                 ;
+; CLK6_COUNTER                  ; E0                    ; Untyped                 ;
+; CLK7_COUNTER                  ; E1                    ; Untyped                 ;
+; CLK8_COUNTER                  ; E2                    ; Untyped                 ;
+; CLK9_COUNTER                  ; E3                    ; Untyped                 ;
+; L0_TIME_DELAY                 ; 0                     ; Untyped                 ;
+; L1_TIME_DELAY                 ; 0                     ; Untyped                 ;
+; G0_TIME_DELAY                 ; 0                     ; Untyped                 ;
+; G1_TIME_DELAY                 ; 0                     ; Untyped                 ;
+; G2_TIME_DELAY                 ; 0                     ; Untyped                 ;
+; G3_TIME_DELAY                 ; 0                     ; Untyped                 ;
+; E0_TIME_DELAY                 ; 0                     ; Untyped                 ;
+; E1_TIME_DELAY                 ; 0                     ; Untyped                 ;
+; E2_TIME_DELAY                 ; 0                     ; Untyped                 ;
+; E3_TIME_DELAY                 ; 0                     ; Untyped                 ;
+; M_TIME_DELAY                  ; 0                     ; Untyped                 ;
+; N_TIME_DELAY                  ; 0                     ; Untyped                 ;
+; EXTCLK3_COUNTER               ; E3                    ; Untyped                 ;
+; EXTCLK2_COUNTER               ; E2                    ; Untyped                 ;
+; EXTCLK1_COUNTER               ; E1                    ; Untyped                 ;
+; EXTCLK0_COUNTER               ; E0                    ; Untyped                 ;
+; ENABLE0_COUNTER               ; L0                    ; Untyped                 ;
+; ENABLE1_COUNTER               ; L0                    ; Untyped                 ;
+; CHARGE_PUMP_CURRENT           ; 2                     ; Untyped                 ;
+; LOOP_FILTER_R                 ;  1.000000             ; Untyped                 ;
+; LOOP_FILTER_C                 ; 5                     ; Untyped                 ;
+; CHARGE_PUMP_CURRENT_BITS      ; 9999                  ; Untyped                 ;
+; LOOP_FILTER_R_BITS            ; 9999                  ; Untyped                 ;
+; LOOP_FILTER_C_BITS            ; 9999                  ; Untyped                 ;
+; VCO_POST_SCALE                ; 0                     ; Untyped                 ;
+; CLK2_OUTPUT_FREQUENCY         ; 0                     ; Untyped                 ;
+; CLK1_OUTPUT_FREQUENCY         ; 0                     ; Untyped                 ;
+; CLK0_OUTPUT_FREQUENCY         ; 0                     ; Untyped                 ;
+; INTENDED_DEVICE_FAMILY        ; Cyclone II            ; Untyped                 ;
+; PORT_CLKENA0                  ; PORT_UNUSED           ; Untyped                 ;
+; PORT_CLKENA1                  ; PORT_UNUSED           ; Untyped                 ;
+; PORT_CLKENA2                  ; PORT_UNUSED           ; Untyped                 ;
+; PORT_CLKENA3                  ; PORT_UNUSED           ; Untyped                 ;
+; PORT_CLKENA4                  ; PORT_UNUSED           ; Untyped                 ;
+; PORT_CLKENA5                  ; PORT_UNUSED           ; Untyped                 ;
+; PORT_EXTCLKENA0               ; PORT_CONNECTIVITY     ; Untyped                 ;
+; PORT_EXTCLKENA1               ; PORT_CONNECTIVITY     ; Untyped                 ;
+; PORT_EXTCLKENA2               ; PORT_CONNECTIVITY     ; Untyped                 ;
+; PORT_EXTCLKENA3               ; PORT_CONNECTIVITY     ; Untyped                 ;
+; PORT_EXTCLK0                  ; PORT_UNUSED           ; Untyped                 ;
+; PORT_EXTCLK1                  ; PORT_UNUSED           ; Untyped                 ;
+; PORT_EXTCLK2                  ; PORT_UNUSED           ; Untyped                 ;
+; PORT_EXTCLK3                  ; PORT_UNUSED           ; Untyped                 ;
+; PORT_CLKBAD0                  ; PORT_UNUSED           ; Untyped                 ;
+; PORT_CLKBAD1                  ; PORT_UNUSED           ; Untyped                 ;
+; PORT_CLK0                     ; PORT_USED             ; Untyped                 ;
+; PORT_CLK1                     ; PORT_UNUSED           ; Untyped                 ;
+; PORT_CLK2                     ; PORT_UNUSED           ; Untyped                 ;
+; PORT_CLK3                     ; PORT_UNUSED           ; Untyped                 ;
+; PORT_CLK4                     ; PORT_UNUSED           ; Untyped                 ;
+; PORT_CLK5                     ; PORT_UNUSED           ; Untyped                 ;
+; PORT_CLK6                     ; PORT_UNUSED           ; Untyped                 ;
+; PORT_CLK7                     ; PORT_UNUSED           ; Untyped                 ;
+; PORT_CLK8                     ; PORT_UNUSED           ; Untyped                 ;
+; PORT_CLK9                     ; PORT_UNUSED           ; Untyped                 ;
+; PORT_SCANDATA                 ; PORT_UNUSED           ; Untyped                 ;
+; PORT_SCANDATAOUT              ; PORT_UNUSED           ; Untyped                 ;
+; PORT_SCANDONE                 ; PORT_UNUSED           ; Untyped                 ;
+; PORT_SCLKOUT1                 ; PORT_CONNECTIVITY     ; Untyped                 ;
+; PORT_SCLKOUT0                 ; PORT_CONNECTIVITY     ; Untyped                 ;
+; PORT_ACTIVECLOCK              ; PORT_UNUSED           ; Untyped                 ;
+; PORT_CLKLOSS                  ; PORT_UNUSED           ; Untyped                 ;
+; PORT_INCLK1                   ; PORT_UNUSED           ; Untyped                 ;
+; PORT_INCLK0                   ; PORT_USED             ; Untyped                 ;
+; PORT_FBIN                     ; PORT_UNUSED           ; Untyped                 ;
+; PORT_PLLENA                   ; PORT_UNUSED           ; Untyped                 ;
+; PORT_CLKSWITCH                ; PORT_UNUSED           ; Untyped                 ;
+; PORT_ARESET                   ; PORT_USED             ; Untyped                 ;
+; PORT_PFDENA                   ; PORT_UNUSED           ; Untyped                 ;
+; PORT_SCANCLK                  ; PORT_UNUSED           ; Untyped                 ;
+; PORT_SCANACLR                 ; PORT_UNUSED           ; Untyped                 ;
+; PORT_SCANREAD                 ; PORT_UNUSED           ; Untyped                 ;
+; PORT_SCANWRITE                ; PORT_UNUSED           ; Untyped                 ;
+; PORT_ENABLE0                  ; PORT_CONNECTIVITY     ; Untyped                 ;
+; PORT_ENABLE1                  ; PORT_CONNECTIVITY     ; Untyped                 ;
+; PORT_LOCKED                   ; PORT_USED             ; Untyped                 ;
+; PORT_CONFIGUPDATE             ; PORT_UNUSED           ; Untyped                 ;
+; PORT_FBOUT                    ; PORT_CONNECTIVITY     ; Untyped                 ;
+; PORT_PHASEDONE                ; PORT_UNUSED           ; Untyped                 ;
+; PORT_PHASESTEP                ; PORT_UNUSED           ; Untyped                 ;
+; PORT_PHASEUPDOWN              ; PORT_UNUSED           ; Untyped                 ;
+; PORT_SCANCLKENA               ; PORT_UNUSED           ; Untyped                 ;
+; PORT_PHASECOUNTERSELECT       ; PORT_UNUSED           ; Untyped                 ;
+; PORT_VCOOVERRANGE             ; PORT_CONNECTIVITY     ; Untyped                 ;
+; PORT_VCOUNDERRANGE            ; PORT_CONNECTIVITY     ; Untyped                 ;
+; M_TEST_SOURCE                 ; 5                     ; Untyped                 ;
+; C0_TEST_SOURCE                ; 5                     ; Untyped                 ;
+; C1_TEST_SOURCE                ; 5                     ; Untyped                 ;
+; C2_TEST_SOURCE                ; 5                     ; Untyped                 ;
+; C3_TEST_SOURCE                ; 5                     ; Untyped                 ;
+; C4_TEST_SOURCE                ; 5                     ; Untyped                 ;
+; C5_TEST_SOURCE                ; 5                     ; Untyped                 ;
+; C6_TEST_SOURCE                ; 5                     ; Untyped                 ;
+; C7_TEST_SOURCE                ; 5                     ; Untyped                 ;
+; C8_TEST_SOURCE                ; 5                     ; Untyped                 ;
+; C9_TEST_SOURCE                ; 5                     ; Untyped                 ;
+; CBXI_PARAMETER                ; NOTHING               ; Untyped                 ;
+; VCO_FREQUENCY_CONTROL         ; AUTO                  ; Untyped                 ;
+; VCO_PHASE_SHIFT_STEP          ; 0                     ; Untyped                 ;
+; WIDTH_CLOCK                   ; 6                     ; Untyped                 ;
+; WIDTH_PHASECOUNTERSELECT      ; 4                     ; Untyped                 ;
+; USING_FBMIMICBIDIR_PORT       ; OFF                   ; Untyped                 ;
+; DEVICE_FAMILY                 ; Cyclone II            ; Untyped                 ;
+; SCAN_CHAIN_MIF_FILE           ; UNUSED                ; Untyped                 ;
+; SIM_GATE_LOCK_DEVICE_BEHAVIOR ; OFF                   ; Untyped                 ;
+; AUTO_CARRY_CHAINS             ; ON                    ; AUTO_CARRY              ;
+; IGNORE_CARRY_BUFFERS          ; OFF                   ; IGNORE_CARRY            ;
+; AUTO_CASCADE_CHAINS           ; ON                    ; AUTO_CASCADE            ;
+; IGNORE_CASCADE_BUFFERS        ; OFF                   ; IGNORE_CASCADE          ;
++-------------------------------+-----------------------+-------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fetch_unit:IFETCH ;
++----------------+-------+---------------------------------------+
+; Parameter Name ; Value ; Type                                  ;
++----------------+-------+---------------------------------------+
+; ADDRESS_WIDTH  ; 22    ; Signed Integer                        ;
+; DATA_WIDTH     ; 32    ; Signed Integer                        ;
++----------------+-------+---------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: i_cache:I_CACHE ;
++--------------------+-------+---------------------------------+
+; Parameter Name     ; Value ; Type                            ;
++--------------------+-------+---------------------------------+
+; DATA_WIDTH         ; 32    ; Signed Integer                  ;
+; ADDRESS_WIDTH      ; 22    ; Signed Integer                  ;
+; TAG_WIDTH          ; 14    ; Signed Integer                  ;
+; INDEX_WIDTH        ; 5     ; Signed Integer                  ;
+; BLOCK_OFFSET_WIDTH ; 2     ; Signed Integer                  ;
++--------------------+-------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: pre_aligner:PRE_ALIGNER ;
++----------------+-------+---------------------------------------------+
+; Parameter Name ; Value ; Type                                        ;
++----------------+-------+---------------------------------------------+
+; ADDRESS_WIDTH  ; 22    ; Signed Integer                              ;
+; DATA_WIDTH     ; 32    ; Signed Integer                              ;
++----------------+-------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: jump_stack:JUMP_STACK ;
++----------------+-------+-------------------------------------------+
+; Parameter Name ; Value ; Type                                      ;
++----------------+-------+-------------------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                            ;
+; ADDRESS_WIDTH  ; 22    ; Signed Integer                            ;
+; STACK_SIZE     ; 16    ; Signed Integer                            ;
++----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: pipe_if_dec:PIPE_IF_DEC ;
++----------------+-------+---------------------------------------------+
+; Parameter Name ; Value ; Type                                        ;
++----------------+-------+---------------------------------------------+
+; ADDRESS_WIDTH  ; 22    ; Signed Integer                              ;
+; DATA_WIDTH     ; 32    ; Signed Integer                              ;
++----------------+-------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: decoder:DECODE ;
++-------------------+-------+---------------------------------+
+; Parameter Name    ; Value ; Type                            ;
++-------------------+-------+---------------------------------+
+; ADDRESS_WIDTH     ; 22    ; Signed Integer                  ;
+; DATA_WIDTH        ; 32    ; Signed Integer                  ;
+; REG_ADDRESS_WIDTH ; 5     ; Signed Integer                  ;
+; ALUCTL_WIDTH      ; 8     ; Signed Integer                  ;
+; MEM_MASK_WIDTH    ; 3     ; Signed Integer                  ;
+; DEBUG             ; 0     ; Signed Integer                  ;
++-------------------+-------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: regfile:REGFILE ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                      ;
+; REG_ADDR_WIDTH ; 5     ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: pipe_dec_ex:PIPE_DEC_EX ;
++-------------------+-------+------------------------------------------+
+; Parameter Name    ; Value ; Type                                     ;
++-------------------+-------+------------------------------------------+
+; ADDRESS_WIDTH     ; 22    ; Signed Integer                           ;
+; DATA_WIDTH        ; 32    ; Signed Integer                           ;
+; REG_ADDR_WIDTH    ; 5     ; Signed Integer                           ;
+; ALU_CTLCODE_WIDTH ; 8     ; Signed Integer                           ;
+; MEM_MASK_WIDTH    ; 3     ; Signed Integer                           ;
++-------------------+-------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------+
+; Parameter Settings for User Entity Instance: alu:ALU ;
++----------------+-------+-----------------------------+
+; Parameter Name ; Value ; Type                        ;
++----------------+-------+-----------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer              ;
+; CTLCODE_WIDTH  ; 8     ; Signed Integer              ;
++----------------+-------+-----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: pipe_ex_mem:PIPE_EX_MEM ;
++-------------------+-------+------------------------------------------+
+; Parameter Name    ; Value ; Type                                     ;
++-------------------+-------+------------------------------------------+
+; ADDRESS_WIDTH     ; 22    ; Signed Integer                           ;
+; DATA_WIDTH        ; 32    ; Signed Integer                           ;
+; REG_ADDR_WIDTH    ; 5     ; Signed Integer                           ;
+; ALU_CTLCODE_WIDTH ; 8     ; Signed Integer                           ;
+; MEM_MASK_WIDTH    ; 3     ; Signed Integer                           ;
++-------------------+-------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: d_cache:D_CACHE ;
++--------------------+-------+---------------------------------+
+; Parameter Name     ; Value ; Type                            ;
++--------------------+-------+---------------------------------+
+; DATA_WIDTH         ; 32    ; Signed Integer                  ;
+; TAG_WIDTH          ; 14    ; Signed Integer                  ;
+; INDEX_WIDTH        ; 5     ; Signed Integer                  ;
+; BLOCK_OFFSET_WIDTH ; 2     ; Signed Integer                  ;
+; MEM_MASK_WIDTH     ; 3     ; Signed Integer                  ;
++--------------------+-------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: pipe_mem_wb:PIPE_MEM_WB ;
++----------------+-------+---------------------------------------------+
+; Parameter Name ; Value ; Type                                        ;
++----------------+-------+---------------------------------------------+
+; ADDRESS_WIDTH  ; 22    ; Signed Integer                              ;
+; DATA_WIDTH     ; 32    ; Signed Integer                              ;
+; REG_ADDR_WIDTH ; 5     ; Signed Integer                              ;
++----------------+-------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: memory_arbiter:ARBITER ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                             ;
+; ADDRESS_WIDTH  ; 22    ; Signed Integer                             ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: sdram_controller:memory_controller ;
++-----------------+-------+-------------------------------------------------------+
+; Parameter Name  ; Value ; Type                                                  ;
++-----------------+-------+-------------------------------------------------------+
+; ROW_ADDR_WIDTH  ; 12    ; Signed Integer                                        ;
+; BANK_ADDR_WIDTH ; 2     ; Signed Integer                                        ;
+; COL_ADDR_WIDTH  ; 8     ; Signed Integer                                        ;
+; DATA_WIDTH      ; 16    ; Signed Integer                                        ;
++-----------------+-------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: forwarding_unit:FORWARDING_UNIT ;
++----------------+-------+-----------------------------------------------------+
+; Parameter Name ; Value ; Type                                                ;
++----------------+-------+-----------------------------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                                      ;
+; REG_ADDR_WIDTH ; 5     ; Signed Integer                                      ;
++----------------+-------+-----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: hazard_detection_unit:HAZARD_DETECTION_UNIT ;
++----------------+-------+-----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                            ;
++----------------+-------+-----------------------------------------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                                                  ;
+; ADDRESS_WIDTH  ; 22    ; Signed Integer                                                  ;
+; REG_ADDR_WIDTH ; 5     ; Signed Integer                                                  ;
++----------------+-------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: flashreader:flashloader2        ;
++-------------------------+----------------------------------+-----------------+
+; Parameter Name          ; Value                            ; Type            ;
++-------------------------+----------------------------------+-----------------+
+; WORDS_TO_LOAD           ; 00000000000100000000000000000000 ; Unsigned Binary ;
+; CLOCK_PERIOD_PS         ; 10000                            ; Signed Integer  ;
+; DRAM_ADDR_WIDTH         ; 22                               ; Signed Integer  ;
+; DRAM_BASE_ADDR          ; 0000000000000000000000           ; Unsigned Binary ;
+; DRAM_DATA_WIDTH         ; 32                               ; Signed Integer  ;
+; DRAM_DATA_BURST_COUNT   ; 4                                ; Signed Integer  ;
+; FLASH_BASE_ADDR         ; 0000000000000000000000           ; Unsigned Binary ;
+; FLASH_ADDR_WIDTH        ; 22                               ; Signed Integer  ;
+; FLASH_DATA_WIDTH        ; 8                                ; Signed Integer  ;
+; FLASH_READ_WAIT_TIME_PS ; 90000                            ; Signed Integer  ;
++-------------------------+----------------------------------+-----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: i_cache:I_CACHE|altsyncram:Tag_Array_rtl_0 ;
++------------------------------------+----------------------+---------------------------------+
+; Parameter Name                     ; Value                ; Type                            ;
++------------------------------------+----------------------+---------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                         ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                      ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                    ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                    ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                  ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                         ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                         ;
+; WIDTH_A                            ; 14                   ; Untyped                         ;
+; WIDTHAD_A                          ; 5                    ; Untyped                         ;
+; NUMWORDS_A                         ; 32                   ; Untyped                         ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                         ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                         ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                         ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                         ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                         ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                         ;
+; WIDTH_B                            ; 14                   ; Untyped                         ;
+; WIDTHAD_B                          ; 5                    ; Untyped                         ;
+; NUMWORDS_B                         ; 32                   ; Untyped                         ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                         ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                         ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                         ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                         ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                         ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                         ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                         ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                         ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                         ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                         ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                         ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                         ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                         ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                         ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                         ;
+; BYTE_SIZE                          ; 8                    ; Untyped                         ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                         ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                         ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                         ;
+; INIT_FILE                          ; UNUSED               ; Untyped                         ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                         ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                         ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                         ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                         ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                         ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                         ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                         ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                         ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                         ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                         ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                         ;
+; CBXI_PARAMETER                     ; altsyncram_bnd1      ; Untyped                         ;
++------------------------------------+----------------------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------+
+; altpll Parameter Settings by Entity Instance                       ;
++-------------------------------+------------------------------------+
+; Name                          ; Value                              ;
++-------------------------------+------------------------------------+
+; Number of entity instances    ; 1                                  ;
+; Entity Instance               ; pll:my_pll|altpll:altpll_component ;
+;     -- OPERATION_MODE         ; NORMAL                             ;
+;     -- PLL_TYPE               ; AUTO                               ;
+;     -- PRIMARY_CLOCK          ; INCLK0                             ;
+;     -- INCLK0_INPUT_FREQUENCY ; 20000                              ;
+;     -- INCLK1_INPUT_FREQUENCY ; 0                                  ;
+;     -- VCO_MULTIPLY_BY        ; 0                                  ;
+;     -- VCO_DIVIDE_BY          ; 0                                  ;
++-------------------------------+------------------------------------+
+
+
++----------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                       ;
++-------------------------------------------+--------------------------------------------+
+; Name                                      ; Value                                      ;
++-------------------------------------------+--------------------------------------------+
+; Number of entity instances                ; 1                                          ;
+; Entity Instance                           ; i_cache:I_CACHE|altsyncram:Tag_Array_rtl_0 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                  ;
+;     -- WIDTH_A                            ; 14                                         ;
+;     -- NUMWORDS_A                         ; 32                                         ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                               ;
+;     -- WIDTH_B                            ; 14                                         ;
+;     -- NUMWORDS_B                         ; 32                                         ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                     ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                               ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                       ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                  ;
++-------------------------------------------+--------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "flashreader:flashloader2"                                                                           ;
++----------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port                 ; Type   ; Severity ; Details                                                                             ;
++----------------------+--------+----------+-------------------------------------------------------------------------------------+
+; o_SDRAM_Read_Write_n ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "d_cache:D_CACHE"                                                                       ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; o_Ready ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "alu:ALU"                                                                                                ;
++--------------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port                     ; Type   ; Severity ; Details                                                                             ;
++--------------------------+--------+----------+-------------------------------------------------------------------------------------+
+; o_Pass_Done_Value[15..8] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipe_dec_ex:PIPE_DEC_EX"                                                                   ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; o_PC        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; o_Is_Branch ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "jump_stack:JUMP_STACK"                                                                                                                                                                       ;
++----------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port           ; Type   ; Severity ; Details                                                                                                                                                                            ;
++----------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; i_thread       ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (2 bits) it drives.  The 30 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; i_thread[1..0] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; o_address      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                ;
++----------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pre_aligner:PRE_ALIGNER"                                                                        ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port             ; Type   ; Severity ; Details                                                                             ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+; o_isbranch       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; o_branch_address ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; o_Branch_Target  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; o_j_inst         ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "i_cache:I_CACHE"                                                                       ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; o_Ready ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:01:32     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Analysis & Synthesis
+    Info: Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version
+    Info: Processing started: Sun Jun 10 19:44:21 2012
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off mips_cpu -c mips_cpu
+Info: Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info: Found 2 design units, including 2 entities, in source file sched.v
+    Info: Found entity 1: schedule
+    Info: Found entity 2: schedule_thread
+Info: Found 1 design units, including 1 entities, in source file pre_aligner.v
+    Info: Found entity 1: pre_aligner
+Info: Found 1 design units, including 1 entities, in source file pipe_dec_qr.v
+    Info: Found entity 1: pipe_dec_qr
+Info: Found 1 design units, including 1 entities, in source file jump_stack.v
+    Info: Found entity 1: jump_stack
+Info: Found 2 design units, including 2 entities, in source file iq.v
+    Info: Found entity 1: iq
+    Info: Found entity 2: thread_iq
+Info: Found 1 design units, including 1 entities, in source file insn_mixer.v
+    Info: Found entity 1: insn_mixer
+Info: Found 1 design units, including 1 entities, in source file gshare.v
+    Info: Found entity 1: branch_predictor
+Info: Found 1 design units, including 1 entities, in source file demux.v
+    Info: Found entity 1: demux
+Info: Found 1 design units, including 1 entities, in source file aligner.v
+    Info: Found entity 1: aligner
+Info: Found 1 design units, including 1 entities, in source file memory_arbiter.v
+    Info: Found entity 1: memory_arbiter
+Info: Found 1 design units, including 1 entities, in source file i_cache.v
+    Info: Found entity 1: i_cache
+Info: Found 1 design units, including 1 entities, in source file hazard_detection_unit.v
+    Info: Found entity 1: hazard_detection_unit
+Info: Found 1 design units, including 1 entities, in source file forwarding_unit.v
+    Info: Found entity 1: forwarding_unit
+Info: Found 1 design units, including 1 entities, in source file flashreader.v
+    Info: Found entity 1: flashreader
+Info: Found 1 design units, including 1 entities, in source file fetch_unit.v
+    Info: Found entity 1: fetch_unit
+Info: Found 2 design units, including 2 entities, in source file displaydecoder.v
+    Info: Found entity 1: SevenSegmentDisplayDecoder
+    Info: Found entity 2: SevenSegmentPFD
+Info: Found 1 design units, including 1 entities, in source file decoder.v
+    Info: Found entity 1: decoder
+Info: Found 1 design units, including 1 entities, in source file d_cache.v
+    Info: Found entity 1: d_cache
+Info: Found 1 design units, including 1 entities, in source file alu.v
+    Info: Found entity 1: alu
+Info: Found 1 design units, including 1 entities, in source file test_mips_cpu.v
+    Info: Found entity 1: test_mips_cpu
+Info: Found 1 design units, including 1 entities, in source file sdram_controller.v
+    Info: Found entity 1: sdram_controller
+Info: Found 1 design units, including 1 entities, in source file regfile.v
+    Info: Found entity 1: regfile
+Info: Found 1 design units, including 1 entities, in source file pll.v
+    Info: Found entity 1: pll
+Info: Found 1 design units, including 1 entities, in source file pipe_mem_wb.v
+    Info: Found entity 1: pipe_mem_wb
+Info: Found 1 design units, including 1 entities, in source file pipe_if_dec.v
+    Info: Found entity 1: pipe_if_dec
+Info: Found 1 design units, including 1 entities, in source file pipe_ex_mem.v
+    Info: Found entity 1: pipe_ex_mem
+Info: Found 1 design units, including 1 entities, in source file pipe_dec_ex.v
+    Info: Found entity 1: pipe_dec_ex
+Info: Found 1 design units, including 1 entities, in source file mt48lc4m16a2.v
+    Info: Found entity 1: mt48lc4m16a2
+Warning (10275): Verilog HDL Module Instantiation warning at mips_cpu.v(527): ignored dangling comma in List of Port Connections
+Info: Found 1 design units, including 1 entities, in source file mips_cpu.v
+    Info: Found entity 1: mips_cpu
+Info: Elaborating entity "mips_cpu" for the top level hierarchy
+Info: Elaborating entity "pll" for hierarchy "pll:my_pll"
+Info: Elaborating entity "altpll" for hierarchy "pll:my_pll|altpll:altpll_component"
+Info: Elaborated megafunction instantiation "pll:my_pll|altpll:altpll_component"
+Info: Instantiated megafunction "pll:my_pll|altpll:altpll_component" with the following parameter:
+    Info: Parameter "clk0_divide_by" = "10"
+    Info: Parameter "clk0_duty_cycle" = "50"
+    Info: Parameter "clk0_multiply_by" = "13"
+    Info: Parameter "clk0_phase_shift" = "0"
+    Info: Parameter "compensate_clock" = "CLK0"
+    Info: Parameter "gate_lock_signal" = "NO"
+    Info: Parameter "inclk0_input_frequency" = "20000"
+    Info: Parameter "intended_device_family" = "Cyclone II"
+    Info: Parameter "invalid_lock_multiplier" = "5"
+    Info: Parameter "lpm_hint" = "CBX_MODULE_PREFIX=pll"
+    Info: Parameter "lpm_type" = "altpll"
+    Info: Parameter "operation_mode" = "NORMAL"
+    Info: Parameter "port_activeclock" = "PORT_UNUSED"
+    Info: Parameter "port_areset" = "PORT_USED"
+    Info: Parameter "port_clkbad0" = "PORT_UNUSED"
+    Info: Parameter "port_clkbad1" = "PORT_UNUSED"
+    Info: Parameter "port_clkloss" = "PORT_UNUSED"
+    Info: Parameter "port_clkswitch" = "PORT_UNUSED"
+    Info: Parameter "port_configupdate" = "PORT_UNUSED"
+    Info: Parameter "port_fbin" = "PORT_UNUSED"
+    Info: Parameter "port_inclk0" = "PORT_USED"
+    Info: Parameter "port_inclk1" = "PORT_UNUSED"
+    Info: Parameter "port_locked" = "PORT_USED"
+    Info: Parameter "port_pfdena" = "PORT_UNUSED"
+    Info: Parameter "port_phasecounterselect" = "PORT_UNUSED"
+    Info: Parameter "port_phasedone" = "PORT_UNUSED"
+    Info: Parameter "port_phasestep" = "PORT_UNUSED"
+    Info: Parameter "port_phaseupdown" = "PORT_UNUSED"
+    Info: Parameter "port_pllena" = "PORT_UNUSED"
+    Info: Parameter "port_scanaclr" = "PORT_UNUSED"
+    Info: Parameter "port_scanclk" = "PORT_UNUSED"
+    Info: Parameter "port_scanclkena" = "PORT_UNUSED"
+    Info: Parameter "port_scandata" = "PORT_UNUSED"
+    Info: Parameter "port_scandataout" = "PORT_UNUSED"
+    Info: Parameter "port_scandone" = "PORT_UNUSED"
+    Info: Parameter "port_scanread" = "PORT_UNUSED"
+    Info: Parameter "port_scanwrite" = "PORT_UNUSED"
+    Info: Parameter "port_clk0" = "PORT_USED"
+    Info: Parameter "port_clk1" = "PORT_UNUSED"
+    Info: Parameter "port_clk2" = "PORT_UNUSED"
+    Info: Parameter "port_clk3" = "PORT_UNUSED"
+    Info: Parameter "port_clk4" = "PORT_UNUSED"
+    Info: Parameter "port_clk5" = "PORT_UNUSED"
+    Info: Parameter "port_clkena0" = "PORT_UNUSED"
+    Info: Parameter "port_clkena1" = "PORT_UNUSED"
+    Info: Parameter "port_clkena2" = "PORT_UNUSED"
+    Info: Parameter "port_clkena3" = "PORT_UNUSED"
+    Info: Parameter "port_clkena4" = "PORT_UNUSED"
+    Info: Parameter "port_clkena5" = "PORT_UNUSED"
+    Info: Parameter "port_extclk0" = "PORT_UNUSED"
+    Info: Parameter "port_extclk1" = "PORT_UNUSED"
+    Info: Parameter "port_extclk2" = "PORT_UNUSED"
+    Info: Parameter "port_extclk3" = "PORT_UNUSED"
+    Info: Parameter "valid_lock_multiplier" = "1"
+Info: Elaborating entity "SevenSegmentDisplayDecoder" for hierarchy "SevenSegmentDisplayDecoder:SSD0"
+Info: Elaborating entity "SevenSegmentPFD" for hierarchy "SevenSegmentPFD:PFD2"
+Info: Elaborating entity "fetch_unit" for hierarchy "fetch_unit:IFETCH"
+Info: Elaborating entity "i_cache" for hierarchy "i_cache:I_CACHE"
+Info: Elaborating entity "pre_aligner" for hierarchy "pre_aligner:PRE_ALIGNER"
+Warning (10230): Verilog HDL assignment warning at pre_aligner.v(176): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at pre_aligner.v(180): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at pre_aligner.v(213): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at pre_aligner.v(217): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at pre_aligner.v(225): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at pre_aligner.v(250): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at pre_aligner.v(254): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at pre_aligner.v(262): truncated value with size 32 to match size of target (22)
+Info: Elaborating entity "jump_stack" for hierarchy "jump_stack:JUMP_STACK"
+Warning (10230): Verilog HDL assignment warning at jump_stack.v(69): truncated value with size 32 to match size of target (6)
+Warning (10230): Verilog HDL assignment warning at jump_stack.v(74): truncated value with size 32 to match size of target (6)
+Warning (10230): Verilog HDL assignment warning at jump_stack.v(82): truncated value with size 32 to match size of target (6)
+Warning (10230): Verilog HDL assignment warning at jump_stack.v(87): truncated value with size 32 to match size of target (6)
+Warning (10230): Verilog HDL assignment warning at jump_stack.v(95): truncated value with size 32 to match size of target (6)
+Warning (10230): Verilog HDL assignment warning at jump_stack.v(100): truncated value with size 32 to match size of target (6)
+Warning (10230): Verilog HDL assignment warning at jump_stack.v(108): truncated value with size 32 to match size of target (6)
+Warning (10230): Verilog HDL assignment warning at jump_stack.v(113): truncated value with size 32 to match size of target (6)
+Info: Elaborating entity "pipe_if_dec" for hierarchy "pipe_if_dec:PIPE_IF_DEC"
+Info: Elaborating entity "decoder" for hierarchy "decoder:DECODE"
+Info: Elaborating entity "regfile" for hierarchy "regfile:REGFILE"
+Info: Elaborating entity "pipe_dec_ex" for hierarchy "pipe_dec_ex:PIPE_DEC_EX"
+Info: Elaborating entity "alu" for hierarchy "alu:ALU"
+Info: Elaborating entity "pipe_ex_mem" for hierarchy "pipe_ex_mem:PIPE_EX_MEM"
+Info: Elaborating entity "d_cache" for hierarchy "d_cache:D_CACHE"
+Info (10264): Verilog HDL Case Statement information at d_cache.v(103): all case item expressions in this case statement are onehot
+Info: Elaborating entity "pipe_mem_wb" for hierarchy "pipe_mem_wb:PIPE_MEM_WB"
+Info: Elaborating entity "memory_arbiter" for hierarchy "memory_arbiter:ARBITER"
+Info: Elaborating entity "sdram_controller" for hierarchy "sdram_controller:memory_controller"
+Info: Elaborating entity "forwarding_unit" for hierarchy "forwarding_unit:FORWARDING_UNIT"
+Info: Elaborating entity "hazard_detection_unit" for hierarchy "hazard_detection_unit:HAZARD_DETECTION_UNIT"
+Info: Elaborating entity "flashreader" for hierarchy "flashreader:flashloader2"
+Warning (10230): Verilog HDL assignment warning at flashreader.v(99): truncated value with size 32 to match size of target (4)
+Warning (10230): Verilog HDL assignment warning at flashreader.v(119): truncated value with size 32 to match size of target (4)
+Warning (10240): Verilog HDL Always Construct warning at flashreader.v(92): inferring latch(es) for variable "o_SDRAM_Addr", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "o_SDRAM_Addr[0]" at flashreader.v(92)
+Warning: Inferred RAM node "i_cache:I_CACHE|Tag_Array_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
+Info: Found 3 instances of uninferred RAM logic
+    Info: RAM logic "d_cache:D_CACHE|Dirty_Array" is uninferred due to inappropriate RAM size
+    Info: RAM logic "i_cache:I_CACHE|Valid_Array" is uninferred due to inappropriate RAM size
+    Info: RAM logic "regfile:REGFILE|Register" is uninferred due to asynchronous read logic
+Warning: Memory Initialization File or Hexadecimal (Intel-Format) File "H:/148/Test/db/mips_cpu.ram0_regfile_362d5cba.hdl.mif" contains "don't care" values -- overwriting them with 0s
+Info: Inferred 1 megafunctions from design logic
+    Info: Inferred altsyncram megafunction from the following design logic: "i_cache:I_CACHE|Tag_Array_rtl_0" 
+        Info: Parameter OPERATION_MODE set to DUAL_PORT
+        Info: Parameter WIDTH_A set to 14
+        Info: Parameter WIDTHAD_A set to 5
+        Info: Parameter NUMWORDS_A set to 32
+        Info: Parameter WIDTH_B set to 14
+        Info: Parameter WIDTHAD_B set to 5
+        Info: Parameter NUMWORDS_B set to 32
+        Info: Parameter ADDRESS_ACLR_A set to NONE
+        Info: Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info: Parameter ADDRESS_ACLR_B set to NONE
+        Info: Parameter OUTDATA_ACLR_B set to NONE
+        Info: Parameter ADDRESS_REG_B set to CLOCK0
+        Info: Parameter INDATA_ACLR_A set to NONE
+        Info: Parameter WRCONTROL_ACLR_A set to NONE
+Info: Elaborated megafunction instantiation "i_cache:I_CACHE|altsyncram:Tag_Array_rtl_0"
+Info: Instantiated megafunction "i_cache:I_CACHE|altsyncram:Tag_Array_rtl_0" with the following parameter:
+    Info: Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info: Parameter "WIDTH_A" = "14"
+    Info: Parameter "WIDTHAD_A" = "5"
+    Info: Parameter "NUMWORDS_A" = "32"
+    Info: Parameter "WIDTH_B" = "14"
+    Info: Parameter "WIDTHAD_B" = "5"
+    Info: Parameter "NUMWORDS_B" = "32"
+    Info: Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info: Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info: Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info: Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info: Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info: Parameter "INDATA_ACLR_A" = "NONE"
+    Info: Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info: Found 1 design units, including 1 entities, in source file db/altsyncram_bnd1.tdf
+    Info: Found entity 1: altsyncram_bnd1
+Warning: 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning: The following bidir pins have no drivers
+    Warning: Bidir "SRAM_DQ[0]" has no driver
+    Warning: Bidir "SRAM_DQ[1]" has no driver
+    Warning: Bidir "SRAM_DQ[2]" has no driver
+    Warning: Bidir "SRAM_DQ[3]" has no driver
+    Warning: Bidir "SRAM_DQ[4]" has no driver
+    Warning: Bidir "SRAM_DQ[5]" has no driver
+    Warning: Bidir "SRAM_DQ[6]" has no driver
+    Warning: Bidir "SRAM_DQ[7]" has no driver
+    Warning: Bidir "SRAM_DQ[8]" has no driver
+    Warning: Bidir "SRAM_DQ[9]" has no driver
+    Warning: Bidir "SRAM_DQ[10]" has no driver
+    Warning: Bidir "SRAM_DQ[11]" has no driver
+    Warning: Bidir "SRAM_DQ[12]" has no driver
+    Warning: Bidir "SRAM_DQ[13]" has no driver
+    Warning: Bidir "SRAM_DQ[14]" has no driver
+    Warning: Bidir "SRAM_DQ[15]" has no driver
+    Warning: Bidir "FL_DQ[0]" has no driver
+    Warning: Bidir "FL_DQ[1]" has no driver
+    Warning: Bidir "FL_DQ[2]" has no driver
+    Warning: Bidir "FL_DQ[3]" has no driver
+    Warning: Bidir "FL_DQ[4]" has no driver
+    Warning: Bidir "FL_DQ[5]" has no driver
+    Warning: Bidir "FL_DQ[6]" has no driver
+    Warning: Bidir "FL_DQ[7]" has no driver
+Info: Registers with preset signals will power-up high
+Info: DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning: Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LEDG[1]" is stuck at GND
+    Warning (13410): Pin "LEDG[2]" is stuck at GND
+    Warning (13410): Pin "LEDG[3]" is stuck at GND
+    Warning (13410): Pin "LEDG[4]" is stuck at GND
+    Warning (13410): Pin "LEDG[5]" is stuck at GND
+    Warning (13410): Pin "LEDG[6]" is stuck at GND
+    Warning (13410): Pin "LEDG[7]" is stuck at GND
+    Warning (13410): Pin "LEDR[1]" is stuck at GND
+    Warning (13410): Pin "LEDR[2]" is stuck at GND
+    Warning (13410): Pin "LEDR[3]" is stuck at GND
+    Warning (13410): Pin "LEDR[4]" is stuck at GND
+    Warning (13410): Pin "LEDR[5]" is stuck at GND
+    Warning (13410): Pin "LEDR[6]" is stuck at GND
+    Warning (13410): Pin "LEDR[7]" is stuck at GND
+    Warning (13410): Pin "LEDR[8]" is stuck at GND
+    Warning (13410): Pin "LEDR[9]" is stuck at GND
+    Warning (13410): Pin "LEDR[10]" is stuck at GND
+    Warning (13410): Pin "LEDR[11]" is stuck at GND
+    Warning (13410): Pin "LEDR[12]" is stuck at GND
+    Warning (13410): Pin "LEDR[13]" is stuck at GND
+    Warning (13410): Pin "LEDR[14]" is stuck at GND
+    Warning (13410): Pin "LEDR[15]" is stuck at GND
+    Warning (13410): Pin "LEDR[16]" is stuck at GND
+    Warning (13410): Pin "LEDR[17]" is stuck at GND
+    Warning (13410): Pin "DRAM_CKE" is stuck at VCC
+    Warning (13410): Pin "DRAM_CS_N" is stuck at GND
+    Warning (13410): Pin "FL_CE_N" is stuck at GND
+    Warning (13410): Pin "FL_OE_N" is stuck at GND
+    Warning (13410): Pin "FL_RST_N" is stuck at VCC
+    Warning (13410): Pin "FL_WE_N" is stuck at VCC
+    Warning (13410): Pin "SRAM_ADDR[0]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[1]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[2]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[3]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[4]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[5]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[6]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[7]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[8]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[9]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[10]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[11]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[12]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[13]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[14]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[15]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[16]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[17]" is stuck at GND
+    Warning (13410): Pin "SRAM_UB_N" is stuck at GND
+    Warning (13410): Pin "SRAM_LB_N" is stuck at GND
+    Warning (13410): Pin "SRAM_WE_N" is stuck at GND
+    Warning (13410): Pin "SRAM_OE_N" is stuck at GND
+    Warning (13410): Pin "SRAM_CE_N" is stuck at GND
+Info: 15 registers lost all their fanouts during netlist optimizations. The first 15 are displayed below.
+    Info: Register "flashreader:flashloader2|State~8" lost all its fanouts during netlist optimizations.
+    Info: Register "flashreader:flashloader2|State~9" lost all its fanouts during netlist optimizations.
+    Info: Register "memory_arbiter:ARBITER|State~4" lost all its fanouts during netlist optimizations.
+    Info: Register "memory_arbiter:ARBITER|State~5" lost all its fanouts during netlist optimizations.
+    Info: Register "memory_arbiter:ARBITER|State~6" lost all its fanouts during netlist optimizations.
+    Info: Register "memory_arbiter:ARBITER|State~7" lost all its fanouts during netlist optimizations.
+    Info: Register "d_cache:D_CACHE|State~7" lost all its fanouts during netlist optimizations.
+    Info: Register "d_cache:D_CACHE|State~8" lost all its fanouts during netlist optimizations.
+    Info: Register "d_cache:D_CACHE|State~9" lost all its fanouts during netlist optimizations.
+    Info: Register "d_cache:D_CACHE|State~10" lost all its fanouts during netlist optimizations.
+    Info: Register "i_cache:I_CACHE|State~5" lost all its fanouts during netlist optimizations.
+    Info: Register "i_cache:I_CACHE|State~6" lost all its fanouts during netlist optimizations.
+    Info: Register "i_cache:I_CACHE|State~7" lost all its fanouts during netlist optimizations.
+    Info: Register "i_cache:I_CACHE|State~8" lost all its fanouts during netlist optimizations.
+    Info: Register "i_cache:I_CACHE|State~9" lost all its fanouts during netlist optimizations.
+Info: Generated suppressed messages file H:/148/Test/mips_cpu.map.smsg
+Info: Generating hard_block partition "hard_block:auto_generated_inst"
+    Info: Adding node "pll:my_pll|altpll:altpll_component|pll"
+Warning: Design contains 19 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "KEY[1]"
+    Warning (15610): No output dependent on input pin "KEY[2]"
+    Warning (15610): No output dependent on input pin "KEY[3]"
+    Warning (15610): No output dependent on input pin "SW[2]"
+    Warning (15610): No output dependent on input pin "SW[3]"
+    Warning (15610): No output dependent on input pin "SW[4]"
+    Warning (15610): No output dependent on input pin "SW[5]"
+    Warning (15610): No output dependent on input pin "SW[6]"
+    Warning (15610): No output dependent on input pin "SW[7]"
+    Warning (15610): No output dependent on input pin "SW[8]"
+    Warning (15610): No output dependent on input pin "SW[9]"
+    Warning (15610): No output dependent on input pin "SW[10]"
+    Warning (15610): No output dependent on input pin "SW[11]"
+    Warning (15610): No output dependent on input pin "SW[12]"
+    Warning (15610): No output dependent on input pin "SW[13]"
+    Warning (15610): No output dependent on input pin "SW[14]"
+    Warning (15610): No output dependent on input pin "SW[15]"
+    Warning (15610): No output dependent on input pin "SW[16]"
+    Warning (15610): No output dependent on input pin "SW[17]"
+Info: Implemented 17908 device resources after synthesis - the final resource count might be different
+    Info: Implemented 23 input pins
+    Info: Implemented 153 output pins
+    Info: Implemented 40 bidirectional pins
+    Info: Implemented 17677 logic cells
+    Info: Implemented 14 RAM segments
+    Info: Implemented 1 PLLs
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 122 warnings
+    Info: Peak virtual memory: 329 megabytes
+    Info: Processing ended: Sun Jun 10 19:46:12 2012
+    Info: Elapsed time: 00:01:51
+    Info: Total CPU time (on all processors): 00:01:37
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in H:/148/Test/mips_cpu.map.smsg.
+
+

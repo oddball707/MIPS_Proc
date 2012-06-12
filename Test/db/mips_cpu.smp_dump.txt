@@ -1,0 +1,25 @@
+
+State Machine - |mips_cpu|flashreader:flashloader2|State
+Name State.FS_DONE State.FS_DMEM_WRITE State.FS_DMEM_REQ State.FS_LOAD_LINE 
+State.FS_LOAD_LINE 0 0 0 0 
+State.FS_DMEM_REQ 0 0 1 1 
+State.FS_DMEM_WRITE 0 1 0 1 
+State.FS_DONE 1 0 0 1 
+
+State Machine - |mips_cpu|memory_arbiter:ARBITER|State
+Name State.STATE_SERVICING_DMEM State.STATE_SERVICING_IMEM State.STATE_SERVICING_FLASH State.STATE_READY 
+State.STATE_READY 0 0 0 0 
+State.STATE_SERVICING_FLASH 0 0 1 1 
+State.STATE_SERVICING_IMEM 0 1 0 1 
+State.STATE_SERVICING_DMEM 1 0 0 1 
+
+State Machine - |mips_cpu|d_cache:D_CACHE|State
+Name State.STATE_POPULATE State.STATE_READY State.STATE_WRITEOUT 
+State.STATE_READY 0 0 0 
+State.STATE_POPULATE 1 1 0 
+State.STATE_WRITEOUT 0 1 1 
+
+State Machine - |mips_cpu|i_cache:I_CACHE|State
+Name State.STATE_MISS_READ 
+State.STATE_READY 0 
+State.STATE_MISS_READ 1 
