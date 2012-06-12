@@ -101,6 +101,7 @@ reg [31:0] flash_mem_sim [0:32767];
 initial
 begin
 	$readmemh("C:/users/Eli/Documents/ucsd/148/Test/hexfiles/nqueens.hex",flash_mem_sim);		// Change the path in readmemh to load a different benchmark
+	//$readmemh("H:/148/Test/hexfiles/nqueens.hex",flash_mem_sim);		// Change the path in readmemh to load a different benchmark
 end
 
 always @(*)

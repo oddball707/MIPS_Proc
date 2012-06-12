@@ -44,43 +44,52 @@ end
 
 always @(posedge i_Clk)
 begin
-	if(!i_Stall && i_isbranch_check)
+	if( !i_Reset_n )
 	begin
-		//next save GHR XOR addr for indexing
-		GHR_saved <= gshare_index;
-
-		//then reconcile branch from 2 cycles ago
-		if((i_ALU_outcome != i_ALU_prediction) && i_ALU_isbranch)
+		GHR <= 0;
+		GHR_saved <= 0;
+		o_taken <= 0;
+	end
+	else
+	begin
+		if(!i_Stall && i_isbranch_check)
 		begin
-			case(i_ALU_prediction)
+			//next save GHR XOR addr for indexing
+			GHR_saved <= gshare_index;
+
+			//then reconcile branch from 2 cycles ago
+			if((i_ALU_outcome != i_ALU_prediction) && i_ALU_isbranch)
+			begin
+				case(i_ALU_prediction)
+					0:
+					begin
+						branch_history[GHR_saved] <= branch_history[GHR_saved] + 2;		//+2 to compensate for incorrect -1
+						GHR[1:0] <= {1'b1, GHR_index[1]};								//shift in corrected old guess and current prediction
+						end
+					1:
+					begin
+						branch_history[GHR_saved] <= branch_history[GHR_saved] - 2;		//-2 to compensate for incorrect +1
+						GHR[1:0] <= {1'b0, GHR_index[1]};								//shift in corrected old guess and current prediction
+					end
+				endcase
+			end
+			else
+			begin
+				GHR <= {GHR[GHR_SIZE-2:0], gshare_counter[1]};							//shift in prediction
+			end
+
+			//and update bimodal counter to reflect current branch
+			case(gshare_counter[1])
 				0:
 				begin
-					branch_history[GHR_saved] <= branch_history[GHR_saved] + 2;		//+2 to compensate for incorrect -1
-					GHR[1:0] <= {1'b1, GHR_index[1]};								//shift in corrected old guess and current prediction
-					end
+						branch_history[gshare_index] <= branch_history[gshare_index] + 1;
+				end
 				1:
 				begin
-					branch_history[GHR_saved] <= branch_history[GHR_saved] - 2;		//-2 to compensate for incorrect +1
-					GHR[1:0] <= {1'b0, GHR_index[1]};								//shift in corrected old guess and current prediction
+						branch_history[gshare_index] <= branch_history[gshare_index] - 1;
 				end
 			endcase
 		end
-		else
-		begin
-			GHR <= {GHR[GHR_SIZE-2:0], gshare_counter[1]};							//shift in prediction
-		end
-
-		//and update bimodal counter to reflect current branch
-		case(gshare_counter[1])
-			0:
-			begin
-					branch_history[gshare_index] <= branch_history[gshare_index] + 1;
-			end
-			1:
-			begin
-					branch_history[gshare_index] <= branch_history[gshare_index] - 1;
-			end
-		endcase
 	end
 end
 

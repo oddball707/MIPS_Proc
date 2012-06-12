@@ -6,9 +6,6 @@ entity pre_aligner is
         DATA_WIDTH      : integer := 32
     );
     port(
-        i_Clk           : in     vl_logic;
-        i_Reset_n       : in     vl_logic;
-        i_Stall         : in     vl_logic;
         i_pc            : in     vl_logic_vector;
         i_inst1         : in     vl_logic_vector;
         i_inst2         : in     vl_logic_vector;
@@ -17,6 +14,7 @@ entity pre_aligner is
         o_isbranch      : out    vl_logic;
         o_branch_address: out    vl_logic_vector;
         o_Branch_Target : out    vl_logic_vector;
+        o_delay_slot    : out    vl_logic;
         o_j_inst        : out    vl_logic;
         o_jal_inst      : out    vl_logic;
         o_jr_inst       : out    vl_logic

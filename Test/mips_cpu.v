@@ -6,7 +6,7 @@
 * MIPS pipeline architecture which is intended to follow heavily from the model
 * presented in Hennessy and Patterson's Computer Organization and Design.
 */
-module mips_cpu(// General	 
+module mips_cpu(// General
 				input CLOCK_50,	//These inputs are all pre-defined input/output pin names
 				//input Global_Reset_n,		// TEMP - Remove this after testing
 				input [3:0] KEY,	// which correspond to the DE2_pin_assignments,csv file.  This
@@ -14,9 +14,9 @@ module mips_cpu(// General
 				output [6:0] HEX7, HEX6, HEX5, HEX4, HEX3, HEX2, HEX1, HEX0, // name right.
 				output [7:0] LEDG,
 				output [17:0] LEDR,
-				
+
 				//SDRAM interface
-				output [11:0] DRAM_ADDR,   
+				output [11:0] DRAM_ADDR,
 				output DRAM_BA_0,
 				output DRAM_BA_1,
 				output DRAM_CAS_N,
@@ -28,17 +28,17 @@ module mips_cpu(// General
 				output DRAM_UDQM,
 				output DRAM_RAS_N,
 				output DRAM_WE_N,
-				
+
 				//Flash RAM interface
-				output [21:0] FL_ADDR, 	   
+				output [21:0] FL_ADDR,
 				inout [7:0] FL_DQ,
 				output FL_CE_N,
 				output FL_OE_N,
 				output FL_RST_N,
 				output FL_WE_N,
-				
+
 				 //SRAM interface
-				output [17:0] SRAM_ADDR,  
+				output [17:0] SRAM_ADDR,
 				inout [15:0] SRAM_DQ,
 				output SRAM_UB_N,
 				output SRAM_LB_N,
@@ -58,6 +58,7 @@ localparam TRUE = 1'b1;
 localparam ADDRESS_WIDTH = 22;
 localparam DATA_WIDTH = 32;
 localparam STACK_SIZE = 16;
+localparam GHR_SIZE = 8;
 //wire Global_Reset_n;			// Global reset
 wire Global_Reset_n = KEY[0];
 
@@ -91,7 +92,7 @@ wire [ADDRESS_WIDTH-1:0] IMEM_i_Address;	// Current PC
 wire IMEM_o_Ready;
 wire IMEM_o_Valid;
 wire [4*DATA_WIDTH-1:0] IMEM_o_Instruction;
-wire [DATA_WIDTH-1:0] IMEM_o_Instruction1 = IMEM_o_Instruction[DATA_WIDTH-1:0]; 
+wire [DATA_WIDTH-1:0] IMEM_o_Instruction1 = IMEM_o_Instruction[DATA_WIDTH-1:0];
 
 					// Outputs - to branch predictor
 wire PA_o_isbranch;
@@ -104,8 +105,11 @@ wire [ADDRESS_WIDTH-1:0] PA_o_branch_target;
 wire PA_o_j_inst;
 wire PA_o_jal_inst;
 wire PA_o_jr_inst;
+wire PA_o_delay_slot;
 
 wire [ADDRESS_WIDTH-1:0] JS_o_address;
+
+wire BP_o_prediction;
 
 	//==============
 	// Pipe signals: IF->ID
@@ -366,8 +370,8 @@ begin
 			HEX_Buf[1] <= ALU_o_Pass_Done_Value[7:4];
 			HEX_Buf[6] <= IMEM_i_Address[3:0];
 			HEX_Buf[7] <= IMEM_i_Address[7:4];
-		end		
-		
+		end
+
 		2'd1:	// Cycle Count
 		begin
 			HEX_Buf[0] <= CycleCount[3:0];
@@ -377,9 +381,9 @@ begin
 			HEX_Buf[4] <= CycleCount[19:16];
 			HEX_Buf[5] <= CycleCount[23:20];
 			HEX_Buf[6] <= CycleCount[27:24];
-			HEX_Buf[7] <= CycleCount[31:28];	
+			HEX_Buf[7] <= CycleCount[31:28];
 		end
-		
+
 		2'd2:	// Instructions Executed
 		begin
 			HEX_Buf[0] <= InstructionsExecuted[3:0];
@@ -389,13 +393,13 @@ begin
 			HEX_Buf[4] <= InstructionsExecuted[19:16];
 			HEX_Buf[5] <= InstructionsExecuted[23:20];
 			HEX_Buf[6] <= InstructionsExecuted[27:24];
-			HEX_Buf[7] <= InstructionsExecuted[31:28];		
+			HEX_Buf[7] <= InstructionsExecuted[31:28];
 		end
-		
+
 		2'd3: // (free for any other metric)
 		begin
 		end
-		
+
 	endcase
 end
 
@@ -415,7 +419,7 @@ assign HEX2 = (SW[1:0]==2'd0 ? HEX2_PFD : HEX2_SSD);
 
 /*
 SevenSegmentPFD SSD3 (i_Clk, HEX2, ALU_o_Pass_Done_Change);	// display pass/done/fail status
-	
+
 SevenSegmentDisplayDecoder SSD0 (i_Clk, HEX0, ALU_o_Pass_Done_Value[3:0]);
 SevenSegmentDisplayDecoder SSD1 (i_Clk, HEX1, ALU_o_Pass_Done_Value[7:4]);
 
@@ -443,14 +447,42 @@ fetch_unit #(	.ADDRESS_WIDTH(ADDRESS_WIDTH),
 					.i_Clk(i_Clk),
 					.i_Reset_n(Internal_Reset_n),
 					.i_Stall(Hazard_Stall_IF),
-					
-					.i_Load(IFetch_i_Load),
-					.i_Load_Address(IFetch_i_PCSrc),
-					
+
+					.i_branch_taken(BP_o_prediction),		//from branch predictor
+					.i_jump_inst(PA_o_j_inst | PA_o_jal_inst),			//from pre-align
+					.i_jr_inst(PA_o_jr_inst),			//from pre-align
+					.i_branch_inst(PA_o_isbranch),
+					.i_branch_mispredict(0),	//from hazard detection/EX [first bit - if mispredicted, second if taken, 3rd/4th bits for thread]
+					.i_thread_choice(0),		//which thread to take from - from Queue
+
+					//The next address possibilities,
+					//normal execution - PC + (4- PC%4)							//local information
+					.i_current_target(PA_o_branch_target),			//from Pre-Aligner
+					.i_mispredict_nottaken(0),	//from EX, target of mispredicted branch
+					.i_mispredict_pc(22'b0),			//from EX, pc of mispredicted branch
+					.i_jstack_jrtarget(22'b0),		//from jump stack, address for jr
+
 					// Outputs
 					.o_PC(IMEM_i_Address)
 				);
-				
+
+// fetch_unit #(	.ADDRESS_WIDTH(ADDRESS_WIDTH),
+// 				.DATA_WIDTH(DATA_WIDTH)
+// 				)
+// 				IFETCH
+// 				(	// Inputs
+// 					.i_Clk(i_Clk),
+// 					.i_Reset_n(Internal_Reset_n),
+// 					.i_Stall(Hazard_Stall_IF),
+
+// 					.i_Load(IFetch_i_Load),
+// 					.i_Load_Address(IFetch_i_PCSrc),
+
+// 					// Outputs
+// 					.o_PC(IMEM_i_Address)
+// 				);
+
+
 i_cache	#(	.DATA_WIDTH(DATA_WIDTH)
 		)
 		I_CACHE
@@ -458,33 +490,30 @@ i_cache	#(	.DATA_WIDTH(DATA_WIDTH)
 			// General
 			.i_Clk(i_Clk),
 			.i_Reset_n(Internal_Reset_n),
-			
+
 			// Requests
 			.i_Valid(o_FlashLoader_Done),
 			.i_Address(IMEM_i_Address),
-		
-			// Mem Transaction 
+
+			// Mem Transaction
 			.o_MEM_Valid(Arbiter_i_IMEM_Valid),
 			.o_MEM_Address(Arbiter_i_IMEM_Address),
 			.i_MEM_Valid(Arbiter_o_IMEM_Valid),		// If data from main mem is valid
 			.i_MEM_Last(Arbiter_o_IMEM_Last),			// If main mem is sending the last piece of data
 			.i_MEM_Data(Arbiter_o_IMEM_Data),		// Data from main mem
-			
+
 			// Outputs
 			.o_Ready(IMEM_o_Ready),
 			.o_Valid(IMEM_o_Valid),					// If the output is correct.
-			.o_Data(IMEM_o_Instruction)					// The data requested.		
+			.o_Data(IMEM_o_Instruction)					// The data requested.
 		);
-		
+
 pre_aligner	#(
 					.ADDRESS_WIDTH(ADDRESS_WIDTH),
 					.DATA_WIDTH(DATA_WIDTH)
 				)
 				PRE_ALIGNER
 				(	// Inputs
-					.i_Clk(i_Clk),
-					.i_Reset_n(Internal_Reset_n),
-					.i_Stall(Hazard_Stall_IF),
 
 					//from I_CACHE
 					.i_pc(IMEM_i_Address),			//of first instruction (i_inst1)
@@ -503,10 +532,11 @@ pre_aligner	#(
 					//Output - to jump stack, fetch
 					.o_j_inst(PA_o_j_inst),
 					.o_jal_inst(PA_o_jal_inst),
-					.o_jr_inst(PA_o_jr_inst)
+					.o_jr_inst(PA_o_jr_inst),
+					.o_delay_slot(PA_o_delay_slot)
 				);
 
-		
+
 jump_stack	#(
 					.DATA_WIDTH(DATA_WIDTH),
 					.ADDRESS_WIDTH(ADDRESS_WIDTH),
@@ -519,12 +549,37 @@ jump_stack	#(
 
 					////Inputs from pre-align
 					.i_address(IMEM_i_Address),	//address in memory (for hash)
-					.i_thread(0),					//to choose which thread to use
+					.i_thread(2'b00),					//to choose which thread to use
 					.i_pop(PA_o_jr_inst),							//push if jal - 0, pop if jr - 1
 					.i_push(PA_o_jal_inst),							//1 if jal or jr, 0 otherwise
 
 					.o_address(JS_o_address)	//popped value - if jr
 				);
+
+branch_predictor #(
+					.DATA_WIDTH(DATA_WIDTH),
+					.ADDRESS_WIDTH(ADDRESS_WIDTH),
+					.GHR_SIZE(GHR_SIZE)
+				)
+				BRANCH_PREDICTOR
+				(
+					////Inputs from current stage
+					.i_Clk(i_Clk),
+					.i_Reset_n(Internal_Reset_n),
+					.i_Stall(Hazard_Stall_IF),
+
+					.i_IMEM_address(IMEM_i_Address),	//address in memory (for hash)
+
+					////Inputs from ALU stage
+					.i_isbranch_check(PA_o_isbranch),					//don't want to update tables for a non-branch
+					.i_ALU_outcome(0),					//1 if taken 0 not taken (from ALU computation)
+					.i_ALU_pc(22'b0),			//pc from branch in ALU stage
+					.i_ALU_isbranch(0),					//if inst in ALU stage is a branch
+					.i_ALU_prediction(0),					//prediction for branch in ALU
+
+					.o_taken(BP_o_prediction)						//prediction
+				);
+
 
 //===================================================================
 //	Decode
@@ -537,7 +592,7 @@ pipe_if_dec	#(	.ADDRESS_WIDTH(ADDRESS_WIDTH),
 				.i_Reset_n(Internal_Reset_n),
 				.i_Flush(Hazard_Flush_IF),
 				.i_Stall(Hazard_Stall_DEC),
-				
+
 					// Pipe signals
 				.i_PC(IMEM_i_Address),
 				.o_PC(DEC_i_PC),
@@ -556,20 +611,20 @@ decoder #(	.ADDRESS_WIDTH(ADDRESS_WIDTH),
 			.i_PC(DEC_i_PC),
 			.i_Instruction(DEC_i_Instruction),
 			.i_Stall(Hazard_Stall_DEC),
-		
+
 				// Outputs
 			.o_Uses_ALU(DEC_o_Uses_ALU),
 			.o_ALUCTL(DEC_o_ALUCTL),
 			.o_Is_Branch(DEC_o_Is_Branch),
 			.o_Jump_Reg(DEC_o_Jump_Reg),
-			
+
 			.o_Mem_Valid(DEC_o_Mem_Valid),
 			.o_Mem_Read_Write_n(DEC_o_Mem_Read_Write_n),
 			.o_Mem_Mask(DEC_o_Mem_Mask),
-			
+
 			.o_Writes_Back(DEC_o_Writes_Back),
 			.o_Write_Addr(DEC_o_Write_Addr),
-			
+
 			.o_Uses_RS(DEC_o_Uses_RS),
 			.o_RS_Addr(DEC_o_Read_Register_1),
 			.o_Uses_RT(DEC_o_Uses_RT),
@@ -579,21 +634,21 @@ decoder #(	.ADDRESS_WIDTH(ADDRESS_WIDTH),
 			.o_Branch_Target(DEC_o_Branch_Target)
 		);
 
-		
+
 regfile #(	.DATA_WIDTH(DATA_WIDTH),
 			.REG_ADDR_WIDTH(REG_ADDR_WIDTH)
 		)
 		REGFILE
 		(		// Inputs
 			.i_Clk(i_Clk),
-					
+
 			.i_RS_Addr(DEC_o_Read_Register_1),
 			.i_RT_Addr(DEC_o_Read_Register_2),
-				
+
 			.i_Write_Enable(DEC_i_RegWrite),	// Account for squashing WB stage
 			.i_Write_Data(WB_i_Write_Data),
 			.i_Write_Addr(DEC_i_Write_Register),
-					
+
 				// Outputs
 			.o_RS_Data(DEC_o_Read_Data_1),
 			.o_RT_Data(DEC_o_Read_Data_2)
@@ -613,7 +668,7 @@ pipe_dec_ex #(	.ADDRESS_WIDTH(ADDRESS_WIDTH),
 				.i_Reset_n(Internal_Reset_n),
 				.i_Flush(Hazard_Flush_DEC),
 				.i_Stall(Hazard_Stall_EX),
-							
+
 					// Pipeline
 				.i_PC(DEC_o_PC),
 				.o_PC(ALU_i_PC),
@@ -652,7 +707,7 @@ alu	#(	.DATA_WIDTH(DATA_WIDTH),
 		.i_ALUCTL(ALU_i_ALUOp),
 		.i_Operand1(ALU_i_Operand1),
 		.i_Operand2(ALU_i_Operand2),
-		
+
 			// Outputs
 		.o_Valid(ALU_o_Valid),
 		.o_Result(ALU_o_Result),
@@ -675,7 +730,7 @@ pipe_ex_mem #(	.ADDRESS_WIDTH(ADDRESS_WIDTH),
 				.i_Reset_n(Internal_Reset_n),
 				.i_Flush(Hazard_Flush_EX),
 				.i_Stall(Hazard_Stall_MEM),
-				
+
 				// Pipe in/out
 				.i_ALU_Result(ALU_o_Result),
 				.o_ALU_Result(DMEM_i_Result),
@@ -693,7 +748,7 @@ pipe_ex_mem #(	.ADDRESS_WIDTH(ADDRESS_WIDTH),
 				.o_Write_Addr(DMEM_i_Write_Addr)
 			);
 
-d_cache	#(	
+d_cache	#(
 			.DATA_WIDTH(32),
 			.MEM_MASK_WIDTH(3)
 		)
@@ -711,10 +766,10 @@ d_cache	#(
 			.o_Ready(DMEM_o_Mem_Ready),
 			.o_Valid(DMEM_o_Mem_Valid),
 			.o_Data(DMEM_o_Read_Data),
-			
+
 			// Mem Transaction
 			.o_MEM_Valid(Arbiter_i_DMEM_Valid),
-			.o_MEM_Read_Write_n(Arbiter_i_DMEM_Read_Write_n),	
+			.o_MEM_Read_Write_n(Arbiter_i_DMEM_Read_Write_n),
 			.o_MEM_Address(Arbiter_i_DMEM_Address),
 			.o_MEM_Data(Arbiter_i_DMEM_Data),
 			.i_MEM_Valid(Arbiter_o_DMEM_Valid),
@@ -722,7 +777,7 @@ d_cache	#(
 			.i_MEM_Last(Arbiter_o_DMEM_Last),
 			.i_MEM_Data(Arbiter_o_DMEM_Data)
 		);
-		
+
 	// Multiplexor - Select what we will write back
 always @(*)
 begin
@@ -750,7 +805,7 @@ pipe_mem_wb #(	.ADDRESS_WIDTH(ADDRESS_WIDTH),
 				.i_Reset_n(Internal_Reset_n),
 				.i_Flush(Hazard_Flush_MEM),
 				.i_Stall(Hazard_Stall_WB),
-							
+
 					// Pipe in/out
 				.i_WriteBack_Data(DMEM_o_Write_Data),
 				.o_WriteBack_Data(WB_i_Write_Data),
@@ -764,7 +819,7 @@ pipe_mem_wb #(	.ADDRESS_WIDTH(ADDRESS_WIDTH),
 	// Write-Back is simply wires feeding back into regfile to perform writes
 	// (SEE REGFILE)
 
-	
+
 
 //===================================================================
 //	Arbitration Logic
@@ -773,19 +828,19 @@ pipe_mem_wb #(	.ADDRESS_WIDTH(ADDRESS_WIDTH),
 memory_arbiter	#(	.DATA_WIDTH(DATA_WIDTH),
 					.ADDRESS_WIDTH(ADDRESS_WIDTH)
 				)
-				ARBITER	
+				ARBITER
 				(
 					// General
 					.i_Clk(i_Clk),
 					.i_Reset_n(Internal_Reset_n),
-			
+
 					// Requests to/from IMEM - Assume we always read
 					.i_IMEM_Valid(Arbiter_i_IMEM_Valid),						// If IMEM request is valid
 					.i_IMEM_Address(Arbiter_i_IMEM_Address),		// IMEM request addr.
 					.o_IMEM_Valid(Arbiter_o_IMEM_Valid),
 					.o_IMEM_Last(Arbiter_o_IMEM_Last),
 					.o_IMEM_Data(Arbiter_o_IMEM_Data),
-					
+
 					// Requests to/from DMEM
 					.i_DMEM_Valid(Arbiter_i_DMEM_Valid),
 					.i_DMEM_Read_Write_n(Arbiter_i_DMEM_Read_Write_n),
@@ -795,50 +850,50 @@ memory_arbiter	#(	.DATA_WIDTH(DATA_WIDTH),
 					.o_DMEM_Data_Read(Arbiter_o_DMEM_Data_Read),
 					.o_DMEM_Last(Arbiter_o_DMEM_Last),
 					.o_DMEM_Data(Arbiter_o_DMEM_Data),
-					
+
 					// Requests to/from FLASH - Assume we always write
 					.i_Flash_Valid(Arbiter_i_Flash_Valid),
 					.i_Flash_Data(Arbiter_i_Flash_Data),
 					.i_Flash_Address(Arbiter_i_Flash_Address),
 					.o_Flash_Data_Read(Arbiter_o_Flash_Data_Read),
 					.o_Flash_Last(Arbiter_o_Flash_Last),
-					
+
 					// Interface with SDRAM Controller
 					.o_MEM_Valid(SDRAM_i_Valid),
 					.o_MEM_Address(SDRAM_i_Address),
 					.o_MEM_Read_Write_n(SDRAM_i_Read_Write_n),
-					
+
 						// Write data interface
 					.o_MEM_Data(SDRAM_i_Data),
 					.i_MEM_Data_Read(SDRAM_o_Data_Read),
-					
+
 						// Read data interface
 					.i_MEM_Data(SDRAM_o_Data),
 					.i_MEM_Data_Valid(SDRAM_o_Data_Valid),
-					
+
 					.i_MEM_Last(SDRAM_o_Last)
 				);
 
 sdram_controller memory_controller(
 					.i_Clk(i_Clk),
 					.i_Reset(!Internal_Reset_n),
-					
+
 					// Request interface
 					.i_Addr(SDRAM_i_Address),
 					.i_Req_Valid(SDRAM_i_Valid),
 					.i_Read_Write_n(SDRAM_i_Read_Write_n),
-					
+
 					// Write .data interface
 					.i_Data(SDRAM_i_Data),
 					.o_Data_Read(SDRAM_o_Data_Read),
-					
+
 					// Read data .interface
 					.o_Data(SDRAM_o_Data),
 					.o_Data_Valid(SDRAM_o_Data_Valid),
-					
+
 					// output
 					.o_Last(SDRAM_o_Last),
-					
+
 						// SDRAM interface
 					.b_Dq(DRAM_DQ),
 					.o_Addr(DRAM_ADDR),
@@ -852,7 +907,7 @@ sdram_controller memory_controller(
 					.o_Dqm({DRAM_UDQM,DRAM_LDQM})
 				);
 
-				
+
 // Forwarding logic
 forwarding_unit	#(	.DATA_WIDTH(DATA_WIDTH),
 					.REG_ADDR_WIDTH(REG_ADDR_WIDTH)
@@ -866,33 +921,33 @@ forwarding_unit	#(	.DATA_WIDTH(DATA_WIDTH),
 					.i_DEC_RT_Addr(DEC_o_Read_Register_2),							// RT request addr.
 					.i_DEC_RS_Data(DEC_o_Read_Data_1),
 					.i_DEC_RT_Data(DEC_o_Read_Data_2),
-					
+
 					// Feedback from EX
 					.i_EX_Writes_Back(EX_i_Writes_Back),								// EX is valid for analysis
 					.i_EX_Valid(ALU_i_Valid),								// If it's a valid ALU op or not
 					.i_EX_Write_Addr(EX_i_Write_Addr),							// What EX will write to
 					.i_EX_Write_Data(ALU_o_Result),
-					
+
 					// Feedback from MEM
 					.i_MEM_Writes_Back(DMEM_i_Writes_Back),								// MEM is valid for analysis
 					.i_MEM_Write_Addr(DMEM_i_Write_Addr),							// What MEM will write to
 					.i_MEM_Write_Data(DMEM_o_Write_Data),
-					
+
 					// Feedback from WB
 					.i_WB_Writes_Back(WB_i_Writes_Back),								// WB is valid for analysis
 					.i_WB_Write_Addr(DEC_i_Write_Register),							// What WB will write to
 					.i_WB_Write_Data(WB_i_Write_Data),
-					
+
 					//===============================================
 					// IFetch forwarding
-					
+
 						// None
-						
+
 					// DEC forwarding
 					.o_DEC_RS_Override_Data(FORWARD_o_Forwarded_Data_1),
-					.o_DEC_RT_Override_Data(FORWARD_o_Forwarded_Data_2)				
+					.o_DEC_RT_Override_Data(FORWARD_o_Forwarded_Data_2)
 				);
-				
+
 // Hazard detection unit / Stall logic
 hazard_detection_unit 	#(  .DATA_WIDTH(DATA_WIDTH),
 							.ADDRESS_WIDTH(ADDRESS_WIDTH),
@@ -902,12 +957,12 @@ hazard_detection_unit 	#(  .DATA_WIDTH(DATA_WIDTH),
 						(
 							.i_Clk(i_Clk),
 							.i_Reset_n(Internal_Reset_n),
-						
+
 							//==============================================
 							// Overall state
 							.i_FlashLoader_Done(o_FlashLoader_Done),				// Info about if flashloader is done
 							.i_Done(Done),													// If we have observed the 'done' signal from the code yet
-						
+
 							//==============================================
 							// Hazard in DECODE?
 							.i_DEC_Uses_RS(DEC_o_Uses_RS),								// DEC wants to use RS
@@ -915,55 +970,55 @@ hazard_detection_unit 	#(  .DATA_WIDTH(DATA_WIDTH),
 							.i_DEC_Uses_RT(DEC_o_Uses_RT),								// DEC wants to use RT
 							.i_DEC_RT_Addr(DEC_o_Read_Register_2),							// RT request addr.
 							.i_DEC_Branch_Instruction(DEC_o_Is_Branch),
-							
+
 							//===============================================
 							// Feedback from IF
 							.i_IF_Done(IMEM_o_Valid),						// If IF's value has reached steady state
-							
+
 							// Feedback from EX
 							.i_EX_Writes_Back(EX_i_Writes_Back),					// EX is valid for data dependency analysis
 							.i_EX_Uses_Mem(EX_i_Mem_Valid),
 							.i_EX_Write_Addr(EX_i_Write_Addr),							// What EX will write to
 							.i_EX_Branch(EX_Take_Branch),							// If EX says we are branching
 							.i_EX_Branch_Target(EX_i_Branch_Target),
-							
+
 							// Feedback from MEM
 							.i_MEM_Uses_Mem(DMEM_i_Mem_Valid),								// If it's a memop
 							.i_MEM_Writes_Back(DMEM_i_Writes_Back),						// MEM is valid for analysis
 							.i_MEM_Write_Addr(DMEM_i_Write_Addr),							// What MEM will write to
-							.i_MEM_Done(DMEM_o_Done),									// If MEM's value has reached steady state								
-							
+							.i_MEM_Done(DMEM_o_Done),									// If MEM's value has reached steady state
+
 							// Feedback from WB
 							.i_WB_Writes_Back(WB_i_Writes_Back),
 							.i_WB_Write_Addr(DEC_i_Write_Register),
-							
+
 							//===============================================
 							// Branch hazard handling
 							.o_IF_Branch(IFetch_i_Load),
 							.o_IF_Branch_Target(IFetch_i_PCSrc),
-							
+
 							//===============================================
 							// IFetch validation
 							.o_IF_Stall(Hazard_Stall_IF),
 							.o_IF_Smash(Hazard_Flush_IF),
-							
+
 							// DECODE validation
 							.o_DEC_Stall(Hazard_Stall_DEC),
 							.o_DEC_Smash(Hazard_Flush_DEC),
-							
+
 							// EX validation
 							.o_EX_Stall(Hazard_Stall_EX),
 							.o_EX_Smash(Hazard_Flush_EX),
-							
+
 							// MEM validation
 							.o_MEM_Stall(Hazard_Stall_MEM),
 							.o_MEM_Smash(Hazard_Flush_MEM),
-							
+
 							.o_WB_Stall(Hazard_Stall_WB),
 							.o_WB_Smash(Hazard_Flush_WB)
 						);
 
-					
+
 
 //===================================================================
 //	Initialization
@@ -976,7 +1031,7 @@ flashreader#(.WORDS_TO_LOAD(32'h00008000),
 `else
 flashreader
 `endif
-flashloader2(	.i_Clk(i_Clk), 
+flashloader2(	.i_Clk(i_Clk),
 				.i_Reset_n(Internal_Reset_n),
 				.o_Done(o_FlashLoader_Done),
 				.o_SDRAM_Addr(o_FlashLoader_SDRAM_Addr),

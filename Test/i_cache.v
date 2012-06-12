@@ -115,7 +115,7 @@ module i_cache	#(	parameter DATA_WIDTH = 32,
 						// 	3:	o_Data <= Data_Array[i_Index][(DATA_WIDTH*4)-1:(DATA_WIDTH*3)];
 						// 	default:	o_Data <= {DATA_WIDTH{1'bx}};
 						// endcase
-						o_Data <= Data_Array[i_Index][(DATA_WIDTH*4)-1:0];
+						o_Data <= Data_Array[i_Index];
 					end
 					else
 					begin
@@ -140,13 +140,13 @@ module i_cache	#(	parameter DATA_WIDTH = 32,
 				if( i_MEM_Valid )
 				begin
 
-					// Is this the data we were waiting on?
-					if( Gen_Count == r_i_BlockOffset )
-					begin
-						// Yes
-						o_Valid <= TRUE;
-						o_Data <= i_MEM_Data;
-					end
+					// // Is this the data we were waiting on?
+					// if( Gen_Count == r_i_BlockOffset )
+					// begin
+					// 	// Yes
+					// 	o_Valid <= TRUE;
+					// 	o_Data <= i_MEM_Data;
+					// end
 
 					// Last piece of transaction?
 					if( i_MEM_Last )
